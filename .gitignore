@@ -1,0 +1,16 @@
+# Ignorar pastas de Build do Visual Studio
+# Estas pastas contêm os .exe, .dll, .obj, .pdb e os .lib gerados
+x64/
+Debug/
+Release/
+
+# Ignorar arquivos de cache e usuário do Visual Studio
+.vs/
+*.vcxproj.user
+*.sln.suo
+
+# Ignorar arquivos de saída que possam aparecer no raiz (raro)
+*.exe
+*.dll
+*.pdb
+*.obj
