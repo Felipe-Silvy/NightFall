@@ -1,17 +1,18 @@
 #include "Ente.h"
 
-// Gerenciador_Grafico* Ente::pGG = nullptr;
+NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Ente::pGG = nullptr;
 
-Ente::Ente() : id(0) // , pFig(nullptr) 
+NightFall::Ente::Ente() : id(0) // , pFig(nullptr) 
 {}
 
-Ente::~Ente() {}
+NightFall::Ente::~Ente() {}
 
-void Ente::desenhar() {
+void NightFall::Ente::desenhar() {
    // if (pFig != nullptr && pGG != nullptr)
       //  pGG->desenhar(pFig);
 }
 
-// void Ente::setGG(Gerenciador_Grafico* pG) {
-   // pGG = pG;
-// }
+void NightFall::Ente::setGG(Gerenciadores::Gerenciador_Grafico* pG)
+{
+}
+

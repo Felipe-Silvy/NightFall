@@ -1,10 +1,10 @@
 #include "Inimigo.h"
 
-Inimigo::Inimigo() : Personagem(), nivel_maldade(0)
+NightFall::Entidades::Personagens::Inimigo::Inimigo() : Personagem(), nivel_maldade(0)
 {
 }
 
-Inimigo::~Inimigo()
+NightFall::Entidades::Personagens::Inimigo::~Inimigo()
 {
 	nivel_maldade = 0;
 }

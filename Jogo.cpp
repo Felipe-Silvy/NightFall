@@ -1,15 +1,15 @@
 #include "Jogo.h"
 #include "Entidade.h"
 
-Jogo::Jogo() : 
+NightFall::Jogo::Jogo() : 
 window(sf::VideoMode(1000, 600), "Jogo TecProg", sf::Style::Close)
 {
     executar();
 }
 
-Jogo::~Jogo() {}
+NightFall::Jogo::~Jogo() {}
 
-void Jogo::executar()
+void NightFall::Jogo::executar()
 {
     pJog1.setWindow(&window);
     pJog1.setVelocidade(0.1);

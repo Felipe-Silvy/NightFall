@@ -1,17 +1,17 @@
 #include "Plataforma.h"
 
-Plataforma::Plataforma() : Obstaculo ()
+NightFall::Entidades::Obstaculos::Plataforma::Plataforma() : Obstaculo ()
 {
 }
 
-Plataforma::~Plataforma()
+NightFall::Entidades::Obstaculos::Plataforma::~Plataforma()
 {
 }
 
-void Plataforma::obstaculizar(Jogador* p)
+void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jogador* p)
 {
 }
 
-void Plataforma::executar()
+void NightFall::Entidades::Obstaculos::Plataforma::executar()
 {
 }

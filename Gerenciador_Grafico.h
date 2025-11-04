@@ -3,19 +3,24 @@
 #include <SFML/Graphics.hpp>
 #include "Ente.h"
 
-class Gerenciador_Grafico {
-private:
-    sf::RenderWindow window;
-    // outros atributos se necessário
+namespace NightFall {
+    namespace Gerenciadores {
 
-public:
-    // Construtor
-    Gerenciador_Grafico();
+        class Gerenciador_Grafico {
+        private:
+            sf::RenderWindow window;
+            // outros atributos se necessário
 
-    // Destrutor
-    ~Gerenciador_Grafico();
+        public:
+            // Construtor
+            Gerenciador_Grafico();
 
-    // Método para desenhar um ente
-    void desenharEnte(Ente* e);
-};
+            // Destrutor
+            ~Gerenciador_Grafico();
 
+            // Método para desenhar um ente
+            void desenharEnte(Ente* e);
+        };
+
+    } // namespace Gerenciadores
+} // namespace NightFall

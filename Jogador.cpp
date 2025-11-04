@@ -1,19 +1,19 @@
 #include "Jogador.h"
 
-Jogador::Jogador() : Personagem() , pontos(0) 
+NightFall::Entidades::Personagens::Jogador::Jogador() : Personagem() , pontos(0)
 {
     texturaEsquerda.loadFromFile("Assets/Imagens/esqueleto_e.png");
     texturaDireita.loadFromFile("Assets/Imagens/esqueleto_d.png");
     body.setTexture(&texturaDireita);
 }
 
-Jogador::~Jogador() { pontos = 0; }
+NightFall::Entidades::Personagens::Jogador::~Jogador() { pontos = 0; }
 
-void Jogador::executar () {}
+void NightFall::Entidades::Personagens::Jogador::executar () {}
 
-void Jogador::salvar() {}
+void NightFall::Entidades::Personagens::Jogador::salvar() {}
 
-void Jogador::mover(int direc) 
+void NightFall::Entidades::Personagens::Jogador::mover(int direc)
 {
     if (direc == 1)
     {
@@ -35,12 +35,12 @@ void Jogador::mover(int direc)
     }
 }
 
-void Personagem::setVelocidade(float vel)
+void NightFall::Entidades::Personagens::Personagem::setVelocidade(float vel)
 {
     velocidade = vel;
 }
 
-void Jogador::setTextura(sf::Texture* text)
+void NightFall::Entidades::Personagens::Jogador::setTextura(sf::Texture* text)
 {
 	body.setTexture(text);
 }

@@ -1,21 +1,21 @@
 #include "Entidade.h"
 
-Entidade::Entidade() :
+NightFall::Entidades::Entidade::Entidade() :
 	Ente(), x(0) , y(0) , body(sf::Vector2f(100.f, 100.f))
 {
 	window = nullptr;
 }
 
-Entidade::~Entidade() {}
+NightFall::Entidades::Entidade::~Entidade() {}
 
-void Entidade::salvarDataBuffer() 
+void NightFall::Entidades::Entidade::salvarDataBuffer()
 { 
 	// Implementar depois
 };
 
-void Entidade::setWindow(sf::RenderWindow* w) { if (w != nullptr) { window = w; } }
+void NightFall::Entidades::Entidade::setWindow(sf::RenderWindow* w) { if (w != nullptr) { window = w; } }
 
-void Entidade::draw() 
+void NightFall::Entidades::Entidade::draw()
 {
 	if ( window != nullptr) 
 	{
@@ -23,7 +23,7 @@ void Entidade::draw()
 	}
 }
 
-sf::RectangleShape Entidade::getBody()
+sf::RectangleShape NightFall::Entidades::Entidade::getBody()
 {
 	return body;
 }

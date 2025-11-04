@@ -1,18 +1,29 @@
 #pragma once
 #include "Obstaculo.h"
 
-class Jogador;
+namespace NightFall {
+    namespace Entidades {
+        namespace Personagens {
+            class Jogador; // Declaração forward para evitar inclusão circular
+        }
 
-class Plataforma : public Obstaculo
-{
-private:
-    int altura;
-    // ...
+        namespace Obstaculos {
+            class Plataforma : public Obstaculo
+            {
+            private:
+                int altura;
+                // ...
 
-public:
-    Plataforma();
-    ~Plataforma();
-    void executar();
-    void obstaculizar(Jogador* p);
-};
+            public:
+                Plataforma();
+                ~Plataforma();
+                void executar();
+                void obstaculizar(Personagens::Jogador* p);
+            };
+        }
+    }
+}
+
+
+
 
