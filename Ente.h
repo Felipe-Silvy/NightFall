@@ -9,7 +9,7 @@ namespace NightFall {
     protected:
         int id;
         static Gerenciadores::Gerenciador_Grafico* pGG;
-        //Figura* pFig;
+        sf::RectangleShape* corpo;
 
     public:
         // Construtor e destrutor
