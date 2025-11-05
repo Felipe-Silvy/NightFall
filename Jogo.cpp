@@ -28,4 +28,5 @@ void NightFall::Jogo::executar()
             window.display();
         }
 
+        // MUDEI AQUI TESTE
 }
