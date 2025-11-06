@@ -16,8 +16,7 @@ namespace NightFall {
                 // void colidir(Inimigo* pIn);
                 void executar();
                 void salvar();
-                void mover(int direc); // TEM QUE RETIRAR O PARAMETRO DPS
-                void setTextura(sf::Texture* text);
+                void mover(); 
                 // ...
             };
         } // namespace Personagens

@@ -1,8 +1,9 @@
 #include "Jogo.h"
 #include "Entidade.h"
 
-NightFall::Jogo::Jogo() : GG() // SOBRECARGA COM PARAMETROS TLVZ
+NightFall::Jogo::Jogo() : pJog1(), GG() // SOBRECARGA COM PARAMETROS TLVZ
 {
+    Ente::setGG(&GG);
     executar();
 }
 
@@ -10,23 +11,20 @@ NightFall::Jogo::~Jogo() {}
 
 void NightFall::Jogo::executar()
 {
-        sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-        sf::CircleShape shape(100.f);
-        shape.setFillColor(sf::Color::Green);
+    pJog1.setTextura("Jogador");
 
-        while (window.isOpen())
+    while (GG.verificaAbertura())
+    {
+        sf::Event event;
+        while (GG.getWindow()->pollEvent(event))
         {
-            sf::Event event;
-            while (window.pollEvent(event))
-            {
-                if (event.type == sf::Event::Closed)
-                    window.close();
-            }
-
-            window.clear();
-            window.draw(shape);
-            window.display();
+            if (event.type == sf::Event::Closed)
+                GG.fecharJanela();
         }
 
-        // MUDEI AQUI TESTE
+        GG.limpaJanela();
+        GG.desenharEnte(&pJog1);
+        GG.mostraElementos();
+    }
+    
 }

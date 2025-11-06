@@ -10,10 +10,6 @@ namespace NightFall {
 		protected:
 			int x;
 			int y;
-			sf::RectangleShape body;
-			sf::Texture texturaEsquerda;
-			sf::Texture texturaDireita;
-			sf::RenderWindow* window;
 			// ostream "buffer" tirar aspas depois;
 			void salvarDataBuffer(); // Impementar depois
 		public:
@@ -21,9 +17,7 @@ namespace NightFall {
 			~Entidade();
 			virtual void executar() = 0;
 			virtual void salvar() = 0;
-			void setWindow(sf::RenderWindow* w); // Adicional
 			void draw(); // Adicional
-			sf::RectangleShape getBody(); // Adicional
 		};
 	}
 }

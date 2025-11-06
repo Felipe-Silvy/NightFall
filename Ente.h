@@ -10,7 +10,7 @@ namespace NightFall {
     protected:
         int id;
         static Gerenciadores::Gerenciador_Grafico* pGG;
-        sf::RectangleShape* corpo;
+        sf::Sprite corpo;
 
     public:
         // Construtor e destrutor
@@ -23,5 +23,7 @@ namespace NightFall {
 
         // Setter estático para o gerenciador gráfico
         static void setGG(Gerenciadores::Gerenciador_Grafico* pG);
+        const sf::Sprite& getCorpo() const;
+        void setTextura(const std::string& id);
     };
 }

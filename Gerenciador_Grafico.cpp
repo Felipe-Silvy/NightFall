@@ -1,9 +1,7 @@
 #include "Gerenciador_Grafico.h"
 
-NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() {
-    // Inicialização do objeto gráfico
-    // ...
-    // inicialize outros atributos se necessário
+NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(800.0f, 600.0f), "NightFall") { // VERIFICAR INICIALIZÇÃO WINDOW
+    executar();
 }
 
 NightFall::Gerenciadores::Gerenciador_Grafico::~Gerenciador_Grafico() {
@@ -11,9 +9,69 @@ NightFall::Gerenciadores::Gerenciador_Grafico::~Gerenciador_Grafico() {
 }
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::desenharEnte(Ente* e) {
-    if (e == nullptr) return;
+    if (e != nullptr)
+        window.draw(e->getCorpo());
+}
 
-    // Aqui você chamaria métodos da BiblioGrafica para desenhar o ente
-    // Exemplo genérico:
-    // obj->desenhar(e->getFigura());
+void NightFall::Gerenciadores::Gerenciador_Grafico::carregarTextura(const std::string& id, const std::string& caminho)
+{
+    try {
+        sf::Texture textura;
+        if (!textura.loadFromFile(caminho)) {
+            throw std::runtime_error("Falha ao carregar o arquivo: " + caminho);
+        }
+
+        // Move a textura carregada para o mapa
+        texturas[id] = std::move(textura);
+        std::cout << "Textura carregada com sucesso: " << id << std::endl;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Erro ao carregar textura [" << id << "]: " << e.what() << std::endl;
+    }
+    catch (...) {
+        std::cerr << "Erro desconhecido ao carregar textura [" << id << "]." << std::endl;
+    }
+}
+
+const sf::Texture& NightFall::Gerenciadores::Gerenciador_Grafico::getTextura(const std::string& id) const
+{
+    auto it = texturas.find(id);
+    if (it != texturas.end()) {
+        return it->second;
+    }
+
+    std::cerr << "Textura nao encontrada: " << id << std::endl;
+    // Cuidado: precisamos retornar alguma coisa
+    // Retorna uma textura vazia 
+    static sf::Texture texturaVazia;
+    return texturaVazia;
+}
+
+sf::RenderWindow* NightFall::Gerenciadores::Gerenciador_Grafico::getWindow()
+{
+    return &window;
+}
+
+void NightFall::Gerenciadores::Gerenciador_Grafico::limpaJanela()
+{
+    window.clear();
+}
+
+void NightFall::Gerenciadores::Gerenciador_Grafico::mostraElementos()
+{
+    window.display();
+}
+
+void NightFall::Gerenciadores::Gerenciador_Grafico::fecharJanela()
+{
+    window.close();
+}
+
+bool NightFall::Gerenciadores::Gerenciador_Grafico::verificaAbertura() const
+{
+    return window.isOpen();
+}
+
+void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
+    carregarTextura("Jogador", "Assets/Imagens/esqueleto_d.png");
 }

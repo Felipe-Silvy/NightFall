@@ -16,7 +16,7 @@ namespace NightFall {
                 void salvarDataBuffer(); // Implementar depois
                 virtual void executar() = 0;
                 virtual void salvar() = 0;
-                virtual void mover(int direc) = 0; // TEM QUE RETIRAR O PARAMETRO DPS
+                virtual void mover() = 0; 
                 void setVelocidade(float vel);
             };
         }

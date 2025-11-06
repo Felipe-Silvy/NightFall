@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Arquivos de Recurso\Assets">
+      <UniqueIdentifier>{ee40a02f-cbc7-41e4-9c79-657dfdeb8cbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Recurso\Assets\Imagens">
+      <UniqueIdentifier>{242444a4-0d59-4f8e-a18d-26759d9982be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NightFall.cpp">
@@ -101,5 +107,10 @@
     <ClInclude Include="Lista.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Imagens\esqueleto_d.png">
+      <Filter>Arquivos de Recurso\Assets\Imagens</Filter>
+    </Image>
   </ItemGroup>
 </Project>
