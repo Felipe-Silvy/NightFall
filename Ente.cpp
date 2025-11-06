@@ -31,3 +31,20 @@ void NightFall::Ente::setTextura(const std::string& id)
 {
     corpo.setTexture(pGG->getTextura(id));
 }
+
+const sf::Vector2f NightFall::Ente::getTamanho() const
+{
+    sf::Vector2u tamanhoTextura = corpo.getTexture()->getSize();
+    sf::Vector2f escala = corpo.getScale();
+
+    sf::Vector2f tamanhoReal(
+        tamanhoTextura.x * escala.x,
+        tamanhoTextura.y * escala.y
+    );
+    return tamanhoReal;
+}
+
+const sf::Vector2f NightFall::Ente::getPosicao() const
+{
+    return corpo.getPosition();
+}

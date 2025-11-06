@@ -18,6 +18,9 @@ namespace NightFall {
                 virtual void salvar() = 0;
                 virtual void mover() = 0; 
                 void setVelocidade(float vel);
+
+                //Fora do UML
+                void receberDano(unsigned int dano);
             };
         }
     }

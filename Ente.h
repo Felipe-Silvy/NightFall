@@ -25,5 +25,8 @@ namespace NightFall {
         static void setGG(Gerenciadores::Gerenciador_Grafico* pG);
         const sf::Sprite& getCorpo() const;
         void setTextura(const std::string& id);
+
+        const sf::Vector2f getTamanho() const;
+        const sf::Vector2f getPosicao() const;
     };
 }
