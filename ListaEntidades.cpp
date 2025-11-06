@@ -1,20 +1,23 @@
 #include "ListaEntidades.h"
 
-Nightfall::Listas::ListaEntidades::ListaEntidades()
+NightFall::Listas::ListaEntidades::ListaEntidades()
 {
 }
 
-Nightfall::Listas::ListaEntidades::~ListaEntidades()
+NightFall::Listas::ListaEntidades::~ListaEntidades()
 {
 }
 
-void Nightfall::Listas::ListaEntidades::incluir(Entidades::Entidade* pE)
+void NightFall::Listas::ListaEntidades::incluir(Entidades::Entidade* pE)
 {
 	if (pE != nullptr)
 		LEs.incluir(pE);
 	//inclui a entidade pE na Lista parametrizada com Entidade
 }
 
-void Nightfall::Listas::ListaEntidades::percorrer()
+void NightFall::Listas::ListaEntidades::percorrer()
 {
+	Entidades::Entidade* percorredorDeEntidades = nullptr;
+	int i;
+	// for(i = 0; i < )
 }

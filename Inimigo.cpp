@@ -8,3 +8,7 @@ NightFall::Entidades::Personagens::Inimigo::~Inimigo()
 {
 	nivel_maldade = 0;
 }
+
+void NightFall::Entidades::Personagens::Inimigo::mover()
+{
+}

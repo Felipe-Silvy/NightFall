@@ -1,4 +1,5 @@
 #include "Plataforma.h"
+#include "Teia.h"
 
 NightFall::Entidades::Obstaculos::Plataforma::Plataforma() : Obstaculo ()
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include "Lista.h"
 
-namespace Nightfall
+namespace NightFall
 {
 	namespace Entidades
 	{
@@ -13,13 +13,12 @@ namespace Nightfall
 		class ListaEntidades
 		{
 		private:
-			NightFall::Listas::Lista<Nightfall::Entidades::Entidade> LEs;
+			NightFall::Listas::Lista<NightFall::Entidades::Entidade> LEs;
 		public:
 			ListaEntidades();
 			~ListaEntidades();
 			void incluir(Entidades::Entidade* pE);
 			void percorrer();
-
 		};
 	}
 }

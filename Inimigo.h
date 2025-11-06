@@ -19,8 +19,9 @@ namespace NightFall {
                 // void salvaDataBuffer();
                 virtual void executar() = 0;
                 virtual void danificar(Jogador* p) = 0;
-                virtual void salva() = 0;
+                virtual void salvar() = 0; // Perguntar se é Salva ou Salvar
                 // ...
+                virtual void mover();
             };
         } // namespace Personagens
     } // namespace Entidades

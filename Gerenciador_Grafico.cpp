@@ -72,6 +72,12 @@ bool NightFall::Gerenciadores::Gerenciador_Grafico::verificaAbertura() const
     return window.isOpen();
 }
 
+void NightFall::Gerenciadores::Gerenciador_Grafico::setGerColisoes(Gerenciador_Colisoes* pC)
+{
+    if (pC != nullptr)
+        pColisoes = pC;
+}
+
 void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
     carregarTextura("Jogador", "Assets/Imagens/esqueleto_d.png");
 }

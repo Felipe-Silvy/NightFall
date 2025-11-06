@@ -7,11 +7,15 @@
 namespace NightFall {
     namespace Gerenciadores {
 
+        // Foward Declaration
+        class Gerenciador_Colisoes;
+
         class Gerenciador_Grafico {
         private:
             sf::RenderWindow window;
             std::map<std::string, sf::Texture> texturas;
             // outros atributos se necessário
+            Gerenciador_Colisoes* pColisoes;
 
         public:
             // Construtor
@@ -36,6 +40,8 @@ namespace NightFall {
             void fecharJanela();
             bool verificaAbertura() const;
             
+            // Conhecendo o Gerenciador de Colisões
+            void setGerColisoes(Gerenciador_Colisoes* pC);
         };
 
     } // namespace Gerenciadores

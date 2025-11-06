@@ -3,6 +3,7 @@
 #include "Inimigo.h"
 #include "Jogador.h"
 #include "Obstaculo.h"
+#include "Gerenciador_Grafico.h"
 
 NightFall::Gerenciadores::Gerenciador_Colisoes* NightFall::Gerenciadores::Gerenciador_Colisoes::pColisao = nullptr;
 
@@ -11,7 +12,8 @@ NightFall::Gerenciadores::Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	LOs(),
 	LPs(),
 	pJog1(nullptr),
-	pJog2(nullptr)
+	pJog2(nullptr),
+	pGrafico(nullptr)
 {
 	LIs.clear();
 	LOs.clear();
@@ -194,4 +196,12 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setJogador(Entidades::Perso
 	else
 		std::cout << "Alem do limite de jogadores" << std::endl;
 
+}
+
+void NightFall::Gerenciadores::Gerenciador_Colisoes::setGerGrafico(Gerenciador_Grafico* pG)
+{
+	if (pG != nullptr) {
+		pGrafico = pG;
+		pG->setGerColisoes(this);
+	}
 }

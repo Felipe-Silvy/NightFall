@@ -14,6 +14,7 @@ namespace NightFall {
         Menu();
         ~Menu();
         void executar();
+        void setJogo(Jogo* pjogo);
         // ...
     };
 }

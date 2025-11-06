@@ -23,6 +23,9 @@ namespace NightFall {
     }
 
     namespace Gerenciadores {
+
+        class Gerenciador_Grafico;
+
         class Gerenciador_Colisoes {
         private:
             std::vector<Entidades::Personagens::Inimigo*> LIs;
@@ -35,6 +38,8 @@ namespace NightFall {
 
             static Gerenciador_Colisoes* pColisao;
             //Gerenciador_Colisoes();
+
+            Gerenciador_Grafico* pGrafico;
 
         public: 
             Gerenciador_Colisoes();
@@ -52,6 +57,9 @@ namespace NightFall {
             // ...
 
             void setJogador(Entidades::Personagens::Jogador* pJogador);
+
+            // Conhecendo Gerenciador Grafico
+            void setGerGrafico(Gerenciador_Grafico* pG);
         };
     } // namespace Gerenciadores
 } // namespace NightFall
