@@ -8,3 +8,10 @@ void NightFall::Entidades::Personagens::Personagem::receberDano(unsigned int dan
 {
     num_vidas -= dano;
 }
+
+
+void NightFall::Entidades::Personagens::Personagem::aplicarForca(sf::Vector2f forca)
+{
+    //aceleracao depende de forca
+    //aceleracao += forca;
+}

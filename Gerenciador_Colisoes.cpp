@@ -114,7 +114,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsInimigs()
 			//nesse caso inimigos
 
 			if (colisaoInimigos)
-				(*it)->danificar(static_cast<Entidades::Personagens::Jogador*>(LJs[i]));
+				(static_cast<Entidades::Personagens::Jogador*>(LJs[i]))->colidir((*it));
 			//ativa o dano que o inimigo causa ao ser encostado
 		}
 	}

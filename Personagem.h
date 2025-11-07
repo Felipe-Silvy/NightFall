@@ -10,6 +10,18 @@ namespace NightFall {
             protected:
                 int num_vidas;
                 float velocidade;
+
+                //Fora do UML
+                /*
+                sf::Vector2f velocidadeAtual;
+				sf::Vector2f aceleracao;
+				float forcaPulo;
+				bool noChao;
+				static const float FRICCAO;
+
+				float deltaTempo;
+				sf::Clock relogioMovimento;
+                */
             public:
                 Personagem();
                 ~Personagem();
@@ -21,6 +33,7 @@ namespace NightFall {
 
                 //Fora do UML
                 void receberDano(unsigned int dano);
+                void aplicarForca(sf::Vector2f forca);
             };
         }
     }

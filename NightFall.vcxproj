@@ -141,6 +141,7 @@
     <ClCompile Include="Fase.cpp" />
     <ClCompile Include="FasePrimeira.cpp" />
     <ClCompile Include="Gerenciador_Colisoes.cpp" />
+    <ClCompile Include="Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
     <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="Jogador.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Fase.h" />
     <ClInclude Include="FasePrimeira.h" />
     <ClInclude Include="Gerenciador_Colisoes.h" />
+    <ClInclude Include="Gerenciador_Eventos.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
     <ClInclude Include="Inimigo.h" />
     <ClInclude Include="Jogador.h" />

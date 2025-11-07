@@ -78,6 +78,12 @@ void NightFall::Gerenciadores::Gerenciador_Grafico::setGerColisoes(Gerenciador_C
         pColisoes = pC;
 }
 
+NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()
+{
+    return (this);
+    //Idealmente é alterado para se adequar ao singleton
+}
+
 void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
     carregarTextura("Jogador", "Assets/Imagens/esqueleto_d.png");
 }

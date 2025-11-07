@@ -4,6 +4,10 @@
 #include "ListaEntidades.h"
 
 namespace NightFall {
+    namespace Gerenciadores
+    {
+        class Gerenciador_Eventos;
+    }
     namespace Fases {
         class Fase :
             public Ente
@@ -12,6 +16,7 @@ namespace NightFall {
             NightFall::Listas::ListaEntidades lista_ents; 
             Gerenciadores::Gerenciador_Colisoes GC;
             Gerenciadores::Gerenciador_Grafico* pGG; // Adicionado
+            Gerenciadores::Gerenciador_Eventos* pGE;
         public: 
             Fase();
             ~Fase();
@@ -23,6 +28,7 @@ namespace NightFall {
             virtual void criarObstaculo() = 0;
             void criarCenario();
             void setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG);
+            //FALTA COLOCAR ISSO EM ALGUM LUGAR
         };
     }
 }

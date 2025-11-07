@@ -2,6 +2,7 @@
 #include "Esqueleto.h"
 #include "Teia.h"
 #include "Gerenciador_Grafico.h"
+#include "Gerenciador_Eventos.h"
 
 void NightFall::Fases::FasePrimeira::criarEsqueletos()
 {
@@ -37,8 +38,13 @@ void NightFall::Fases::FasePrimeira::criarObstaculo()
 	criarPlataformas();
 }
 
-NightFall::Fases::FasePrimeira::FasePrimeira() : maxEsqueletos(6) , maxTeias(6), numEsqueletos(maxEsqueletos - rand() % 4), numTeias(maxTeias - rand()%4)
+NightFall::Fases::FasePrimeira::FasePrimeira() : 
+	maxEsqueletos(6),
+	maxTeias(6),
+	numEsqueletos(maxEsqueletos - rand() % 4),
+	numTeias(maxTeias - rand()%4)
 {
+	pGE = NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos();
 }
 
 NightFall::Fases::FasePrimeira::~FasePrimeira()
@@ -57,6 +63,8 @@ void NightFall::Fases::FasePrimeira::executar()
 		pGG->limpaJanela();
 		lista_ents.percorrer();
 		pGG->mostraElementos();
+		GC.executar();
+		pGE->executar();
 	}
 
 	//caso singleton seja completamente implementado
@@ -67,6 +75,7 @@ void NightFall::Fases::FasePrimeira::executar()
 		pEvento->executar();
 		pGrafico->limpaJanela();
 		listaEntidades.executar(pGrafico->getGerGrafico());
+		pColisao->executar();
 		pGrafico->mostraElementos();
 	}*/
 }

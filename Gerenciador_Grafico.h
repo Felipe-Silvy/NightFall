@@ -42,6 +42,9 @@ namespace NightFall {
             
             // Conhecendo o Gerenciador de Colisões
             void setGerColisoes(Gerenciador_Colisoes* pC);
+
+            //Esse get deve ser estatico para o singleton
+            Gerenciador_Grafico* getGerenciador_Grafico();
         };
 
     } // namespace Gerenciadores
