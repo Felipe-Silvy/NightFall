@@ -9,6 +9,7 @@ namespace NightFall {
             {
             private:
                 int tamanho;
+                static sf::Vector2f ultimaPosicao;
             public:
                 Esqueleto();
                 ~Esqueleto();

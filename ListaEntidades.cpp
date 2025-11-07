@@ -1,4 +1,5 @@
 #include "ListaEntidades.h"
+#include"Entidade.h"
 
 NightFall::Listas::ListaEntidades::ListaEntidades()
 {
@@ -17,7 +18,16 @@ void NightFall::Listas::ListaEntidades::incluir(Entidades::Entidade* pE)
 
 void NightFall::Listas::ListaEntidades::percorrer()
 {
-	Entidades::Entidade* percorredorDeEntidades = nullptr;
-	int i;
-	// for(i = 0; i < )
+    int tamanho = LEs.getTam();
+    NightFall::Entidades::Entidade* navegador = nullptr;
+
+    for (int i = 0; i < tamanho; i++)
+    {
+        navegador = LEs[i];
+        if (navegador != nullptr)
+        {
+            navegador->executar();
+            navegador->desenhar();
+        }
+    }
 }

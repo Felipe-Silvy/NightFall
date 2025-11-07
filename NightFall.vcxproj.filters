@@ -138,9 +138,4 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Imagens\esqueleto_d.png">
-      <Filter>Arquivos de Recurso\Assets\Imagens</Filter>
-    </Image>
-  </ItemGroup>
 </Project>

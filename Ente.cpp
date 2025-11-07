@@ -3,17 +3,20 @@
 
 NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Ente::pGG = nullptr;
 
-NightFall::Ente::Ente() : id(0) , corpo()
+int NightFall::Ente::cont_id = 0;
+
+NightFall::Ente::Ente() : id(cont_id) , corpo()
 {
-    corpo.setPosition(0.f, 0.f);
-    corpo.setScale(0.2f, 0.2f);
+   corpo.setPosition(0.f, 0.f);
+   corpo.setScale(0.2f, 0.2f);
+    cont_id++;
 }
 
 NightFall::Ente::~Ente() {}
 
 void NightFall::Ente::desenhar() {
-   // if (pFig != nullptr && pGG != nullptr)
-      //  pGG->desenhar(pFig);
+   if (pGG != nullptr)
+      pGG->desenharEnte(this);
 }
 
 void NightFall::Ente::setGG(Gerenciadores::Gerenciador_Grafico* pG)
@@ -48,3 +51,15 @@ const sf::Vector2f NightFall::Ente::getPosicao() const
 {
     return corpo.getPosition();
 }
+
+void NightFall::Ente::setTamanho(float x, float y)
+{
+    corpo.setScale(x, y);
+}
+
+void NightFall::Ente::setPosicao(float x, float y)
+{
+    corpo.setPosition(x, y);
+}
+
+

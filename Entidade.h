@@ -18,6 +18,7 @@ namespace NightFall {
 			virtual void executar() = 0;
 			virtual void salvar() = 0;
 			void draw(); // Adicional
+			void setPosicao(sf::Vector2f pos);
 		};
 	}
 }

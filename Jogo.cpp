@@ -5,6 +5,9 @@ NightFall::Jogo::Jogo() : pJog1(), GG(), MenuJogo(), Fase1() // SOBRECARGA COM P
 {
     Ente::setGG(&GG);
     MenuJogo.setJogo(this);
+    MenuJogo.setGerGrafico(&GG);
+    Fase1.setJogador(&pJog1);
+    Fase1.setGerenciadorGrafico(&GG);
     executar();
 }
 
@@ -14,20 +17,7 @@ void NightFall::Jogo::executar()
 {
     pJog1.setTextura("Jogador");
 
-    while (GG.verificaAbertura())
-    {
-        sf::Event event;
-        while (GG.getWindow()->pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                GG.fecharJanela();
-        }
-
-        GG.limpaJanela();
-        GG.desenharEnte(&pJog1);
-        GG.mostraElementos();
-    }
-    
+    MenuJogo.executar();
 }
 
 void NightFall::Jogo::iniciarFase1()

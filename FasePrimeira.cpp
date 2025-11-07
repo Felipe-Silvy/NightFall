@@ -10,6 +10,7 @@ void NightFall::Fases::FasePrimeira::criarEsqueletos()
 	int i;
 	for (i = 0; i < numEsqueletos; i++) {
 		alocadorEsqueleto = new NightFall::Entidades::Personagens::Esqueleto();
+		alocadorEsqueleto->setTextura("Esqueleto");
 		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorEsqueleto));	
 		GC.incluirInimigo(alocadorEsqueleto);
 	}
@@ -57,15 +58,31 @@ void NightFall::Fases::FasePrimeira::executar()
 	criarObstaculo();
 	criarCenario();
 
-	while (pGG->verificaAbertura())
+	while (pGG->verificaAbertura()) // && pos_jog != pos_final && jogador->getvidas()
 	{
-		//pEvento->executar();
+		sf::Event event;
+		while (pGG->getWindow()->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				pGG->fecharJanela();
+		}
+
+		// AFIM DE TESTES:
 		pGG->limpaJanela();
+		pGG->desenharEnte(pJog1);
 		lista_ents.percorrer();
 		pGG->mostraElementos();
-		GC.executar();
-		pGE->executar();
+
+		// CORRETO:
+		// 
+		//pEvento->executar();
+		//pGG->limpaJanela();
+		//
+		//pGG->mostraElementos();
+		//GC.executar();
+		//pGE->executar();
 	}
+
 
 	//caso singleton seja completamente implementado
 	// 

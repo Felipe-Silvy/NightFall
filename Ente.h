@@ -11,10 +11,12 @@ namespace NightFall {
         int id;
         static Gerenciadores::Gerenciador_Grafico* pGG;
         sf::Sprite corpo;
-
+    private:
+        static int cont_id;
     public:
         // Construtor e destrutor
         Ente();
+        // Ente(int uid, )
         virtual ~Ente();
 
         // Métodos virtuais
@@ -28,5 +30,8 @@ namespace NightFall {
 
         const sf::Vector2f getTamanho() const;
         const sf::Vector2f getPosicao() const;
+    
+        void setTamanho(float x, float y);
+        void setPosicao(float x, float y);
     };
 }

@@ -1,6 +1,6 @@
 #include "Gerenciador_Grafico.h"
 
-NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(800.0f, 600.0f), "NightFall") { // VERIFICAR INICIALIZÇÃO WINDOW
+NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(1280, 720), "NightFall") { // VERIFICAR INICIALIZÇÃO WINDOW
     executar();
 }
 
@@ -85,5 +85,6 @@ NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenci
 }
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
-    carregarTextura("Jogador", "Assets/Imagens/esqueleto_d.png");
+    carregarTextura("Jogador", "Assets/Imagens/jogador2.png");
+    carregarTextura("Esqueleto", "Assets/Imagens/esqueleto.png");
 }

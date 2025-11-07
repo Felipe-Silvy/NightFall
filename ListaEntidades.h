@@ -19,6 +19,7 @@ namespace NightFall
 			~ListaEntidades();
 			void incluir(Entidades::Entidade* pE);
 			void percorrer();
+			NightFall::Entidades::Entidade* operator[](int indice);
 		};
 	}
 }

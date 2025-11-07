@@ -176,9 +176,6 @@
     <ClInclude Include="Projetil.h" />
     <ClInclude Include="Teia.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Imagens\esqueleto_d.png" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
