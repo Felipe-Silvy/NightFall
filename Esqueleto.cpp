@@ -1,4 +1,5 @@
 #include "Esqueleto.h"
+#include "Jogador.h"
 
 sf::Vector2f NightFall::Entidades::Personagens::Esqueleto::ultimaPosicao = { 0, 0 };
 
@@ -17,6 +18,8 @@ NightFall::Entidades::Personagens::Esqueleto::~Esqueleto()
 
 void NightFall::Entidades::Personagens::Esqueleto::danificar(Jogador* p)
 {
+	if (p != nullptr)
+		p->receberDano(nivel_maldade);
 }
 
 void NightFall::Entidades::Personagens::Esqueleto::salvar()

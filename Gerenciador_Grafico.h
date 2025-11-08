@@ -17,6 +17,8 @@ namespace NightFall {
             // outros atributos se necessário
             Gerenciador_Colisoes* pColisoes;
 
+            sf::Font fontePrincipal;
+
         public:
             // Construtor
             Gerenciador_Grafico();
@@ -29,9 +31,11 @@ namespace NightFall {
             // Método para desenhar um ente
             void desenharEnte(Ente* e);
 
-            // Gerenciando Texturas
+            // Gerenciando Texturas e Fonte
             void carregarTextura(const std::string& id, const std::string& caminho);
             const sf::Texture& getTextura(const std::string& id) const;
+            bool fonteCarregada; 
+            sf::Font* getFonte(); 
 
             // Gerenciando a Window
             sf::RenderWindow* getWindow();

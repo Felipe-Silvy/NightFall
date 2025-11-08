@@ -26,6 +26,11 @@ namespace NightFall {
             Gerenciadores::Gerenciador_Eventos* pGE;
             Entidades::Personagens::Jogador* pJog1;
             Entidades::Personagens::Jogador* pJog2;
+
+            const int maxMorcegos;
+            int numMorcegos;
+            const int maxPlataformas;
+            int numPlataformas;
             
         public: 
             Fase();

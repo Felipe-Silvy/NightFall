@@ -35,11 +35,12 @@ void NightFall::Fases::FasePrimeira::criarInimigos()
 
 void NightFall::Fases::FasePrimeira::criarObstaculo()
 {
-	criarTeias();
+	//criarTeias();
 	criarPlataformas();
 }
 
 NightFall::Fases::FasePrimeira::FasePrimeira() : 
+	Fase(),
 	maxEsqueletos(6),
 	maxTeias(6),
 	numEsqueletos(maxEsqueletos - rand() % 4),

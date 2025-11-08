@@ -47,6 +47,12 @@ const sf::Texture& NightFall::Gerenciadores::Gerenciador_Grafico::getTextura(con
     return texturaVazia;
 }
 
+sf::Font* NightFall::Gerenciadores::Gerenciador_Grafico::getFonte()
+{
+    if (fonteCarregada)
+        return &fontePrincipal;
+}
+
 sf::RenderWindow* NightFall::Gerenciadores::Gerenciador_Grafico::getWindow()
 {
     return &window;
@@ -85,6 +91,17 @@ NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenci
 }
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
-    carregarTextura("Jogador", "Assets/Imagens/jogador2.png");
+    carregarTextura("Jogador", "Assets/Imagens/jogador1.png");
     carregarTextura("Esqueleto", "Assets/Imagens/esqueleto.png");
+    carregarTextura("Morcego", "Assets/Imagens/morcego.png");
+    carregarTextura("FundoMenu", "Assets/Imagens/fundomenu.png");
+
+    if (!fontePrincipal.loadFromFile("Assets/Fontes/minecraft.ttf"))
+    {
+        std::cout << "ERRO: Nao foi possivel carregar a fonte em: Assets/Fontes/minecraft.ttf" << std::endl;
+        fonteCarregada = false;
+        return;
+    }
+    std::cout << "Fonte principal carregada." << std::endl;
+    fonteCarregada = true;
 }

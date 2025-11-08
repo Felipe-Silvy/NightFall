@@ -13,16 +13,15 @@ namespace NightFall {
         // ...
 
         // Tela Menu
-        //sf::Font fonteMenu;
-        //sf::Text tituloMenu;
+        sf::Text tituloMenu;
 
         // Elementos para o botão da Fase 1
         sf::RectangleShape botaoFase1;
-        //sf::Text textoFase1;
+        sf::Text textoFase1;
 
         // Elementos para o botão da Fase 2
         sf::RectangleShape botaoFase2;
-        //sf::Text textoFase2;
+        sf::Text textoFase2;
     public:
         Menu();
         ~Menu();
