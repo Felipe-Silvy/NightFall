@@ -43,17 +43,16 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 		if (tecla == sf::Keyboard::A)
 		{
 			pJogador1->aplicarForca(sf::Vector2f(-2000.f, 0.f));
-			std::cout << "TECLA A PRESSIONADA" << std::endl;
 		}
-		else if (tecla == sf::Keyboard::D)
+		if (tecla == sf::Keyboard::D)
 		{
 			pJogador1->aplicarForca(sf::Vector2f(2000.f, 0.f));
 		}
-		else if (tecla == sf::Keyboard::W)
+		if (tecla == sf::Keyboard::W)
 		{
 			pJogador1->pular();
 		}
-		else if (tecla == sf::Keyboard::F)
+		if (tecla == sf::Keyboard::F)
 		{
 			pJogador1->atacar();
 		}
@@ -64,15 +63,15 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 		{
 			pJogador2->aplicarForca(sf::Vector2f(-2000.f, 0.f));
 		}
-		else if (tecla == sf::Keyboard::Left)
+		if (tecla == sf::Keyboard::Left)
 		{
 			pJogador2->aplicarForca(sf::Vector2f(2000.f, 0.f));
 		}
-		else if (tecla == sf::Keyboard::Up)
+		if (tecla == sf::Keyboard::Up)
 		{
 			pJogador2->pular();
 		}
-		else if (tecla == sf::Keyboard::Numpad0)
+		if (tecla == sf::Keyboard::Numpad0)
 		{
 			pJogador2->atacar();
 		}
@@ -96,4 +95,22 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::executar()
 			verificaTeclaPressionada(evento.key.code);
 		}
 	}
+	verificaTeclasSeguradas();
+}
+
+void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclasSeguradas()
+{
+	if (pJogador1 != nullptr)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			pJogador1->aplicarForca(sf::Vector2f(-2000.f, 0.f));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			pJogador1->aplicarForca(sf::Vector2f(2000.f, 0.f));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			pJogador1->pular();
+		}
+	}
+
+	// mesmo para pJogador2 se quiser
 }

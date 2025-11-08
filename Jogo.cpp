@@ -9,6 +9,8 @@ NightFall::Jogo::Jogo() : pJog1(), GG(NightFall::Gerenciadores::Gerenciador_Graf
     Fase1.setJogador(&pJog1);
     Fase1.setGerenciadorGrafico(GG);
 
+    srand(time(0));
+
     executar();
 }
 

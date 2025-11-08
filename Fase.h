@@ -32,6 +32,8 @@ namespace NightFall {
             int numMorcegos;
             const int maxPlataformas;
             int numPlataformas;
+
+            int numeroDaFase;
             
         public: 
             Fase();

@@ -77,7 +77,7 @@ void NightFall::Menu::setGerGrafico(Gerenciadores::Gerenciador_Grafico* pGer)
         sf::Vector2f tamTextura = static_cast<sf::Vector2f>(pTextura->getSize());
         // Calcula e aplica a escala
         corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
-        // Opcional: Alinha o fundo no canto
+        
         corpo.setPosition(0.f, 0.f);
  
         //Centralizando Botões

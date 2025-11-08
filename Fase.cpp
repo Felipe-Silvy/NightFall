@@ -8,7 +8,8 @@ NightFall::Fases::Fase::Fase() :
 	pGE(NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()),
 	pJog1(nullptr), pJog2(nullptr),
 	maxMorcegos(10), maxPlataformas(4), 
-	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(0)
+	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(0),
+	numeroDaFase(0)
 {
 }
 
@@ -34,6 +35,23 @@ void NightFall::Fases::Fase::criarPlataformas()
 
 void NightFall::Fases::Fase::criarCenario()
 {
+	sf::Vector2f tamJanela = static_cast<sf::Vector2f>(pGG->getWindow()->getSize());
+	if (numeroDaFase == 1)
+	{
+		// Centralizando e escalando Imagem de Fundo 
+		setTextura("FundoFase1");
+        const sf::Texture* pTextura = corpo.getTexture();
+        // Verificação de segurança (impede crash)
+        if (pTextura == nullptr) {
+            std::cout << "ERRO: Sprite 'corpo' (Menu) sem textura!" << std::endl;
+            return;
+        }
+        sf::Vector2f tamTextura = static_cast<sf::Vector2f>(pTextura->getSize());
+        // Calcula e aplica a escala
+        corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
+        // Opcional: Alinha o fundo no canto
+        corpo.setPosition(0.f, 0.f);
+	}
 }
 
 void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG)

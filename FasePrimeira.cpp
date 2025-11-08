@@ -46,6 +46,7 @@ NightFall::Fases::FasePrimeira::FasePrimeira() :
 	numEsqueletos(maxEsqueletos - rand() % 4),
 	numTeias(maxTeias - rand()%4)
 {
+	numeroDaFase = 1;
 }
 
 NightFall::Fases::FasePrimeira::~FasePrimeira()
@@ -60,28 +61,14 @@ void NightFall::Fases::FasePrimeira::executar()
 
 	while (pGG->verificaAbertura()) // && pos_jog != pos_final && jogador->getvidas()
 	{
-		//sf::Event event;
-		//while (pGG->getWindow()->pollEvent(event))
-		//{
-			//if (event.type == sf::Event::Closed)
-				//pGG->fecharJanela();
-		//}
-
 		// AFIM DE TESTES:
+
+		//this para lembrar que é a fase se desenhando
 		pGE->executar();
 		pGG->limpaJanela();
-		// pGG->desenharEnte(pJog1);
+		(this)->desenhar();
 		lista_ents.percorrer();
 		pGG->mostraElementos();
-
-		// CORRETO:
-		// 
-		//
-		//pGG->limpaJanela();
-		//
-		//pGG->mostraElementos();
-		//GC.executar();
-		//pGE->executar();
 	}
 
 

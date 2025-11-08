@@ -26,6 +26,7 @@ namespace NightFall
 			void setjogador(Entidades::Personagens::Jogador* pJog);
 			void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 			void executar();
+			void verificaTeclasSeguradas();
 		};
 	}
 }

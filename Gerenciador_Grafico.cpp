@@ -100,6 +100,7 @@ void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
     carregarTextura("Esqueleto", "Assets/Imagens/esqueleto.png");
     carregarTextura("Morcego", "Assets/Imagens/morcego.png");
     carregarTextura("FundoMenu", "Assets/Imagens/fundomenu.png");
+    carregarTextura("FundoFase1", "Assets/Imagens/fundofase1.png");
 
     if (!fontePrincipal.loadFromFile("Assets/Fontes/minecraft.ttf"))
     {
