@@ -115,6 +115,7 @@ void NightFall::Menu::executar()
     if (pGG == nullptr)
         return;
 
+    // UTILIZAR O GERENCIADOR DE EVENTOS DEPOIS
     sf::RenderWindow* janela = pGG->getWindow();
 
     while (janela->isOpen()) 
@@ -145,9 +146,9 @@ void NightFall::Menu::executar()
             }
         }
 
-        janela->clear(sf::Color(50, 50, 50)); // Fundo cinza escuro
+        janela->clear(); 
 
-        janela->draw(corpo);
+        janela->draw(corpo); // Desenha o fundo
         janela->draw(botaoFase1);
         janela->draw(botaoFase2);
         janela->draw(tituloMenu);

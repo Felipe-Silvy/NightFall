@@ -1,9 +1,11 @@
 #include "Fase.h"
 #include "Morcego.h"
+#include "Gerenciador_Eventos.h"
 
 NightFall::Fases::Fase::Fase() : 
-	lista_ents(), GC(), pGE(nullptr), 
+	lista_ents(), GC(), 
 	pGG(NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()),
+	pGE(NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()),
 	pJog1(nullptr), pJog2(nullptr),
 	maxMorcegos(10), maxPlataformas(4), 
 	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(0)
@@ -42,11 +44,15 @@ void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Gr
 
 void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 {
-	if (pJog != nullptr)
+	if (pJog != nullptr) {
 		if (pJog1 == nullptr)
 			pJog1 = pJog;
 		else
 			pJog2 = pJog;
+
+		pGE->setjogador(pJog);
+		lista_ents.incluir(pJog);
+	}
 }
 
 void NightFall::Fases::Fase::executar()

@@ -3,7 +3,7 @@
 
 NightFall::Entidades::Personagens::Jogador::Jogador() : Personagem() , pontos(0)
 {
-    corpo.setScale(0.2f, 0.2f);
+    corpo.setScale(0.10f, 0.10f);
 }
 
 NightFall::Entidades::Personagens::Jogador::~Jogador() { pontos = 0; }
@@ -25,11 +25,11 @@ void NightFall::Entidades::Personagens::Jogador::mover()
     
     deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
     
-    if (getPosicao().x >= 700.0f)
+    if (getPosicao().y >= 300.0f)
     {
         noChao = true;
         sf::Vector2f posicaoNoChao = getPosicao();
-        posicaoNoChao.x = 700.0f;
+        posicaoNoChao.y = 300.0f;
         setPosicao(posicaoNoChao);
     }
 

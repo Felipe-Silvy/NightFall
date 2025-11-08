@@ -15,5 +15,5 @@ void NightFall::Entidades::Personagens::Personagem::receberDano(unsigned int dan
 void NightFall::Entidades::Personagens::Personagem::aplicarForca(sf::Vector2f forca)
 {
     //aceleracao depende de forca
-    //aceleracao += forca;
+    aceleracao += forca;
 }

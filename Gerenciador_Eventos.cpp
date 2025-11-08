@@ -1,4 +1,5 @@
 #include "Gerenciador_Eventos.h"
+#include <iostream>
 
 NightFall::Gerenciadores::Gerenciador_Eventos* NightFall::Gerenciadores::Gerenciador_Eventos::pEventos = nullptr;
 
@@ -42,6 +43,7 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 		if (tecla == sf::Keyboard::A)
 		{
 			pJogador1->aplicarForca(sf::Vector2f(-2000.f, 0.f));
+			std::cout << "TECLA A PRESSIONADA" << std::endl;
 		}
 		else if (tecla == sf::Keyboard::D)
 		{
