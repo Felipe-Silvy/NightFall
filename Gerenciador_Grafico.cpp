@@ -1,7 +1,18 @@
 #include "Gerenciador_Grafico.h"
 
+NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenciador_Grafico::pGrafico = nullptr;
+
 NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(1280, 720), "NightFall") { // VERIFICAR INICIALIZÇÃO WINDOW
     executar();
+}
+
+NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()
+{
+    if (pGrafico == nullptr)
+    {
+        pGrafico = new Gerenciador_Grafico();
+    }
+    return pGrafico;
 }
 
 NightFall::Gerenciadores::Gerenciador_Grafico::~Gerenciador_Grafico() {
@@ -82,12 +93,6 @@ void NightFall::Gerenciadores::Gerenciador_Grafico::setGerColisoes(Gerenciador_C
 {
     if (pC != nullptr)
         pColisoes = pC;
-}
-
-NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()
-{
-    return (this);
-    //Idealmente é alterado para se adequar ao singleton
 }
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {

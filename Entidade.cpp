@@ -18,11 +18,3 @@ void NightFall::Entidades::Entidade::salvarDataBuffer()
 };
 
 
-void NightFall::Entidades::Entidade::draw()
-{
-	// if ( window != nullptr) 
-	// {
-		// window->draw(body);
-	// }
-}
-

@@ -16,12 +16,15 @@ namespace NightFall {
             std::map<std::string, sf::Texture> texturas;
             // outros atributos se necessário
             Gerenciador_Colisoes* pColisoes;
+            static Gerenciador_Grafico* pGrafico;
 
             sf::Font fontePrincipal;
 
-        public:
-            // Construtor
+            // Construtor para Singleton
             Gerenciador_Grafico();
+
+        public:
+            static Gerenciador_Grafico* getGerenciador_Grafico();
 
             // Destrutor
             ~Gerenciador_Grafico();
@@ -46,9 +49,6 @@ namespace NightFall {
             
             // Conhecendo o Gerenciador de Colisões
             void setGerColisoes(Gerenciador_Colisoes* pC);
-
-            //Esse get deve ser estatico para o singleton
-            Gerenciador_Grafico* getGerenciador_Grafico();
         };
 
     } // namespace Gerenciadores

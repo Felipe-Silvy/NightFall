@@ -69,6 +69,7 @@ void NightFall::Fases::FasePrimeira::executar()
 		}
 
 		// AFIM DE TESTES:
+		pGE->executar();
 		pGG->limpaJanela();
 		pGG->desenharEnte(pJog1);
 		lista_ents.percorrer();
@@ -76,7 +77,7 @@ void NightFall::Fases::FasePrimeira::executar()
 
 		// CORRETO:
 		// 
-		//pEvento->executar();
+		//
 		//pGG->limpaJanela();
 		//
 		//pGG->mostraElementos();

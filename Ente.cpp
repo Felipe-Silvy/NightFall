@@ -62,4 +62,9 @@ void NightFall::Ente::setPosicao(float x, float y)
     corpo.setPosition(x, y);
 }
 
+void NightFall::Ente::moverCorpo(sf::Vector2f deslocamento)
+{
+    corpo.move(deslocamento);
+}
+
 

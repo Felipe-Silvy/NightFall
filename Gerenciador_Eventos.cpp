@@ -3,18 +3,13 @@
 NightFall::Gerenciadores::Gerenciador_Eventos* NightFall::Gerenciadores::Gerenciador_Eventos::pEventos = nullptr;
 
 NightFall::Gerenciadores::Gerenciador_Eventos::Gerenciador_Eventos() :
-	pGrafico(nullptr),
+	pGrafico(Gerenciador_Grafico::getGerenciador_Grafico() ),
 	pJogador1(nullptr),
 	pJogador2(nullptr)
 {}
 
 NightFall::Gerenciadores::Gerenciador_Eventos::~Gerenciador_Eventos()
 {
-}
-
-void NightFall::Gerenciadores::Gerenciador_Eventos::setGerenciador_Grafico(Gerenciadores::Gerenciador_Grafico* pGraf)
-{
-	pGrafico = pGraf;
 }
 
 NightFall::Gerenciadores::Gerenciador_Eventos* NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()

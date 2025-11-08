@@ -2,6 +2,7 @@
 #include "Ente.h"
 #include "Gerenciador_Colisoes.h"
 #include "ListaEntidades.h"
+#include "Gerenciador_Grafico.h"
 
 namespace NightFall {
 

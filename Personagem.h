@@ -12,7 +12,7 @@ namespace NightFall {
                 float velocidade;
 
                 //Fora do UML
-                /*
+                
                 sf::Vector2f velocidadeAtual;
 				sf::Vector2f aceleracao;
 				float forcaPulo;
@@ -21,7 +21,7 @@ namespace NightFall {
 
 				float deltaTempo;
 				sf::Clock relogioMovimento;
-                */
+                
             public:
                 Personagem();
                 ~Personagem();

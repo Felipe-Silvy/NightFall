@@ -1,13 +1,13 @@
 #include "Jogo.h"
 #include "Entidade.h"
 
-NightFall::Jogo::Jogo() : pJog1(), GG(), MenuJogo(), Fase1() // SOBRECARGA COM PARAMETROS TLVZ
+NightFall::Jogo::Jogo() : pJog1(), GG(NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()), MenuJogo(), Fase1() // SOBRECARGA COM PARAMETROS TLVZ
 {
-    Ente::setGG(&GG);
+    Ente::setGG(GG);
     MenuJogo.setJogo(this);
-    MenuJogo.setGerGrafico(&GG);
+    MenuJogo.setGerGrafico(GG);
     Fase1.setJogador(&pJog1);
-    Fase1.setGerenciadorGrafico(&GG);
+    Fase1.setGerenciadorGrafico(GG);
     executar();
 }
 

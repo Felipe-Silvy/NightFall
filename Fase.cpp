@@ -2,8 +2,11 @@
 #include "Morcego.h"
 
 NightFall::Fases::Fase::Fase() : 
-	lista_ents(), GC(), pGE(nullptr), pGG(nullptr), pJog1(nullptr), pJog2(nullptr),
-	maxMorcegos(10), maxPlataformas(4), numMorcegos(maxMorcegos - rand() % 8), numPlataformas(0)
+	lista_ents(), GC(), pGE(nullptr), 
+	pGG(NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()),
+	pJog1(nullptr), pJog2(nullptr),
+	maxMorcegos(10), maxPlataformas(4), 
+	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(0)
 {
 }
 

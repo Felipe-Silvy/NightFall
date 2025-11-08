@@ -11,7 +11,7 @@ namespace NightFall {
     {
     private:
         NightFall::Entidades::Personagens::Jogador pJog1;
-        NightFall::Gerenciadores::Gerenciador_Grafico GG;
+        NightFall::Gerenciadores::Gerenciador_Grafico* GG;
         NightFall::Menu MenuJogo;
         NightFall::Fases::FasePrimeira Fase1;
         // ...
