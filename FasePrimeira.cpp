@@ -31,6 +31,7 @@ void NightFall::Fases::FasePrimeira::criarInimigos()
 {
 	criarEsqueletos();
 	criarMorcegos();
+	NightFall::Entidades::Personagens::Inimigo::setJogador(pJog1);
 }
 
 void NightFall::Fases::FasePrimeira::criarObstaculo()
@@ -44,7 +45,7 @@ NightFall::Fases::FasePrimeira::FasePrimeira() :
 	maxEsqueletos(6),
 	maxTeias(6),
 	numEsqueletos(maxEsqueletos - rand() % 4),
-	numTeias(maxTeias - rand()%4)
+	numTeias(maxTeias - rand() % 4)
 {
 	numeroDaFase = 1;
 }

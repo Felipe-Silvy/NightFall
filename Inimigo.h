@@ -11,7 +11,13 @@ namespace NightFall {
             {
             protected:
                 int nivel_maldade;
-                Jogador* pJogador;
+                static Jogador* pJogador1;
+                static Jogador* pJogador2;
+
+                const float alcancePerseguir;
+                int direcaoAleatoria;
+                float tempoVagar;
+
                 // ...
             public:
                 Inimigo();
@@ -22,6 +28,9 @@ namespace NightFall {
                 virtual void salvar() = 0; // Perguntar se é Salva ou Salvar
                 // ...
                 virtual void mover();
+                virtual void perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo);
+                virtual void vagar();
+                static void setJogador(Jogador* pJogad);
             };
         } // namespace Personagens
     } // namespace Entidades

@@ -7,6 +7,8 @@
 
 int main()
 {
+    srand(time(0));
+
     NightFall::Jogo Principal;
     return 0;
 }
