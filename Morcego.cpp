@@ -1,7 +1,8 @@
 #include "Morcego.h"
 #include "Jogador.h"
+#include <iostream>
 
-sf::Vector2f NightFall::Entidades::Personagens::Morcego::ultimaPosicao = { 0, 200 };
+sf::Vector2f NightFall::Entidades::Personagens::Morcego::ultimaPosicao = { 0.0f, 200.0f };
 
 NightFall::Entidades::Personagens::Morcego::Morcego() : Inimigo(), raio(0)
 {
@@ -21,8 +22,11 @@ NightFall::Entidades::Personagens::Morcego::~Morcego()
 
 void NightFall::Entidades::Personagens::Morcego::danificar(Jogador* p)
 {
-	if (p != nullptr)
-		p->receberDano(nivel_maldade);
+    if (p != nullptr && podeDanificar() )
+    {
+        p->receberDano(nivel_maldade);
+        std::cout << "Morcego danificou" << std::endl;
+    }
 }
 
 void NightFall::Entidades::Personagens::Morcego::salvar()

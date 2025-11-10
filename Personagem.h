@@ -29,11 +29,17 @@ namespace NightFall {
                 virtual void executar() = 0;
                 virtual void salvar() = 0;
                 virtual void mover() = 0; 
-                void setVelocidade(float vel);
-
+                
                 //Fora do UML
                 void receberDano(unsigned int dano);
                 void aplicarForca(sf::Vector2f forca);
+                void setVelocidadeX(float vx);
+                void setVelocidadeY(float vy);
+                void setNoChao(bool valor);
+                void setVelocidade(float vel);
+                const int getVida() const;
+                const sf::Vector2f getVelocidade() const;
+                const bool getNoChao() const;
             };
         }
     }

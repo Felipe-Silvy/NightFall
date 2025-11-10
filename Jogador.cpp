@@ -1,6 +1,7 @@
 #include "Jogador.h"
 #include "Inimigo.h"
 #include <iostream>
+#include <iomanip>.
 
 NightFall::Entidades::Personagens::Jogador::Jogador() : Personagem() , pontos(0)
 {
@@ -28,22 +29,23 @@ void NightFall::Entidades::Personagens::Jogador::mover()
 {
     deltaTempo = relogioMovimento.restart().asSeconds();
     
-    if (getPosicao().y >= 450.0f && velocidadeAtual.y >= 0.f)
+    if (getPosicao().y >= 450.0f && velocidadeAtual.y >= 0.f && !noChao)
     {
         noChao = true;
         sf::Vector2f pos = getPosicao();
         pos.y = 450.0f;
         setPosicao(pos);
-        aceleracao.y = 0.0f;
-        velocidadeAtual.y = 0.0f;
+    }
+    
+    if (!noChao)
+    {
+        aceleracao.y += 1000.0f;
     }
     else
     {
-        noChao = false;
+        aceleracao.y = 0.0f;
+        velocidadeAtual.y = 0.0f;
     }
-
-    if (!noChao)
-        aceleracao.y += 1000.0f;    
 
     //segundo a fisica, velocidade é aceleracao * tempo
 
@@ -56,7 +58,6 @@ void NightFall::Entidades::Personagens::Jogador::mover()
 
     sf::Vector2f movimento = velocidadeAtual * deltaTempo;
 
-    //(this)->
     moverCorpo(movimento);
 
     if ( fabs(aceleracao.x) < 0.001f && noChao) //nao esta se movendo para nenhum dos dois lados (eu acho)
@@ -99,4 +100,6 @@ void NightFall::Entidades::Personagens::Personagem::setVelocidade(float vel)
 {
     velocidade = vel;
 }
+
+
 

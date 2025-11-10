@@ -60,7 +60,9 @@ void NightFall::Fases::FasePrimeira::executar()
 	criarObstaculo();
 	criarCenario();
 
-	while (pGG->verificaAbertura()) // && pos_jog != pos_final && jogador->getvidas()
+	//trecho similar ao codigo do ex-monitor Giovane Limas Salvi
+
+	while (pGG->verificaAbertura() && pJog1->getVida() > 0) // && pos_jog != pos_final && jogador->getvidas()
 	{
 		// AFIM DE TESTES:
 
@@ -69,13 +71,14 @@ void NightFall::Fases::FasePrimeira::executar()
 		pGG->limpaJanela();
 		(this)->desenhar();
 		lista_ents.percorrer();
+		GC.executar();
 		pGG->mostraElementos();
 	}
 
 
 	//caso singleton seja completamente implementado
 	// 
-	//trecho similar ao codigo do ex-monitor Giovane Limas Salvi
+	
 	/*while (pGrafico->verificaAbertura())
 	{
 		pEvento->executar();

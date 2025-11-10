@@ -13,12 +13,14 @@ namespace NightFall {
             private:
                 int altura;
                 // ...
+                static std::vector<sf::Vector2f> posicoesParaPlataforma;
 
             public:
                 Plataforma();
                 ~Plataforma();
                 void executar();
                 void obstaculizar(Personagens::Jogador* p);
+                void salvar();
             };
         }
     }

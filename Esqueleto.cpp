@@ -1,12 +1,13 @@
 #include "Esqueleto.h"
 #include "Jogador.h"
+#include <iostream>
 
 sf::Vector2f NightFall::Entidades::Personagens::Esqueleto::ultimaPosicao = { 0, 0 };
 
 NightFall::Entidades::Personagens::Esqueleto::Esqueleto() : Inimigo(), tamanho(0)
 {
-    nivel_maldade = 2;
-    num_vidas = 10;
+    nivel_maldade = 20;
+    num_vidas = 50;
     corpo.setScale(0.1f, 0.1f);
     ultimaPosicao.x += 200.0f + ((rand() % 10) - 5) * 10;
     setPosicao(ultimaPosicao);
@@ -19,8 +20,11 @@ NightFall::Entidades::Personagens::Esqueleto::~Esqueleto()
 
 void NightFall::Entidades::Personagens::Esqueleto::danificar(Jogador* p)
 {
-    if (p != nullptr)
+    if (p != nullptr && podeDanificar())
+    {
         p->receberDano(nivel_maldade);
+        std::cout << "Esqueleto danificou" << std::endl;
+    }
 }
 
 void NightFall::Entidades::Personagens::Esqueleto::salvar()

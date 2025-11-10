@@ -14,6 +14,8 @@ namespace NightFall {
                 bool danoso; // Atributo protegido conforme o UML
                 // ...
 
+                
+
             public:
                 Obstaculo();
                 // Obstaculo(int x = 0, int y = 0, bool dan = false); Construtor, recebendo posição e se é danoso

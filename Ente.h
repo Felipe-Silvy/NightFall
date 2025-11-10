@@ -33,6 +33,7 @@ namespace NightFall {
     
         void setTamanho(float x, float y);
         void setPosicao(float x, float y);
+        void setPosicao(sf::Vector2f pos);
         void moverCorpo(sf::Vector2f deslocamento);
     };
 }

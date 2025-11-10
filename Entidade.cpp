@@ -5,11 +5,6 @@ NightFall::Entidades::Entidade::Entidade() :
 {
 }
 
-void NightFall::Entidades::Entidade::setPosicao(sf::Vector2f pos)
-{
-	corpo.setPosition(pos);
-}
-
 NightFall::Entidades::Entidade::~Entidade() {}
 
 void NightFall::Entidades::Entidade::salvarDataBuffer()

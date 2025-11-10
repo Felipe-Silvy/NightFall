@@ -53,6 +53,7 @@ const bool NightFall::Gerenciadores::Gerenciador_Colisoes::VerificarColisao(Enti
 	return false;
 }
 
+/*
 void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 {
 	//LOs eh um list de Obstaculo*
@@ -72,6 +73,13 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 
 	for (i = 0; i < LJs.size(); i++)
 	{
+		Entidades::Personagens::Jogador* jogadorComparado = static_cast<Entidades::Personagens::Jogador*>(LJs[i]);
+		jogadorComparado->setNoChao(false);
+
+		std::cout << "DBG colisao reset: jogador[" << i << "] noChao after reset="
+			<< jogadorComparado->getNoChao() << std::endl;
+
+
 		for (it = LOs.begin(); it != LOs.end(); it++)
 		{
 			obstaculosEntidade = static_cast<Entidades::Entidade*>(*it);
@@ -81,15 +89,69 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 			//nesse caso obstaculos
 
 			if (colisaoObstaculo)
-				(*it)->obstaculizar(static_cast<Entidades::Personagens::Jogador*>(LJs[i]));
-			//ativa o metodo do obstaculo que ativa ao colidir
+				(*it)->obstaculizar(jogadorComparado); //ativa o metodo do obstaculo que ativa ao colidir
+
+			std::cout << "DBG colisao end: jogador[" << i << "] noChao final="
+				<< jogadorComparado->getNoChao() << std::endl;
+
 		}
 	}
 }
+*/
+
+void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
+{
+	//LOs eh um list de Obstaculo*
+
+	if (LOs.empty())
+		return;
+
+	int i = 0;
+
+	Entidades::Entidade* obstaculosEntidade = nullptr;
+
+	//ira se transformar no obstaculo em cada iteracao
+
+	std::list<Entidades::Obstaculos::Obstaculo*>::iterator it;
+
+	for (i = 0; i < LJs.size(); i++)
+	{
+		Entidades::Personagens::Jogador* jogadorComparado = static_cast<Entidades::Personagens::Jogador*>(LJs[i]);
+
+		jogadorComparado->setNoChao(false);
+
+		for (it = LOs.begin(); it != LOs.end(); it++)
+		{
+			obstaculosEntidade = static_cast<Entidades::Entidade*>(*it);
+			bool colisaoObstaculo = VerificarColisao(LJs[i], obstaculosEntidade);
+
+			//verifica a colisao de cada jogador com todos os objetos
+			//nesse caso obstaculos
+
+			if (colisaoObstaculo)
+			{
+				(*it)->obstaculizar(jogadorComparado);
+			}
+		}
+
+		
+		sf::Vector2f pos = jogadorComparado->getPosicao();
+		sf::Vector2f vel = jogadorComparado->getVelocidade();
+
+		if (pos.y >= 450.0f && vel.y >= 0.0f)
+		{
+			jogadorComparado->setNoChao(true);
+			pos.y = 450.0f;
+			jogadorComparado->setPosicao(pos);
+		}
+
+	}
+}
+
 
 void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsInimigs()
 {
-	//LIs eh um vector de inimigo*
+	//LIs eh um vector de inimigo*	
 
 	if (LIs.empty())
 		return;

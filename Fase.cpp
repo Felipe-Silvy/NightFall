@@ -1,14 +1,15 @@
 #include "Fase.h"
 #include "Morcego.h"
 #include "Gerenciador_Eventos.h"
+#include "Plataforma.h"
 
 NightFall::Fases::Fase::Fase() : 
 	lista_ents(), GC(), 
 	pGG(NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()),
 	pGE(NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()),
 	pJog1(nullptr), pJog2(nullptr),
-	maxMorcegos(10), maxPlataformas(4), 
-	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(0),
+	maxMorcegos(10), maxPlataformas(6), 
+	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(maxPlataformas - rand() % 4),
 	numeroDaFase(0)
 {
 }
@@ -30,7 +31,15 @@ void NightFall::Fases::Fase::criarMorcegos()
 }
 
 void NightFall::Fases::Fase::criarPlataformas()
-{
+{	
+	NightFall::Entidades::Obstaculos::Plataforma* alocadorPlataforma = nullptr;
+	int i;
+	for (i = 0; i < numPlataformas; i++) {
+		alocadorPlataforma = new NightFall::Entidades::Obstaculos::Plataforma();
+		alocadorPlataforma->setTextura("Plataforma");
+		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorPlataforma));
+		GC.incluirObstaculo(alocadorPlataforma);
+	}
 }
 
 void NightFall::Fases::Fase::criarCenario()
@@ -70,6 +79,7 @@ void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 
 		pGE->setjogador(pJog);
 		lista_ents.incluir(pJog);
+		GC.setJogador(pJog);
 	}
 }
 

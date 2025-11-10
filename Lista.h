@@ -144,7 +144,6 @@ namespace NightFall
                 return i;
             }
 
-            // Observação: operator[] e retornos por valor dependem do diagrama/necessidade.
             TL* operator[](int posicao)
             {
                 Elemento<TL>* elemento = pPrimeiro;
@@ -153,7 +152,7 @@ namespace NightFall
 
                 if (elemento != nullptr)
                     return elemento->getApontado();
-                return nullptr; // retorna valor default (se TL for ponteiro, retorna nullptr)
+                return nullptr; 
             }
         };
     }

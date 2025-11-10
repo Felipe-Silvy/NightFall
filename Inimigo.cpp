@@ -2,7 +2,7 @@
 #include "Jogador.h"
 #include <cmath>
 
-NightFall::Entidades::Personagens::Jogador* NightFall::Entidades::Personagens::Inimigo::pJogador1 =  nullptr;
+NightFall::Entidades::Personagens::Jogador* NightFall::Entidades::Personagens::Inimigo::pJogador1 = nullptr;
 NightFall::Entidades::Personagens::Jogador* NightFall::Entidades::Personagens::Inimigo::pJogador2 = nullptr;
 
 NightFall::Entidades::Personagens::Inimigo::Inimigo() : 
@@ -10,7 +10,8 @@ NightFall::Entidades::Personagens::Inimigo::Inimigo() :
 	nivel_maldade(10+rand()%20),
 	alcancePerseguir(200.0f),
 	direcaoAleatoria( rand() % 3 ),
-    tempoVagar(0.0f)
+    tempoVagar(0.0f),
+    cooldownDano(0.0f)
 {
 	num_vidas = 20;
 }
@@ -22,61 +23,6 @@ NightFall::Entidades::Personagens::Inimigo::~Inimigo()
 
 void NightFall::Entidades::Personagens::Inimigo::mover()
 {
-    /*
-    deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
-
-    if (getPosicao().y >= 450.0f && velocidadeAtual.y >= 0.f)
-    {
-        noChao = true;
-        sf::Vector2f pos = getPosicao();
-        pos.y = 450.0f;
-        setPosicao(pos);
-        aceleracao.y = 0.0f;
-        velocidadeAtual.y = 0.0f;
-    }
-    else
-    {
-        noChao = false;
-    }
-
-    if (!noChao)
-        aceleracao.y += 1000.0f;
-
-    //segundo a fisica, velocidade é aceleracao * tempo
-
-    velocidadeAtual += aceleracao * deltaTempo;
-
-    if (velocidadeAtual.x > velocidade)
-        velocidadeAtual.x = velocidade;
-    if (velocidadeAtual.x < -velocidade)
-        velocidadeAtual.x = -velocidade;
-
-    sf::Vector2f movimento = velocidadeAtual * deltaTempo;
-
-    moverCorpo(movimento);
-
-    if (fabs(aceleracao.x) < 0.001f && noChao) //nao esta se movendo para nenhum dos dois lados (eu acho)
-    {
-        if (velocidadeAtual.x > 0.0f || velocidadeAtual.x < 0.0f)
-        {
-            int sinal_da_friccao;
-
-            if (velocidadeAtual.x > 0.0f)
-                sinal_da_friccao = 1;
-            else
-                sinal_da_friccao = -1;
-
-            velocidadeAtual.x -= sinal_da_friccao * FRICCAO * deltaTempo;
-
-            if ((sinal_da_friccao > 0 && velocidadeAtual.x < 0) || (sinal_da_friccao < 0 && velocidadeAtual.x > 0))
-                //isso é errado porque o sinal da friccao deve ser o mesmo da velocidade
-                velocidadeAtual.x = 0;
-        }
-    }
-
-    aceleracao = sf::Vector2f(0.f, 0.f);
-    */
-
     deltaTempo = relogioMovimento.restart().asSeconds();
 
     if (getPosicao().y >= 420.0f && velocidadeAtual.y >= 0.f)
@@ -107,7 +53,6 @@ void NightFall::Entidades::Personagens::Inimigo::mover()
 
     sf::Vector2f movimento = velocidadeAtual * deltaTempo;
 
-    //(this)->
     moverCorpo(movimento);
 
     if (fabs(aceleracao.x) < 0.001f && noChao) //nao esta se movendo para nenhum dos dois lados (eu acho)
@@ -177,4 +122,16 @@ void NightFall::Entidades::Personagens::Inimigo::setJogador(Jogador* pJogad)
         pJogador1 = pJogad;
     else if (pJogador2 == nullptr)
         pJogador2 = pJogad;
+}
+
+const bool NightFall::Entidades::Personagens::Inimigo::podeDanificar()
+{
+    cooldownDano += deltaTempo;
+
+    if (cooldownDano >= 1.0f)
+    {
+        cooldownDano = 0.f;
+        return true;
+    }
+    return false;
 }
