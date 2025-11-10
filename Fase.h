@@ -37,6 +37,7 @@ namespace NightFall {
             
             sf::Sprite pontoFinal;
             sf::Vector2f posFinal;
+            float hitboxPosFinal;
 
         public: 
             Fase();

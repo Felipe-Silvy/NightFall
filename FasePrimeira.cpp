@@ -62,7 +62,7 @@ void NightFall::Fases::FasePrimeira::executar()
 
 	//trecho similar ao codigo do ex-monitor Giovane Limas Salvi
 
-	while (pGG->verificaAbertura() && pJog1->getVida() > 0 &&  pJog1->getCorpo().getPosition() != posFinal) // && pos_jog != pos_final && jogador->getvidas()
+	while (pGG->verificaAbertura() && pJog1->getVida() > 0 && (pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)) // && pos_jog != pos_final && jogador->getvidas()
 	{
 		// AFIM DE TESTES:
 

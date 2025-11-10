@@ -3,16 +3,17 @@
 #include "Gerenciador_Eventos.h"
 #include "Plataforma.h"
 
-NightFall::Fases::Fase::Fase() : 
-	lista_ents(), GC(), 
+NightFall::Fases::Fase::Fase() :
+	lista_ents(), GC(),
 	pGG(NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()),
 	pGE(NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()),
 	pJog1(nullptr), pJog2(nullptr),
-	maxMorcegos(10), maxPlataformas(6), 
+	maxMorcegos(10), maxPlataformas(6),
 	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(maxPlataformas - rand() % 4),
 	numeroDaFase(0),
 	pontoFinal(),
-	posFinal()
+	posFinal(),
+	hitboxPosFinal(10)
 {
 	pontoFinal.setTexture(pGG->getTextura("PontoFinal"));
 	pontoFinal.setScale(0.1f, 0.1f);
@@ -26,7 +27,7 @@ NightFall::Fases::Fase::Fase() :
 
 	// Define posição no canto inferior direito da tela (VideoMode 1280x720)
 	posFinal.x = 1280.0f - tamanhoEscalado.x;
-	posFinal.y = 500.0f - tamanhoEscalado.y;
+	posFinal.y = 600.0f - tamanhoEscalado.y;
 
 	pontoFinal.setPosition(posFinal);
 }
