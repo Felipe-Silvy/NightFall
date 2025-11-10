@@ -93,7 +93,7 @@ void NightFall::Entidades::Personagens::Jogador::pular()
 
 void NightFall::Entidades::Personagens::Jogador::atacar()
 {
-    
+
 }
 
 void NightFall::Entidades::Personagens::Personagem::setVelocidade(float vel)

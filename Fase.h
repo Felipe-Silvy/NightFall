@@ -35,6 +35,9 @@ namespace NightFall {
 
             int numeroDaFase;
             
+            sf::Sprite pontoFinal;
+            sf::Vector2f posFinal;
+
         public: 
             Fase();
             ~Fase();

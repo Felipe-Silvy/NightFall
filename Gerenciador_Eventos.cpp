@@ -107,9 +107,9 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclasSeguradas()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			pJogador1->aplicarForca(sf::Vector2f(2000.f, 0.f));
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		{
 			pJogador1->pular();
-		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+			pJogador1->atacar();
 	}
 
 	// mesmo para pJogador2 se quiser

@@ -103,6 +103,7 @@ void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
     carregarTextura("FundoFase1", "Assets/Imagens/fundofase1.png");
     carregarTextura("Plataforma", "Assets/Imagens/plataforma.png");
     carregarTextura("Parede", "Assets/Imagens/parede.png");
+    carregarTextura("PontoFinal", "Assets/Imagens/pontoFinal.png");
 
     if (!fontePrincipal.loadFromFile("Assets/Fontes/minecraft.ttf"))
     {
