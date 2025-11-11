@@ -10,6 +10,7 @@ namespace NightFall
 		{
 		private:
 			Gerenciadores::Gerenciador_Grafico* pGrafico;
+			Gerenciadores::Gerenciador_Colisoes* pColisao;
 			Entidades::Personagens::Jogador* pJogador1;
 			Entidades::Personagens::Jogador* pJogador2;
 
@@ -19,6 +20,7 @@ namespace NightFall
 			~Gerenciador_Eventos();
 
 			void setGerenciador_Grafico(Gerenciadores::Gerenciador_Grafico* pGraf);
+			void setGerenciador_Colisoes(Gerenciadores::Gerenciador_Colisoes* pCol);
 			//O IDEAL É TRANSFORMAR O GERENCIADOR GRAFICO EM SINGLETON
 			//ENTAO ESSA  TORNA-SE DESNECESSARIA
 

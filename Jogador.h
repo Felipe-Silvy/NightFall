@@ -12,6 +12,7 @@ namespace NightFall {
             {
             protected:
                 int pontos;
+                int poderDano;
                 // #...
             public:
                 Jogador();
@@ -25,6 +26,7 @@ namespace NightFall {
                 //Fora da UML
                 void pular();
                 void atacar();
+                int getDano();
             };
         } // namespace Personagens
     } // namespace Entidades

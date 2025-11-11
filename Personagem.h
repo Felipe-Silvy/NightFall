@@ -40,6 +40,7 @@ namespace NightFall {
                 const int getVida() const;
                 const sf::Vector2f getVelocidade() const;
                 const bool getNoChao() const;
+                void desenhar();
             };
         }
     }

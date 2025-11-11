@@ -51,15 +51,17 @@ namespace NightFall {
             void tratarColisoesJogsInimigs();
             void tratarColisoesJogsProjeteis();
             void incluirInimigo(Entidades::Personagens::Inimigo* pi);
+            void removeInimigo(Entidades::Personagens::Inimigo* pi);
             void incluirObstaculo(Entidades::Obstaculos::Obstaculo* po);
             void incluirProjetil(Entidades::Projetil* pj);
             void executar();
             // ...
 
             void setJogador(Entidades::Personagens::Jogador* pJogador);
+            std::vector<Entidades::Personagens::Inimigo*>* getListaInimigos();
 
             // Conhecendo Gerenciador Grafico
-            //void setGerGrafico(Gerenciador_Grafico* pG);
+            void setGerGrafico(Gerenciador_Grafico* pG);
         };
     } // namespace Gerenciadores
 } // namespace NightFall

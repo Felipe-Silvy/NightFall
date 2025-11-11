@@ -16,17 +16,15 @@ namespace NightFall {
             std::map<std::string, sf::Texture> texturas;
             // outros atributos se necessário
             Gerenciador_Colisoes* pColisoes;
-            static Gerenciador_Grafico* pGrafico;
 
             sf::Font fontePrincipal;
 
-            // Construtor para Singleton
-            Gerenciador_Grafico();
+          
 
             float alturaChao;
 
         public:
-            static Gerenciador_Grafico* getGerenciador_Grafico();
+            Gerenciador_Grafico();
 
             // Destrutor
             ~Gerenciador_Grafico();

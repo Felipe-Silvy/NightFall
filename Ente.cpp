@@ -37,13 +37,21 @@ void NightFall::Ente::setTextura(const std::string& id)
 
 const sf::Vector2f NightFall::Ente::getTamanho() const
 {
-    sf::Vector2u tamanhoTextura = corpo.getTexture()->getSize();
-    sf::Vector2f escala = corpo.getScale();
+    sf::Vector2f tamanhoBase(0.f, 0.f);
 
+    const sf::Texture* pTextura = corpo.getTexture();
+    if (pTextura != nullptr)
+    {
+        sf::Vector2u tamanhoTextura = pTextura->getSize();
+        tamanhoBase.x = static_cast<float>(tamanhoTextura.x);
+        tamanhoBase.y = static_cast<float>(tamanhoTextura.y);
+    }
+    sf::Vector2f escala = corpo.getScale();
     sf::Vector2f tamanhoReal(
-        tamanhoTextura.x * escala.x,
-        tamanhoTextura.y * escala.y
+        tamanhoBase.x * escala.x,
+        tamanhoBase.y * escala.y
     );
+
     return tamanhoReal;
 }
 

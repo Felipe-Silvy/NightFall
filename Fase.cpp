@@ -5,31 +5,16 @@
 
 NightFall::Fases::Fase::Fase() :
 	lista_ents(), GC(),
-	pGG(NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()),
+	pGG(),
 	pGE(NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()),
 	pJog1(nullptr), pJog2(nullptr),
 	maxMorcegos(10), maxPlataformas(6),
 	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(maxPlataformas - rand() % 4),
 	numeroDaFase(0),
 	pontoFinal(),
-	posFinal(),
-	hitboxPosFinal(10)
+	posFinal()
 {
-	pontoFinal.setTexture(pGG->getTextura("PontoFinal"));
-	pontoFinal.setScale(0.1f, 0.1f);
-
-	// Obter tamanho da textura para posicionar corretamente
-	sf::Vector2u tamanhoTextura = pGG->getTextura("PontoFinal").getSize();
-	sf::Vector2f tamanhoEscalado(
-		tamanhoTextura.x * pontoFinal.getScale().x,
-		tamanhoTextura.y * pontoFinal.getScale().y
-	);
-
-	// Define posição no canto inferior direito da tela (VideoMode 1280x720)
-	posFinal.x = 1280.0f - tamanhoEscalado.x;
-	posFinal.y = 600.0f - tamanhoEscalado.y;
-
-	pontoFinal.setPosition(posFinal);
+	lista_ents.setGerColisao(&GC);
 }
 
 NightFall::Fases::Fase::~Fase()
@@ -88,8 +73,31 @@ void NightFall::Fases::Fase::criarCenario()
 
 void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG)
 {
-	if (pG != nullptr)
-		pGG = pG;
+	if (pG == nullptr)
+		return;
+
+
+	pGG = pG;
+
+	GC.setGerGrafico(pG);
+	pGE->setGerenciador_Grafico(pG);
+	pGE->setGerenciador_Colisoes(&GC);
+
+	pontoFinal.setTexture(pGG->getTextura("PontoFinal"));
+	pontoFinal.setScale(0.1f, 0.1f);
+
+	// Obter tamanho da textura para posicionar corretamente
+	sf::Vector2u tamanhoTextura = pGG->getTextura("PontoFinal").getSize();
+	sf::Vector2f tamanhoEscalado(
+		tamanhoTextura.x * pontoFinal.getScale().x,
+		tamanhoTextura.y * pontoFinal.getScale().y
+	);
+
+	// Define posição no canto inferior direito da tela (VideoMode 1280x720)
+	posFinal.x = 1280.0f - tamanhoEscalado.x;
+	posFinal.y = 600.0f - tamanhoEscalado.y;
+
+	pontoFinal.setPosition(posFinal);
 }
 
 void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)

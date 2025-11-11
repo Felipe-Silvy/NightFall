@@ -1,16 +1,32 @@
 #include "Gerenciador_Eventos.h"
+#include "Gerenciador_Colisoes.h"
+#include "Jogador.h"
+#include "Inimigo.h"
 #include <iostream>
 
 NightFall::Gerenciadores::Gerenciador_Eventos* NightFall::Gerenciadores::Gerenciador_Eventos::pEventos = nullptr;
 
 NightFall::Gerenciadores::Gerenciador_Eventos::Gerenciador_Eventos() :
-	pGrafico(Gerenciador_Grafico::getGerenciador_Grafico() ),
+	pGrafico(nullptr),
+	pColisao(nullptr),
 	pJogador1(nullptr),
 	pJogador2(nullptr)
 {}
 
 NightFall::Gerenciadores::Gerenciador_Eventos::~Gerenciador_Eventos()
 {
+}
+
+void NightFall::Gerenciadores::Gerenciador_Eventos::setGerenciador_Grafico(Gerenciadores::Gerenciador_Grafico* pGraf)
+{
+	if (pGraf != nullptr)
+		pGrafico = pGraf;
+}
+
+void NightFall::Gerenciadores::Gerenciador_Eventos::setGerenciador_Colisoes(Gerenciadores::Gerenciador_Colisoes* pCol)
+{
+	if (pCol != nullptr)
+		pColisao = pCol;
 }
 
 NightFall::Gerenciadores::Gerenciador_Eventos* NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()
@@ -54,7 +70,29 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 		}
 		if (tecla == sf::Keyboard::F)
 		{
-			pJogador1->atacar();
+			std::vector<Entidades::Personagens::Inimigo*>* lista = pColisao->getListaInimigos();
+
+			sf::Vector2f posJogador = pJogador1->getCorpo().getPosition();
+			float alcanceAtaque = 300.f; // definir funcao
+
+			for (int i = 0; i < lista->size(); i++)
+			{
+				Entidades::Personagens::Inimigo* inimigo = lista->at(i);
+				if (inimigo == nullptr)
+					continue;
+
+				sf::Vector2f posInimigo = inimigo->getCorpo().getPosition();
+
+				float distX = std::abs(posInimigo.x - posJogador.x);
+				float distY = std::abs(posInimigo.y - posJogador.y);
+				float distancia = std::sqrt(distX * distX + distY * distY);
+
+				if (distancia <= alcanceAtaque)
+				{
+					// pJogador1->atacar();
+					inimigo->receberDano(pJogador1->getDano());
+				}
+			}
 		}
 	}
 	else if (pJogador2 != nullptr)

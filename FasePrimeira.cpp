@@ -76,17 +76,4 @@ void NightFall::Fases::FasePrimeira::executar()
 		GC.executar();
 		pGG->mostraElementos();
 	}
-
-
-	//caso singleton seja completamente implementado
-	// 
-	
-	/*while (pGrafico->verificaAbertura())
-	{
-		pEvento->executar();
-		pGrafico->limpaJanela();
-		listaEntidades.executar(pGrafico->getGerGrafico());
-		pColisao->executar();
-		pGrafico->mostraElementos();
-	}*/
 }

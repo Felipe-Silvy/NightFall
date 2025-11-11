@@ -13,7 +13,7 @@ NightFall::Gerenciadores::Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	LPs(),
 	pJog1(nullptr),
 	pJog2(nullptr),
-	pGrafico(Gerenciador_Grafico::getGerenciador_Grafico() )
+	pGrafico()
 {
 	LIs.clear();
 	LOs.clear();
@@ -170,13 +170,16 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsInimigs()
 		for (it = LIs.begin(); it != LIs.end(); it++)
 		{
 			inimigosEntidade = static_cast<Entidades::Entidade*>(*it);
-			colisaoInimigos = VerificarColisao(LJs[i], inimigosEntidade);
-			//verifica a colisao de cada jogador com todos os objetos
-			//nesse caso inimigos
+			if (inimigosEntidade != nullptr)
+			{
+				colisaoInimigos = VerificarColisao(LJs[i], inimigosEntidade);
+				//verifica a colisao de cada jogador com todos os objetos
+				//nesse caso inimigos
 
-			if (colisaoInimigos)
-				(static_cast<Entidades::Personagens::Jogador*>(LJs[i]))->colidir((*it));
-			//ativa o dano que o inimigo causa ao ser encostado
+				if (colisaoInimigos)
+					(static_cast<Entidades::Personagens::Jogador*>(LJs[i]))->colidir((*it));
+				//ativa o dano que o inimigo causa ao ser encostado
+			}
 		}
 	}
 }
@@ -220,6 +223,16 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::incluirInimigo(Entidades::P
 		LIs.push_back(pi);
 }
 
+void NightFall::Gerenciadores::Gerenciador_Colisoes::removeInimigo(Entidades::Personagens::Inimigo* pi)
+{
+	auto it = std::find(LIs.begin(), LIs.end(), pi);
+
+	if (it != LIs.end())
+	{
+		LIs.erase(it);
+	}
+}
+
 void NightFall::Gerenciadores::Gerenciador_Colisoes::incluirObstaculo(Entidades::Obstaculos::Obstaculo* po)
 {
 	if (po)
@@ -258,7 +271,13 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setJogador(Entidades::Perso
 		std::cout << "Alem do limite de jogadores" << std::endl;
 
 }
- /*
+
+std::vector<NightFall::Entidades::Personagens::Inimigo*>* NightFall::Gerenciadores::Gerenciador_Colisoes::getListaInimigos()
+{
+	return &LIs;
+}
+
+ 
 void NightFall::Gerenciadores::Gerenciador_Colisoes::setGerGrafico(Gerenciador_Grafico* pG)
 {
 	if (pG != nullptr) {
@@ -266,5 +285,4 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setGerGrafico(Gerenciador_G
 		pG->setGerColisoes(this);
 	}
 }
-
- */
+ 

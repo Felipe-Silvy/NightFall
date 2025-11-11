@@ -1,7 +1,5 @@
 #include "Gerenciador_Grafico.h"
 
-NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenciador_Grafico::pGrafico = nullptr;
-
 NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() :
     window(sf::VideoMode(1280, 720), "NightFall") ,
     alturaChao(600.0f)
@@ -9,14 +7,6 @@ NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() :
     executar();
 }
 
-NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()
-{
-    if (pGrafico == nullptr)
-    {
-        pGrafico = new Gerenciador_Grafico();
-    }
-    return pGrafico;
-}
 
 NightFall::Gerenciadores::Gerenciador_Grafico::~Gerenciador_Grafico() {
     // Liberar memória

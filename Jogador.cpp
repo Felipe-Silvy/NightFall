@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iomanip>.
 
-NightFall::Entidades::Personagens::Jogador::Jogador() : Personagem() , pontos(0)
+NightFall::Entidades::Personagens::Jogador::Jogador() : Personagem() , pontos(0), poderDano(20)
 {
     corpo.setScale(0.07f, 0.07f);
     velocidade = 200.0f;
@@ -16,7 +16,7 @@ NightFall::Entidades::Personagens::Jogador::~Jogador() { pontos = 0; }
 
 void NightFall::Entidades::Personagens::Jogador::colidir(Entidades::Personagens::Inimigo* pIn)
 {
-    pIn->danificar(this);
+   pIn->danificar(this);
 }
 
 void NightFall::Entidades::Personagens::Jogador::executar ()
@@ -95,6 +95,11 @@ void NightFall::Entidades::Personagens::Jogador::pular()
 
 void NightFall::Entidades::Personagens::Jogador::atacar()
 {
+}
+
+int NightFall::Entidades::Personagens::Jogador::getDano()
+{
+    return poderDano;
 }
 
 void NightFall::Entidades::Personagens::Personagem::setVelocidade(float vel)

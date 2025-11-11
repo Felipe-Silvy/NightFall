@@ -67,6 +67,11 @@ namespace NightFall
                 limpar();
             }
 
+            Elemento<TL>* getPrimeiro() const
+            {
+                return pPrimeiro;
+            }
+
             void incluir(TL* p)
             {
                 Elemento<TL>* elemento = new Elemento<TL>();
@@ -129,6 +134,10 @@ namespace NightFall
                 if (atual == pUltimo)
                     pUltimo = anterior;
 
+                
+                delete atual->getApontado(); // Deleta o dado (Entidade*)
+
+                // Deleta o nó da lista
                 delete atual;
             }
 
