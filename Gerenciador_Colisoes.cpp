@@ -13,7 +13,7 @@ NightFall::Gerenciadores::Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	LPs(),
 	pJog1(nullptr),
 	pJog2(nullptr),
-	pGrafico(nullptr)
+	pGrafico(Gerenciador_Grafico::getGerenciador_Grafico() )
 {
 	LIs.clear();
 	LOs.clear();
@@ -138,13 +138,12 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 		sf::Vector2f pos = jogadorComparado->getPosicao();
 		sf::Vector2f vel = jogadorComparado->getVelocidade();
 
-		if (pos.y >= 450.0f && vel.y >= 0.0f)
+		if (pos.y + jogadorComparado->getTamanho().y >= pGrafico->getAlturaChao() && vel.y >= 0.0f)
 		{
 			jogadorComparado->setNoChao(true);
-			pos.y = 450.0f;
+			pos.y = pGrafico->getAlturaChao() - jogadorComparado->getTamanho().y;;
 			jogadorComparado->setPosicao(pos);
 		}
-
 	}
 }
 
@@ -259,7 +258,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setJogador(Entidades::Perso
 		std::cout << "Alem do limite de jogadores" << std::endl;
 
 }
-
+ /*
 void NightFall::Gerenciadores::Gerenciador_Colisoes::setGerGrafico(Gerenciador_Grafico* pG)
 {
 	if (pG != nullptr) {
@@ -267,3 +266,5 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setGerGrafico(Gerenciador_G
 		pG->setGerColisoes(this);
 	}
 }
+
+ */

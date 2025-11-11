@@ -23,6 +23,8 @@ namespace NightFall {
             // Construtor para Singleton
             Gerenciador_Grafico();
 
+            float alturaChao;
+
         public:
             static Gerenciador_Grafico* getGerenciador_Grafico();
 
@@ -49,6 +51,9 @@ namespace NightFall {
             
             // Conhecendo o Gerenciador de Colisões
             void setGerColisoes(Gerenciador_Colisoes* pC);
+
+            void setAlturaChao(const float alt);
+            const float getAlturaChao() const;
         };
 
     } // namespace Gerenciadores

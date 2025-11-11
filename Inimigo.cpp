@@ -1,5 +1,6 @@
 #include "Inimigo.h"
 #include "Jogador.h"
+#include "Gerenciador_Grafico.h"
 #include <cmath>
 
 NightFall::Entidades::Personagens::Jogador* NightFall::Entidades::Personagens::Inimigo::pJogador1 = nullptr;
@@ -13,6 +14,8 @@ NightFall::Entidades::Personagens::Inimigo::Inimigo() :
     tempoVagar(0.0f),
     cooldownDano(0.0f)
 {
+    corpo.setOrigin(0.f, 0.f);
+    
 	num_vidas = 20;
 }
 
@@ -25,22 +28,24 @@ void NightFall::Entidades::Personagens::Inimigo::mover()
 {
     deltaTempo = relogioMovimento.restart().asSeconds();
 
-    if (getPosicao().y >= 420.0f && velocidadeAtual.y >= 0.f)
+    if (getPosicao().y + getTamanho().y >= pGG->getAlturaChao()
+        && velocidadeAtual.y >= 0.f && !noChao)
     {
         noChao = true;
         sf::Vector2f pos = getPosicao();
-        pos.y = 420.0f;
+        pos.y = pGG->getAlturaChao() - getTamanho().y;
         setPosicao(pos);
-        aceleracao.y = 0.0f;
-        velocidadeAtual.y = 0.0f;
-    }
-    else
-    {
-        noChao = false;
     }
 
     if (!noChao)
+    {
         aceleracao.y += 1000.0f;
+    }
+    else
+    {
+        aceleracao.y = 0.0f;
+        velocidadeAtual.y = 0.0f;
+    }
 
     //segundo a fisica, velocidade é aceleracao * tempo
 
@@ -128,7 +133,7 @@ const bool NightFall::Entidades::Personagens::Inimigo::podeDanificar()
 {
     cooldownDano += deltaTempo;
 
-    if (cooldownDano >= 1.0f)
+    if (cooldownDano >= 0.5f)
     {
         cooldownDano = 0.f;
         return true;

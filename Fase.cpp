@@ -51,6 +51,11 @@ void NightFall::Fases::Fase::criarMorcegos()
 void NightFall::Fases::Fase::criarPlataformas()
 {	
 	NightFall::Entidades::Obstaculos::Plataforma* alocadorPlataforma = nullptr;
+	
+	alocadorPlataforma = new NightFall::Entidades::Obstaculos::Plataforma(true);
+	lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorPlataforma));
+	GC.incluirObstaculo(alocadorPlataforma);
+
 	int i;
 	for (i = 0; i < numPlataformas; i++) {
 		alocadorPlataforma = new NightFall::Entidades::Obstaculos::Plataforma();

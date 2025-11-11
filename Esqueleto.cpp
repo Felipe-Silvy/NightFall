@@ -1,12 +1,13 @@
 #include "Esqueleto.h"
 #include "Jogador.h"
+#include "Gerenciador_Grafico.h"
 #include <iostream>
 
 sf::Vector2f NightFall::Entidades::Personagens::Esqueleto::ultimaPosicao = { 0, 0 };
 
 NightFall::Entidades::Personagens::Esqueleto::Esqueleto() : Inimigo(), tamanho(0)
 {
-    nivel_maldade = 20;
+    nivel_maldade = 40;
     num_vidas = 50;
     corpo.setScale(0.1f, 0.1f);
     ultimaPosicao.x += 200.0f + ((rand() % 10) - 5) * 10;
@@ -35,6 +36,8 @@ void NightFall::Entidades::Personagens::Esqueleto::executar()
 {
     sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
     sf::Vector2f posJogador2;
+
+
 
     if (pJogador2)
         posJogador2 = pJogador2->getCorpo().getPosition();

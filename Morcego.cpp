@@ -1,12 +1,13 @@
 #include "Morcego.h"
 #include "Jogador.h"
+#include "Gerenciador_Grafico.h"
 #include <iostream>
 
-sf::Vector2f NightFall::Entidades::Personagens::Morcego::ultimaPosicao = { 0.0f, 200.0f };
+sf::Vector2f NightFall::Entidades::Personagens::Morcego::ultimaPosicao = { 0.0f, 300.0f };
 
 NightFall::Entidades::Personagens::Morcego::Morcego() : Inimigo(), raio(0)
 {
-	nivel_maldade = 1;
+	nivel_maldade = 20;
 	num_vidas = 1;
 	corpo.setScale(0.1f, 0.1f);
 	ultimaPosicao.x += 100.0f + ((rand() % 10) - 2) * 10; // mudar número
@@ -64,11 +65,12 @@ void NightFall::Entidades::Personagens::Morcego::mover()
 {
     deltaTempo = relogioMovimento.restart().asSeconds();
 
-    if (getPosicao().y >= 420.0f && velocidadeAtual.y >= 0.f)
+    if (getPosicao().y + getTamanho().y >= pGG->getAlturaChao()
+        && velocidadeAtual.y >= 0.f)
     {
         noChao = true;
         sf::Vector2f pos = getPosicao();
-        pos.y = 420.0f;
+        pos.y = pGG->getAlturaChao() - getTamanho().y;
         setPosicao(pos);
         aceleracao.y = 0.0f;
         velocidadeAtual.y = 0.0f;

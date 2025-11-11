@@ -1,29 +1,29 @@
 #include "Plataforma.h"
 #include "Teia.h"
 #include "Jogador.h"
+#include "Gerenciador_Grafico.h"
 #include <algorithm> // para std::swap
 #include <cstdlib>   // para rand
 #include <ctime>
 
 std::vector<sf::Vector2f> NightFall::Entidades::Obstaculos::Plataforma::posicoesParaPlataforma = {
     { 50.0f, 400.0f },
-    { 600.0f, 400.0f },
-    { 900.0f, 400.0f },
-    { 200.0f, 230.0f },
-    { 500.0f, 230.0f },
-    { 1000.0f, 230.0f }
+    { 450.0f, 400.0f },
+    { 850.0f, 400.0f },
+    { 250.0f, 230.0f },
+    { 650.0f, 230.0f },
+    { 1050.0f, 230.0f }
 };
 
 NightFall::Entidades::Obstaculos::Plataforma::Plataforma() : 
     Obstaculo (),
-    altura(300)
+    altura(3),
+    parede(false)
 {
-    corpo.setScale(0.3f, 0.3f);
-
+    corpo.setScale(0.3f, altura * 0.1f);
 
     if (Plataforma::posicoesParaPlataforma.empty())
     {
-        // fallback: posição (0,0) ou qualquer comportamento definido pela classe
         setPosicao(sf::Vector2f(100.f, 400.f));
         return;
     }
@@ -40,6 +40,42 @@ NightFall::Entidades::Obstaculos::Plataforma::Plataforma() :
     Plataforma::posicoesParaPlataforma.pop_back();
 
     setPosicao(posicao); 
+}
+
+NightFall::Entidades::Obstaculos::Plataforma::Plataforma(bool par) :
+    Obstaculo(),
+    altura(6),
+    parede(par)
+{
+    if (par)
+    {
+        (this)->setTextura("Parede");
+        corpo.setScale(0.3f, altura * 0.1f);
+        setPosicao(640.0f, pGG->getAlturaChao() - getTamanho().y);
+    }
+    else
+    {
+        corpo.setScale(0.3f, altura * 0.1f);
+
+        if (Plataforma::posicoesParaPlataforma.empty())
+        {
+            setPosicao(sf::Vector2f(100.f, 400.f));
+            return;
+        }
+
+        int qualPosicao = rand() % (int)(Plataforma::posicoesParaPlataforma.size());
+
+        sf::Vector2f posicao = Plataforma::posicoesParaPlataforma[qualPosicao];
+
+        if (qualPosicao != static_cast<int>(Plataforma::posicoesParaPlataforma.size()) - 1)
+        {
+            std::swap(Plataforma::posicoesParaPlataforma[qualPosicao],
+                Plataforma::posicoesParaPlataforma.back());
+        }
+        Plataforma::posicoesParaPlataforma.pop_back();
+
+        setPosicao(posicao);
+    }
 }
 
 NightFall::Entidades::Obstaculos::Plataforma::~Plataforma()

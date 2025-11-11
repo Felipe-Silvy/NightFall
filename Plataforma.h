@@ -15,8 +15,10 @@ namespace NightFall {
                 // ...
                 static std::vector<sf::Vector2f> posicoesParaPlataforma;
 
+                bool parede;
             public:
                 Plataforma();
+                Plataforma(bool par);
                 ~Plataforma();
                 void executar();
                 void obstaculizar(Personagens::Jogador* p);

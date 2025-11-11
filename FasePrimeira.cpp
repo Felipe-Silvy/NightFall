@@ -56,6 +56,7 @@ NightFall::Fases::FasePrimeira::~FasePrimeira()
 
 void NightFall::Fases::FasePrimeira::executar()
 {
+	pGG->setAlturaChao(575.0f);
 	criarInimigos();
 	criarObstaculo();
 	criarCenario();

@@ -2,7 +2,10 @@
 
 NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Gerenciadores::Gerenciador_Grafico::pGrafico = nullptr;
 
-NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(1280, 720), "NightFall") { // VERIFICAR INICIALIZÇÃO WINDOW
+NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() :
+    window(sf::VideoMode(1280, 720), "NightFall") ,
+    alturaChao(600.0f)
+{ // VERIFICAR INICIALIZÇÃO WINDOW
     executar();
 }
 
@@ -93,6 +96,16 @@ void NightFall::Gerenciadores::Gerenciador_Grafico::setGerColisoes(Gerenciador_C
 {
     if (pC != nullptr)
         pColisoes = pC;
+}
+
+void NightFall::Gerenciadores::Gerenciador_Grafico::setAlturaChao(const float alt)
+{
+    alturaChao = alt;
+}
+
+const float NightFall::Gerenciadores::Gerenciador_Grafico::getAlturaChao() const
+{
+    return alturaChao;
 }
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {

@@ -59,7 +59,7 @@ namespace NightFall {
             void setJogador(Entidades::Personagens::Jogador* pJogador);
 
             // Conhecendo Gerenciador Grafico
-            void setGerGrafico(Gerenciador_Grafico* pG);
+            //void setGerGrafico(Gerenciador_Grafico* pG);
         };
     } // namespace Gerenciadores
 } // namespace NightFall

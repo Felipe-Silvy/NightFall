@@ -1,5 +1,6 @@
 #include "Jogador.h"
 #include "Inimigo.h"
+#include "Gerenciador_Grafico.h"
 #include <iostream>
 #include <iomanip>.
 
@@ -29,11 +30,12 @@ void NightFall::Entidades::Personagens::Jogador::mover()
 {
     deltaTempo = relogioMovimento.restart().asSeconds();
     
-    if (getPosicao().y >= 450.0f && velocidadeAtual.y >= 0.f && !noChao)
+    if (getPosicao().y + getTamanho().y >= pGG->getAlturaChao()
+        && velocidadeAtual.y >= 0.f && !noChao)
     {
         noChao = true;
         sf::Vector2f pos = getPosicao();
-        pos.y = 450.0f;
+        pos.y = pGG->getAlturaChao() - getTamanho().y;
         setPosicao(pos);
     }
     
@@ -93,7 +95,6 @@ void NightFall::Entidades::Personagens::Jogador::pular()
 
 void NightFall::Entidades::Personagens::Jogador::atacar()
 {
-
 }
 
 void NightFall::Entidades::Personagens::Personagem::setVelocidade(float vel)
