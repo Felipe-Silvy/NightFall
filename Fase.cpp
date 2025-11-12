@@ -44,6 +44,11 @@ void NightFall::Fases::Fase::criarPlataformas()
 	int i;
 	for (i = 0; i < numPlataformas; i++) {
 		alocadorPlataforma = new NightFall::Entidades::Obstaculos::Plataforma();
+		if (i < 1)
+		{
+			alocadorPlataforma->setPosicao(450.0f, 400.0f);
+			//std::cout << "Alterado para x = " << alocadorPlataforma->getPosicao().x << " y =" << alocadorPlataforma->getPosicao().y << std::endl;
+		}
 		alocadorPlataforma->setTextura("Plataforma");
 		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorPlataforma));
 		GC.incluirObstaculo(alocadorPlataforma);
