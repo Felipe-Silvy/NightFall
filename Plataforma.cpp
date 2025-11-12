@@ -18,7 +18,9 @@ std::vector<sf::Vector2f> NightFall::Entidades::Obstaculos::Plataforma::posicoes
 NightFall::Entidades::Obstaculos::Plataforma::Plataforma() : 
     Obstaculo (),
     altura(3),
-    parede(false)
+    parede(false),
+    posicaoOriginalY(0),
+    movel(rand()%3)
 {
     corpo.setScale(0.3f, altura * 0.1f);
 
@@ -40,12 +42,15 @@ NightFall::Entidades::Obstaculos::Plataforma::Plataforma() :
     Plataforma::posicoesParaPlataforma.pop_back();
 
     setPosicao(posicao); 
+    posicaoOriginalY = posicao.y;
 }
 
-NightFall::Entidades::Obstaculos::Plataforma::Plataforma(bool par) :
+NightFall::Entidades::Obstaculos::Plataforma::Plataforma(bool par, bool mov) :
     Obstaculo(),
     altura(6),
-    parede(par)
+    parede(par),
+    movel(mov),
+    posicaoOriginalY(0)
 {
     if (par)
     {
@@ -75,6 +80,7 @@ NightFall::Entidades::Obstaculos::Plataforma::Plataforma(bool par) :
         Plataforma::posicoesParaPlataforma.pop_back();
 
         setPosicao(posicao);
+        posicaoOriginalY = posicao.y;
     }
 }
 
@@ -143,7 +149,24 @@ void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jog
 
 void NightFall::Entidades::Obstaculos::Plataforma::executar()
 {
-    //sobe e desce
+    if (parede || !movel)
+        return;
+
+    deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
+    relogioMovimento.restart();
+    cooldownInteração += deltaTempo;
+
+    float amplitude = 25.f; // O quanto ela se move (25 pixels para cima, 25 para baixo)
+    float velocidade = 2.f; // Quão rápido ela se move
+
+    // sin() nos dá um valor suave entre -1 e 1
+    // Multiplicamos por 'velocidade' para acelerar a oscilação
+    // Multiplicamos por 'amplitude' para definir a distância
+    float offset = std::sin(cooldownInteração * velocidade) * amplitude;
+
+    // Aplica o offset à posição Y original
+    // (Usamos getPosicao().x para manter o X fixo)
+    setPosicao(getPosicao().x, posicaoOriginalY + offset);
 }
 
 void NightFall::Entidades::Obstaculos::Plataforma::salvar()

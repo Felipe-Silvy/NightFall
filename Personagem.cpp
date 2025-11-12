@@ -11,10 +11,9 @@ NightFall::Entidades::Personagens::Personagem::Personagem() :
     noChao(false),
     velocidadeAtual(0.0f, 0.0f),
     aceleracao(0.0f, 0.0f),
-    forcaPulo(500.0f),
-    deltaTempo(0.0f)
+    forcaPulo(500.0f)
 {
-    relogioMovimento.restart();
+
 }
 
 NightFall::Entidades::Personagens::Personagem::~Personagem() {}
@@ -46,6 +45,11 @@ void NightFall::Entidades::Personagens::Personagem::setNoChao(bool valor)
     noChao = valor;
 }
 
+void NightFall::Entidades::Personagens::Personagem::setVelocidade(sf::Vector2f vel)
+{
+    velocidadeAtual = vel;
+}
+
 const int NightFall::Entidades::Personagens::Personagem::getVida() const
 {
     return num_vidas;
@@ -65,3 +69,14 @@ void NightFall::Entidades::Personagens::Personagem::desenhar() {
     if (pGG != nullptr && num_vidas > 0)
         pGG->desenharEnte(this);
 }
+
+/*
+void NightFall::Entidades::Personagens::Personagem::knockback(float direcao)
+{
+    const float FORCA_EMPURAO_X = 50.f;
+    const float FORCA_PULO_Y = -10.f; // (Um "pulinho" para cima, valor negativo)
+
+    sf::Vector2f novaVel (direcao * FORCA_EMPURAO_X, getVelocidade().y + FORCA_PULO_Y);
+    setVelocidade(novaVel);
+}
+*/

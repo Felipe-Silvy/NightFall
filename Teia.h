@@ -16,6 +16,7 @@ namespace NightFall
             private:
                 float largura;
                 float desaceleracao;
+                static std::vector<float> posicoesXTeia;
 
             public:
                 Teia();

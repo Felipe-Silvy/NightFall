@@ -21,7 +21,8 @@ void NightFall::Fases::FasePrimeira::criarTeias()
 	NightFall::Entidades::Obstaculos::Teia* alocadorTeia = nullptr;
 	int i;
 	for (i = 0; i < numTeias; i++) {
-		alocadorTeia = new NightFall::Entidades::Obstaculos::Teia(false, 100.f, 100.f); // VALORES DE TESTE
+		alocadorTeia = new NightFall::Entidades::Obstaculos::Teia(false, 0.90, 0.8f); // VALORES DE TESTE
+		alocadorTeia->setTextura("Teia");
 		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorTeia));
 		GC.incluirObstaculo(alocadorTeia);
 	}
@@ -36,7 +37,7 @@ void NightFall::Fases::FasePrimeira::criarInimigos()
 
 void NightFall::Fases::FasePrimeira::criarObstaculo()
 {
-	//criarTeias();
+	criarTeias();
 	criarPlataformas();
 }
 

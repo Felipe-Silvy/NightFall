@@ -37,7 +37,7 @@ void NightFall::Fases::Fase::criarPlataformas()
 {	
 	NightFall::Entidades::Obstaculos::Plataforma* alocadorPlataforma = nullptr;
 	
-	alocadorPlataforma = new NightFall::Entidades::Obstaculos::Plataforma(true);
+	alocadorPlataforma = new NightFall::Entidades::Obstaculos::Plataforma(true, false);
 	lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorPlataforma));
 	GC.incluirObstaculo(alocadorPlataforma);
 

@@ -107,6 +107,7 @@ void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
     carregarTextura("Plataforma", "Assets/Imagens/plataforma.png");
     carregarTextura("Parede", "Assets/Imagens/parede.png");
     carregarTextura("PontoFinal", "Assets/Imagens/pontoFinal.png");
+    carregarTextura("Teia", "Assets/Imagens/teia.png");
 
     if (!fontePrincipal.loadFromFile("Assets/Fontes/minecraft.ttf"))
     {

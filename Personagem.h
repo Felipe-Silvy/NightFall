@@ -19,8 +19,7 @@ namespace NightFall {
 				bool noChao;
 				static const float FRICCAO;
 
-				float deltaTempo;
-				sf::Clock relogioMovimento;
+				
                 
             public:
                 Personagem();
@@ -36,11 +35,12 @@ namespace NightFall {
                 void setVelocidadeX(float vx);
                 void setVelocidadeY(float vy);
                 void setNoChao(bool valor);
-                void setVelocidade(float vel);
+                void setVelocidade(sf::Vector2f vel);
                 const int getVida() const;
                 const sf::Vector2f getVelocidade() const;
                 const bool getNoChao() const;
                 void desenhar();
+                //void knockback(float direcao);
             };
         }
     }

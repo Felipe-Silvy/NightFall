@@ -14,11 +14,13 @@ namespace NightFall {
                 int altura;
                 // ...
                 static std::vector<sf::Vector2f> posicoesParaPlataforma;
+                float posicaoOriginalY;
 
                 bool parede;
+                bool movel;
             public:
                 Plataforma();
-                Plataforma(bool par);
+                Plataforma(bool par, bool mov);
                 ~Plataforma();
                 void executar();
                 void obstaculizar(Personagens::Jogador* p);

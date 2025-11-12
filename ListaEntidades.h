@@ -10,6 +10,9 @@ namespace NightFall
 	namespace Entidades
 	{
 		class Entidade;
+		namespace Personagens {
+			class Jogador;
+		}
 	}
 
 	namespace Listas
@@ -19,6 +22,8 @@ namespace NightFall
 		private:
 			NightFall::Listas::Lista<NightFall::Entidades::Entidade> LEs;
 			Gerenciadores::Gerenciador_Colisoes* pColisao;
+			Entidades::Personagens::Jogador* pJog1;
+			Entidades::Personagens::Jogador* pJog2;
 		public:
 			ListaEntidades();
 			~ListaEntidades();

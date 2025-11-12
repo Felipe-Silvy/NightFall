@@ -12,6 +12,7 @@ namespace NightFall {
             {
             protected:
                 bool danoso; // Atributo protegido conforme o UML
+                float cooldownInteração;
                 // ...
 
                 

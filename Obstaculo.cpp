@@ -8,7 +8,7 @@
 // danoso(dan) Inicializa o atributo danoso
 // {}
 
-NightFall::Entidades::Obstaculos::Obstaculo::Obstaculo() : Entidade(), danoso(false)
+NightFall::Entidades::Obstaculos::Obstaculo::Obstaculo() : Entidade(), danoso(false), cooldownInteração(0.0f)
 {
 }
 

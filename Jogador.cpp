@@ -17,6 +17,8 @@ NightFall::Entidades::Personagens::Jogador::~Jogador() { pontos = 0; }
 void NightFall::Entidades::Personagens::Jogador::colidir(Entidades::Personagens::Inimigo* pIn)
 {
    pIn->danificar(this);
+   //float direcaoX = (getPosicao().x > pIn->getPosicao().x) ? 1.0f : -1.0f;
+   //knockback(direcaoX);
 }
 
 void NightFall::Entidades::Personagens::Jogador::executar ()
@@ -102,10 +104,8 @@ int NightFall::Entidades::Personagens::Jogador::getDano()
     return poderDano;
 }
 
-void NightFall::Entidades::Personagens::Personagem::setVelocidade(float vel)
-{
-    velocidade = vel;
-}
 
-
-
+//void NightFall::Entidades::Personagens::Jogador::operator++()
+//{
+    //pontos++;
+//}

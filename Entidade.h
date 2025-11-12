@@ -12,6 +12,9 @@ namespace NightFall {
 			int y;
 			// ostream "buffer" tirar aspas depois;
 			void salvarDataBuffer(); // Impementar depois
+
+			float deltaTempo;
+			sf::Clock relogioMovimento;
 		public:
 			Entidade();
 			~Entidade();
