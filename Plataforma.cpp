@@ -12,7 +12,7 @@ std::vector<sf::Vector2f> NightFall::Entidades::Obstaculos::Plataforma::posicoes
     { 250.0f, 230.0f },
     { 650.0f, 230.0f },
     { 1050.0f, 230.0f },
-    { 550.0f, 100.0f }
+    { 150.0f, 100.0f }
 };
 
 NightFall::Entidades::Obstaculos::Plataforma::Plataforma() : 
@@ -43,7 +43,7 @@ NightFall::Entidades::Obstaculos::Plataforma::Plataforma() :
 
     setPosicao(posicao); 
     posicaoOriginalY = posicao.y;
-    //std::cout <<"Plataforma x = " << posicao.x << " y = " << posicao.y << std::endl;
+    std::cout <<"Plataforma x = " << posicao.x << " y = " << posicao.y << std::endl;
 }
 
 NightFall::Entidades::Obstaculos::Plataforma::Plataforma(bool par, bool mov) :
@@ -171,4 +171,9 @@ void NightFall::Entidades::Obstaculos::Plataforma::executar()
 void NightFall::Entidades::Obstaculos::Plataforma::salvar()
 {
 
+}
+
+void NightFall::Entidades::Obstaculos::Plataforma::setPosicaoOriginalY(float pos)
+{
+    posicaoOriginalY = pos;
 }

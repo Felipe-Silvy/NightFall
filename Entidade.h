@@ -8,9 +8,6 @@ namespace NightFall {
 		class Entidade : public Ente
 		{
 		protected:
-			int x;
-			int y;
-			// ostream "buffer" tirar aspas depois;
 			void salvarDataBuffer(); // Impementar depois
 
 			float deltaTempo;

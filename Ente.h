@@ -21,7 +21,7 @@ namespace NightFall {
 
         // Métodos virtuais
         virtual void executar() = 0; // método puramente virtual (classe abstrata)
-        virtual void desenhar();
+        void desenhar();
 
         // Setter estático para o gerenciador gráfico
         static void setGG(Gerenciadores::Gerenciador_Grafico* pG);

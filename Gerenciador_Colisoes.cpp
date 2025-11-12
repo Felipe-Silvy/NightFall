@@ -20,6 +20,10 @@ NightFall::Gerenciadores::Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	LPs.clear();
 }
 
+NightFall::Gerenciadores::Gerenciador_Colisoes::~Gerenciador_Colisoes()
+{
+}
+
 NightFall::Gerenciadores::Gerenciador_Colisoes* NightFall::Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes()
 {
 	if (pColisao == nullptr)

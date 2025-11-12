@@ -10,7 +10,7 @@ namespace NightFall {
             class Jogador :
                 public Personagem
             {
-            protected:
+            private:
                 int pontos;
                 int poderDano;
                 // #...

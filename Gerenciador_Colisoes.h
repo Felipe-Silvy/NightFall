@@ -43,6 +43,7 @@ namespace NightFall {
 
         public: 
             Gerenciador_Colisoes();
+            ~Gerenciador_Colisoes();
 
             static Gerenciador_Colisoes* getGerenciador_Colisoes();
 

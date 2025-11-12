@@ -1,7 +1,7 @@
 #include "Entidade.h"
 
 NightFall::Entidades::Entidade::Entidade() :
-	Ente(), x(0) , y(0), deltaTempo(0.0f)
+	Ente(), deltaTempo(0.0f)
 {
 	relogioMovimento.restart();
 }
