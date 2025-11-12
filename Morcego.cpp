@@ -79,18 +79,15 @@ void NightFall::Entidades::Personagens::Morcego::mover()
     {
         noChao = false;
     }
-
-    /*
+  
     if (!noChao)
     {
-        bool sinal = (bool) rand() % 2;
-        if (sinal)
-            aceleracao.y += 100;
-        else
-            aceleracao.y -= 100;
+        aceleracao.y += 1000;
+        aceleracao.y -= 1000; //Gracas ao voo do morcego.
+        //Ele se acelera para cima com a mesma aceleracao
+        //que a gravidade. Assim ele é mantido no lugar
     }
-    */
-        
+            
 
     //segundo a fisica, velocidade é aceleracao * tempo
 

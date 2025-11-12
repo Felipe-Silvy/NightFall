@@ -31,6 +31,8 @@ NightFall::Gerenciadores::Gerenciador_Colisoes* NightFall::Gerenciadores::Gerenc
 
 const bool NightFall::Gerenciadores::Gerenciador_Colisoes::VerificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2) const
 {
+	//Logica de funcionamento inspirada no codigo do ex-monitor Giovane Limas Salvi
+
 	//para verificar a sobreposicao, deve-se encontrar a distancia entre os centros dos objetos, em x e y
 
 	// calcula os centros (posicao + tamanho/2)
@@ -52,52 +54,6 @@ const bool NightFall::Gerenciadores::Gerenciador_Colisoes::VerificarColisao(Enti
 
 	return false;
 }
-
-/*
-void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
-{
-	//LOs eh um list de Obstaculo*
-
-	if (LOs.empty())
-		return;
-
-	int i = 0;
-
-	Entidades::Entidade* obstaculosEntidade = nullptr;
-
-	//ira se transformar no obstaculo em cada iteracao
-
-	std::list<Entidades::Obstaculos::Obstaculo*>::iterator it;
-
-	bool colisaoObstaculo = false;
-
-	for (i = 0; i < LJs.size(); i++)
-	{
-		Entidades::Personagens::Jogador* jogadorComparado = static_cast<Entidades::Personagens::Jogador*>(LJs[i]);
-		jogadorComparado->setNoChao(false);
-
-		std::cout << "DBG colisao reset: jogador[" << i << "] noChao after reset="
-			<< jogadorComparado->getNoChao() << std::endl;
-
-
-		for (it = LOs.begin(); it != LOs.end(); it++)
-		{
-			obstaculosEntidade = static_cast<Entidades::Entidade*>(*it);
-			colisaoObstaculo = VerificarColisao(LJs[i], obstaculosEntidade);
-
-			//verifica a colisao de cada jogador com todos os objetos
-			//nesse caso obstaculos
-
-			if (colisaoObstaculo)
-				(*it)->obstaculizar(jogadorComparado); //ativa o metodo do obstaculo que ativa ao colidir
-
-			std::cout << "DBG colisao end: jogador[" << i << "] noChao final="
-				<< jogadorComparado->getNoChao() << std::endl;
-
-		}
-	}
-}
-*/
 
 void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 {

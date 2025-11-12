@@ -9,7 +9,7 @@ NightFall::Ente::Ente() : id(cont_id) , corpo()
 {
    corpo.setPosition(0.f, 0.f);
    corpo.setScale(0.2f, 0.2f);
-    cont_id++;
+   cont_id++;
 }
 
 NightFall::Ente::~Ente() {}

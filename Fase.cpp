@@ -55,18 +55,19 @@ void NightFall::Fases::Fase::criarCenario()
 	sf::Vector2f tamJanela = static_cast<sf::Vector2f>(pGG->getWindow()->getSize());
 	if (numeroDaFase == 1)
 	{
-		// Centralizando e escalando Imagem de Fundo 
+
 		setTextura("FundoFase1");
         const sf::Texture* pTextura = corpo.getTexture();
-        // Verificação de segurança (impede crash)
+
         if (pTextura == nullptr) {
             std::cout << "ERRO: Sprite 'corpo' (Menu) sem textura!" << std::endl;
             return;
         }
         sf::Vector2f tamTextura = static_cast<sf::Vector2f>(pTextura->getSize());
-        // Calcula e aplica a escala
+
+		//Adequa o tamanho da janela
         corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
-        // Opcional: Alinha o fundo no canto
+
         corpo.setPosition(0.f, 0.f);
 	}
 }
@@ -83,17 +84,17 @@ void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Gr
 	pGE->setGerenciador_Grafico(pG);
 	pGE->setGerenciador_Colisoes(&GC);
 
+	//bandeira que representa o fim da fase
 	pontoFinal.setTexture(pGG->getTextura("PontoFinal"));
 	pontoFinal.setScale(0.1f, 0.1f);
 
-	// Obter tamanho da textura para posicionar corretamente
 	sf::Vector2u tamanhoTextura = pGG->getTextura("PontoFinal").getSize();
 	sf::Vector2f tamanhoEscalado(
 		tamanhoTextura.x * pontoFinal.getScale().x,
 		tamanhoTextura.y * pontoFinal.getScale().y
 	);
 
-	// Define posição no canto inferior direito da tela (VideoMode 1280x720)
+	// Colocando a bandeira no canto direito em baixo da tela
 	posFinal.x = 1280.0f - tamanhoEscalado.x;
 	posFinal.y = 600.0f - tamanhoEscalado.y;
 

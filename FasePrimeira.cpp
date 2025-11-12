@@ -66,8 +66,6 @@ void NightFall::Fases::FasePrimeira::executar()
 
 	while (pGG->verificaAbertura() && pJog1->getVida() > 0 && (pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)) // && pos_jog != pos_final && jogador->getvidas()
 	{
-		// AFIM DE TESTES:
-
 		//this para lembrar que é a fase se desenhando
 		pGE->executar();
 		pGG->limpaJanela();
@@ -77,4 +75,8 @@ void NightFall::Fases::FasePrimeira::executar()
 		GC.executar();
 		pGG->mostraElementos();
 	}
+
+	std::cout << "Jogador 1 fez " << pJog1->getPontos() << " pontos" << std::endl;
+	if(pJog2)
+		std::cout << "Jogador 2 fez " << pJog2->getPontos() << " pontos" << std::endl;
 }

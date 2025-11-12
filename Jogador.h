@@ -27,7 +27,8 @@ namespace NightFall {
                 void pular();
                 void atacar();
                 int getDano();
-               // void operator++();
+                void operator++();
+                const int getPontos() const;
             };
         } // namespace Personagens
     } // namespace Entidades

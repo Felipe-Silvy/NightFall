@@ -96,6 +96,7 @@ void NightFall::Entidades::Personagens::Inimigo::perseguir(sf::Vector2f posJogad
 
 void NightFall::Entidades::Personagens::Inimigo::vagar()
 {
+    //Trecho similar ao codigo do ex-monitor Giovane Limas Salvi
     tempoVagar += deltaTempo;  
 
     if (tempoVagar >= 1.0f)

@@ -104,8 +104,13 @@ int NightFall::Entidades::Personagens::Jogador::getDano()
     return poderDano;
 }
 
+const int NightFall::Entidades::Personagens::Jogador::getPontos() const
+{
+    return pontos;
+}
 
-//void NightFall::Entidades::Personagens::Jogador::operator++()
-//{
-    //pontos++;
-//}
+
+void NightFall::Entidades::Personagens::Jogador::operator++()
+{
+    pontos = pontos + 1;
+}

@@ -2,13 +2,13 @@
 #include "Teia.h"
 #include "Jogador.h"
 #include "Gerenciador_Grafico.h"
-#include <algorithm> // para std::swap
-#include <cstdlib>   // para rand
+#include <algorithm> 
+#include <cstdlib>  
 #include <ctime>
 
 std::vector<sf::Vector2f> NightFall::Entidades::Obstaculos::Plataforma::posicoesParaPlataforma = {
-    { 50.0f, 400.0f },
     { 450.0f, 400.0f },
+    { 50.0f, 400.0f },
     { 850.0f, 400.0f },
     { 250.0f, 230.0f },
     { 650.0f, 230.0f },
@@ -115,7 +115,6 @@ void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jog
     if (sobrepos.x <= 0.f || sobrepos.y <= 0.f)
         return; // sem colisao real
 
-    //  Decide o eixo de menor penetracao (onde resolver)
     if (sobrepos.x < sobrepos.y)
     {
         // Colisão horizontal empurra lateralmente

@@ -50,6 +50,9 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::setjogador(Entidades::Person
 
 void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 {
+
+	//estrutura de codigo parecida com o do ex-monitor Giovane Limas Salvi
+
 	if (tecla == sf::Keyboard::Escape)
 	{
 		pGrafico->fecharJanela();
@@ -89,8 +92,10 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 
 				if (distancia <= alcanceAtaque)
 				{
+					std::cout << "Acertou ataque!!" << std::endl;
 					// pJogador1->atacar();
 					inimigo->receberDano(pJogador1->getDano());
+					pJogador1->operator++();
 				}
 			}
 		}

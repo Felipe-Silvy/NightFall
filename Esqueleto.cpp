@@ -34,10 +34,10 @@ void NightFall::Entidades::Personagens::Esqueleto::salvar()
 
 void NightFall::Entidades::Personagens::Esqueleto::executar()
 {
+    //Estrutura de codigo inspirada e parecida com codigo do ex-monitor Giovane Limas Salvi
+    
     sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
     sf::Vector2f posJogador2;
-
-
 
     if (pJogador2)
         posJogador2 = pJogador2->getCorpo().getPosition();

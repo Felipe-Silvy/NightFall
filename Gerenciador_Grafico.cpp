@@ -45,8 +45,7 @@ const sf::Texture& NightFall::Gerenciadores::Gerenciador_Grafico::getTextura(con
     }
 
     std::cerr << "Textura nao encontrada: " << id << std::endl;
-    // Cuidado: precisamos retornar alguma coisa
-    // Retorna uma textura vazia 
+   
     static sf::Texture texturaVazia;
     return texturaVazia;
 }

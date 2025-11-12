@@ -26,7 +26,11 @@ void NightFall::Entidades::Personagens::Personagem::receberDano(unsigned int dan
 
 void NightFall::Entidades::Personagens::Personagem::aplicarForca(sf::Vector2f forca)
 {
-    //aceleracao depende de forca
+    //codigo feito para aplicar uma forca na aceleracao
+    //de forma parecida com a formula da fisica
+    // F = m * a, mas como a massa do corpo é 1.
+    //Apenas soma ja que pra cada 1 na força
+    //tambem aumenta 1 na aceleracao
     aceleracao += forca;
 }
 
@@ -74,7 +78,7 @@ void NightFall::Entidades::Personagens::Personagem::desenhar() {
 void NightFall::Entidades::Personagens::Personagem::knockback(float direcao)
 {
     const float FORCA_EMPURAO_X = 50.f;
-    const float FORCA_PULO_Y = -10.f; // (Um "pulinho" para cima, valor negativo)
+    const float FORCA_PULO_Y = -10.f;
 
     sf::Vector2f novaVel (direcao * FORCA_EMPURAO_X, getVelocidade().y + FORCA_PULO_Y);
     setVelocidade(novaVel);
