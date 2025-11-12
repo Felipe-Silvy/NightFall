@@ -18,6 +18,7 @@ namespace NightFall {
 
                 bool parede;
                 bool movel;
+
             public:
                 Plataforma();
                 Plataforma(bool par, bool mov);

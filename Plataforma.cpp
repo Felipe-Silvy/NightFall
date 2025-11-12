@@ -155,17 +155,16 @@ void NightFall::Entidades::Obstaculos::Plataforma::executar()
     relogioMovimento.restart();
     cooldownInteração += deltaTempo;
 
-    float amplitude = 25.f; // O quanto ela se move (25 pixels para cima, 25 para baixo)
-    float velocidade = 2.f; // Quão rápido ela se move
+    float amplitude = 25.f;     //distancia entre o meio e o topo da onda senoide (matematica)
+    float velocidade = 2.f;     //velocidade em que a onda varia
 
-    // sin() nos dá um valor suave entre -1 e 1
-    // Multiplicamos por 'velocidade' para acelerar a oscilação
-    // Multiplicamos por 'amplitude' para definir a distância
-    float offset = std::sin(cooldownInteração * velocidade) * amplitude;
-
-    // Aplica o offset à posição Y original
-    // (Usamos getPosicao().x para manter o X fixo)
-    setPosicao(getPosicao().x, posicaoOriginalY + offset);
+    //a funcao sin() do std é a funcao matematica seno, que varia entre -1 e 1.
+    //nos multiplicamos pela amplitude para que ela nao varie apenas entre -1 e 1
+    //e sim entre 25 pixels a baixo e 25 pixels a cima
+    float movimentoVertical = std::sin(cooldownInteração * velocidade) * amplitude;
+    //isso se assemelha a funcao matematica Y = sen(X* velocidade) * amplitude
+        
+    setPosicao(getPosicao().x, posicaoOriginalY + movimentoVertical);
 }
 
 void NightFall::Entidades::Obstaculos::Plataforma::salvar()

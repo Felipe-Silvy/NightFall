@@ -19,8 +19,6 @@ namespace NightFall {
 
             sf::Font fontePrincipal;
 
-          
-
             float alturaChao;
 
         public:
