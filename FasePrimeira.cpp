@@ -3,6 +3,7 @@
 #include "Teia.h"
 #include "Gerenciador_Grafico.h"
 #include "Gerenciador_Eventos.h"
+#include <iostream>
 
 void NightFall::Fases::FasePrimeira::criarEsqueletos()
 {
@@ -11,9 +12,11 @@ void NightFall::Fases::FasePrimeira::criarEsqueletos()
 	for (i = 0; i < numEsqueletos; i++) {
 		alocadorEsqueleto = new NightFall::Entidades::Personagens::Esqueleto();
 		alocadorEsqueleto->setTextura("Esqueleto");
-		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorEsqueleto));	
+		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorEsqueleto));
+		std::cout << "Criou um Esqueleto" << std::endl;
 		GC.incluirInimigo(alocadorEsqueleto);
 	}
+	alocadorEsqueleto->resetarUltimaPosicao();
 }
 
 void NightFall::Fases::FasePrimeira::criarTeias()
@@ -76,7 +79,13 @@ void NightFall::Fases::FasePrimeira::executar()
 		pGG->mostraElementos();
 	}
 
-	std::cout << "Jogador 1 fez " << pJog1->getPontos() << " pontos" << std::endl;
+	/* std::cout << "Jogador 1 fez " << pJog1->getPontos() << " pontos" << std::endl;
 	if(pJog2)
-		std::cout << "Jogador 2 fez " << pJog2->getPontos() << " pontos" << std::endl;
+		std::cout << "Jogador 2 fez " << pJog2->getPontos() << " pontos" << std::endl; */
+
+	pJog1->setPosicao(sf::Vector2f(0.0f, 0.0f));
+	if (pJog1->getVida() <= 0)
+		pJog1->setVida(200);
+	lista_ents.deletarElementos();
+	GC.limparColecoes();
 }

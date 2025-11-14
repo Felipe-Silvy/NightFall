@@ -37,6 +37,7 @@ namespace NightFall {
                 void setNoChao(bool valor);
                 void setVelocidade(sf::Vector2f vel);
                 const int getVida() const;
+                void setVida(int vd);
                 const sf::Vector2f getVelocidade() const;
                 const bool getNoChao() const;
                 void desenhar();

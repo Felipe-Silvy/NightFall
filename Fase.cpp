@@ -31,6 +31,8 @@ void NightFall::Fases::Fase::criarMorcegos()
 		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorMorcego));
 		GC.incluirInimigo(alocadorMorcego);
 	}
+
+	alocadorMorcego->resetarUltimaPosicao();
 }
 
 void NightFall::Fases::Fase::criarPlataformas()
@@ -107,7 +109,7 @@ void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Gr
 	pontoFinal.setPosition(posFinal);
 }
 
-void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
+void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog, bool jogou)
 {
 	if (pJog != nullptr) {
 		if (pJog1 == nullptr)
@@ -115,7 +117,9 @@ void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 		else
 			pJog2 = pJog;
 
-		pGE->setjogador(pJog);
+		if (!jogou)
+			pGE->setjogador(pJog);
+
 		lista_ents.incluir(pJog);
 		GC.setJogador(pJog);
 	}

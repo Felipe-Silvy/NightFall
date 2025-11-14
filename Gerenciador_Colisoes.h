@@ -41,16 +41,16 @@ namespace NightFall {
 
             Gerenciador_Grafico* pGrafico;
 
+            const bool VerificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2) const;
+            void tratarColisoesJogsObstacs();
+            void tratarColisoesJogsInimigs();
+            void tratarColisoesJogsProjeteis();
         public: 
             Gerenciador_Colisoes();
             ~Gerenciador_Colisoes();
 
             static Gerenciador_Colisoes* getGerenciador_Colisoes();
 
-            const bool VerificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2) const;
-            void tratarColisoesJogsObstacs();
-            void tratarColisoesJogsInimigs();
-            void tratarColisoesJogsProjeteis();
             void incluirInimigo(Entidades::Personagens::Inimigo* pi);
             void removeInimigo(Entidades::Personagens::Inimigo* pi);
             void incluirObstaculo(Entidades::Obstaculos::Obstaculo* po);
@@ -63,6 +63,8 @@ namespace NightFall {
 
             // Conhecendo Gerenciador Grafico
             void setGerGrafico(Gerenciador_Grafico* pG);
+
+            void limparColecoes();
         };
     } // namespace Gerenciadores
 } // namespace NightFall

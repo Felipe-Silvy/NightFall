@@ -2,7 +2,7 @@
 #include "Gerenciador_Grafico.h"
 #include "Jogo.h"
 
-NightFall::Menu::Menu() : Ente()
+NightFall::Menu::Menu() : Ente(), ja_jogou(false)
 {
 	pJog = nullptr;
     pGG = nullptr;
@@ -128,19 +128,20 @@ void NightFall::Menu::executar()
 
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) { // Se o botão esquerdo do mouse foi clicado
-
                     // Obtém a posição do clique do mouse
                     sf::Vector2f mousePos = janela->mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
 
                     // Verifica se o clique ocorreu dentro do botão da Fase 1
                     if (botaoFase1.getGlobalBounds().contains(mousePos)) {
                         std::cout << "Botao Fase 1 clicado!" << std::endl;
-                        pJog->iniciarFase1(); 
+                        pJog->iniciarFase1(ja_jogou); 
+                        ja_jogou = true;
                     }
                     // Verifica se o clique ocorreu dentro do botão da Fase 2
                     else if (botaoFase2.getGlobalBounds().contains(mousePos)) {
                         std::cout << "Botao Fase 2 clicado!" << std::endl;
                        // pJog->iniciarFase2(); 
+                        ja_jogou = true;
                     }
                 }
             }

@@ -17,6 +17,7 @@ namespace NightFall {
                 void executar();
                 void danificar(Jogador* p);
                 void mover();
+                void resetarUltimaPosicao();
             };
         } // namespace Personagens
     } // namespace Entidades

@@ -60,3 +60,8 @@ void NightFall::Entidades::Personagens::Esqueleto::executar()
 
     mover(); 
 }
+
+void NightFall::Entidades::Personagens::Esqueleto::resetarUltimaPosicao()
+{
+    ultimaPosicao = sf::Vector2f(0.0f, 0.0f);
+}

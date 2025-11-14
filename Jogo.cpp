@@ -6,8 +6,6 @@ NightFall::Jogo::Jogo() : pJog1(), GG(), MenuJogo(), Fase1() // SOBRECARGA COM P
     Ente::setGG(&GG);
     MenuJogo.setJogo(this);
     MenuJogo.setGerGrafico(&GG);
-    Fase1.setJogador(&pJog1);
-    Fase1.setGerenciadorGrafico(&GG);
     executar();
 }
 
@@ -20,12 +18,16 @@ void NightFall::Jogo::executar()
     MenuJogo.executar();
 }
 
-void NightFall::Jogo::iniciarFase1()
+void NightFall::Jogo::iniciarFase1(bool jogou)
 {
+    Fase1.setJogador(&pJog1, jogou); // passar parametro
+    Fase1.setGerenciadorGrafico(&GG);
     Fase1.executar();
 }
 
-void NightFall::Jogo::iniciarFase2()
+void NightFall::Jogo::iniciarFase2(bool jogou)
 {
+   // Fase2.setJogador(&pJog1);
+   //Fase2.setGerenciadorGrafico(&GG);
    // Fase2.executar();
 }

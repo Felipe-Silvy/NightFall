@@ -28,6 +28,7 @@ namespace NightFall {
                 virtual void danificar(Jogador* p) = 0;
                 virtual void salvar() = 0; // Perguntar se é Salva ou Salvar
                 // ...
+                virtual void resetarUltimaPosicao() = 0;
                 virtual void mover();
                 virtual void perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo);
                 virtual void vagar();

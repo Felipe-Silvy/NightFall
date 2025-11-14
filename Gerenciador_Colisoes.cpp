@@ -245,4 +245,12 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setGerGrafico(Gerenciador_G
 		pG->setGerColisoes(this);
 	}
 }
+
+void NightFall::Gerenciadores::Gerenciador_Colisoes::limparColecoes()
+{
+	LIs.clear();
+	LOs.clear();
+	LPs.clear();
+	LJs.clear();
+}
  

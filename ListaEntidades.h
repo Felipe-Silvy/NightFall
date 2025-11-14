@@ -22,8 +22,6 @@ namespace NightFall
 		private:
 			NightFall::Listas::Lista<NightFall::Entidades::Entidade> LEs;
 			Gerenciadores::Gerenciador_Colisoes* pColisao;
-			Entidades::Personagens::Jogador* pJog1;
-			Entidades::Personagens::Jogador* pJog2;
 		public:
 			ListaEntidades();
 			~ListaEntidades();
@@ -32,6 +30,7 @@ namespace NightFall
 			NightFall::Entidades::Entidade* operator[](int indice);
 			void setGerColisao(Gerenciadores::Gerenciador_Colisoes* pGC);
 			NightFall::Entidades::Entidade* getPrimeiro() const;
+			void deletarElementos();
 		};
 	}
 }

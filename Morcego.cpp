@@ -125,3 +125,8 @@ void NightFall::Entidades::Personagens::Morcego::mover()
    
     aceleracao = sf::Vector2f(0.f, 0.f);
 }
+
+void NightFall::Entidades::Personagens::Morcego::resetarUltimaPosicao()
+{
+    ultimaPosicao = sf::Vector2f(0.0f, 300.0f);
+}

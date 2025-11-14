@@ -19,8 +19,8 @@ namespace NightFall {
         Jogo();
         ~Jogo();
         void executar();
-        void iniciarFase1();
-        void iniciarFase2();
+        void iniciarFase1(bool jogou);
+        void iniciarFase2(bool jogou);
         // ...
     };
 }

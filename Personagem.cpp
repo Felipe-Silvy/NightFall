@@ -59,6 +59,11 @@ const int NightFall::Entidades::Personagens::Personagem::getVida() const
     return num_vidas;
 }
 
+void NightFall::Entidades::Personagens::Personagem::setVida(int vd)
+{
+    num_vidas = vd;
+}
+
 const sf::Vector2f NightFall::Entidades::Personagens::Personagem::getVelocidade() const
 {
     return velocidadeAtual;
