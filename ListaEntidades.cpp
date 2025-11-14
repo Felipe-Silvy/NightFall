@@ -55,8 +55,6 @@ void NightFall::Listas::ListaEntidades::percorrer()
 }
 
 
-
-
 void NightFall::Listas::ListaEntidades::setGerColisao(Gerenciadores::Gerenciador_Colisoes* pGC)
 {
     if (pGC != nullptr)
@@ -122,4 +120,7 @@ void NightFall::Listas::ListaEntidades::deletarElementos()
         // pegando LEs.getPrimeiro() novamente.
         // Se for false (percorreu tudo e não removeu ninguém), o loop termina.
     }
+    LEs.limpar();
+
+    std::cout << LEs.getTam() << std::endl;
 }

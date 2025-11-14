@@ -48,6 +48,12 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::setjogador(Entidades::Person
 		std::cout << "Numero maximo de jogadores ja alocado" << std::endl;
 }
 
+void NightFall::Gerenciadores::Gerenciador_Eventos::resetJogadores()
+{
+	pJogador1 = nullptr;
+	pJogador2 = nullptr;
+}
+
 void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 {
 

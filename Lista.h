@@ -133,7 +133,6 @@ namespace NightFall
 
                 if (atual == pUltimo)
                     pUltimo = anterior;
-
                 
                 delete atual->getApontado(); // Deleta o dado (Entidade*)
 

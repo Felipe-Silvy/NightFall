@@ -109,7 +109,7 @@ void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Gr
 	pontoFinal.setPosition(posFinal);
 }
 
-void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog, bool jogou)
+void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 {
 	if (pJog != nullptr) {
 		if (pJog1 == nullptr)
@@ -117,8 +117,7 @@ void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog, b
 		else
 			pJog2 = pJog;
 
-		if (!jogou)
-			pGE->setjogador(pJog);
+		pGE->setjogador(pJog);
 
 		lista_ents.incluir(pJog);
 		GC.setJogador(pJog);

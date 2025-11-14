@@ -43,7 +43,7 @@ namespace NightFall {
             ~Fase();
             virtual void executar();
             void setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG);
-            void setJogador(Entidades::Personagens::Jogador* pJog, bool jogou);
+            void setJogador(Entidades::Personagens::Jogador* pJog);
         protected:
             void criarMorcegos(); // Verificar tipo
             void criarPlataformas(); // Verificar tipo

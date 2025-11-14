@@ -72,6 +72,18 @@ void NightFall::Entidades::Obstaculos::Teia::obstaculizar(Personagens::Jogador* 
 	p->setVelocidadeX((p->getVelocidade().x * desaceleracao));
 }
 
+void NightFall::Entidades::Obstaculos::Teia::resetPosicoes()
+{
+	NightFall::Entidades::Obstaculos::Teia::posicoesXTeia = {
+		{100.0f},
+		{500.0f},
+		{900.0f},
+		{300.0f},
+		{700.0f},
+		{1100.0f}
+	};
+}
+
 void NightFall::Entidades::Obstaculos::Teia::salvar()
 {
 

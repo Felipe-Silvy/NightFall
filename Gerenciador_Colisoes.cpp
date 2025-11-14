@@ -252,5 +252,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::limparColecoes()
 	LOs.clear();
 	LPs.clear();
 	LJs.clear();
+	pJog1 = nullptr;
+	pJog2 = nullptr;
 }
  

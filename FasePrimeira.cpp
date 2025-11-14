@@ -1,6 +1,7 @@
 #include "FasePrimeira.h"
 #include "Esqueleto.h"
 #include "Teia.h"
+#include "Plataforma.h"
 #include "Gerenciador_Grafico.h"
 #include "Gerenciador_Eventos.h"
 #include <iostream>
@@ -61,6 +62,7 @@ NightFall::Fases::FasePrimeira::~FasePrimeira()
 void NightFall::Fases::FasePrimeira::executar()
 {
 	pGG->setAlturaChao(575.0f);
+	pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y) );
 	criarInimigos();
 	criarObstaculo();
 	criarCenario();
@@ -83,9 +85,14 @@ void NightFall::Fases::FasePrimeira::executar()
 	if(pJog2)
 		std::cout << "Jogador 2 fez " << pJog2->getPontos() << " pontos" << std::endl; */
 
-	pJog1->setPosicao(sf::Vector2f(0.0f, 0.0f));
 	if (pJog1->getVida() <= 0)
 		pJog1->setVida(200);
 	lista_ents.deletarElementos();
 	GC.limparColecoes();
+	NightFall::Entidades::Obstaculos::Plataforma::resetPosicoes();
+	NightFall::Entidades::Obstaculos::Teia::resetPosicoes();
+	numEsqueletos = maxEsqueletos - rand() % 4;
+	numMorcegos = maxMorcegos - rand() % 8;
+	numPlataformas = maxPlataformas - rand() % 4;
+	numTeias = maxTeias - rand() % 4;
 }

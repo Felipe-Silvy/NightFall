@@ -27,6 +27,7 @@ namespace NightFall {
                 void obstaculizar(Personagens::Jogador* p);
                 void salvar();
                 void setPosicaoOriginalY(float pos);
+                static void resetPosicoes();
             };
         }
     }

@@ -23,8 +23,6 @@ namespace NightFall {
         sf::RectangleShape botaoFase2;
         sf::Text textoFase2;
 
-        // Flag para ver se o jogador já esteve em outra fase
-        bool ja_jogou;
     public:
         Menu();
         ~Menu();

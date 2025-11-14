@@ -18,14 +18,14 @@ void NightFall::Jogo::executar()
     MenuJogo.executar();
 }
 
-void NightFall::Jogo::iniciarFase1(bool jogou)
+void NightFall::Jogo::iniciarFase1()
 {
-    Fase1.setJogador(&pJog1, jogou); // passar parametro
+    Fase1.setJogador(&pJog1); // passar parametro
     Fase1.setGerenciadorGrafico(&GG);
     Fase1.executar();
 }
 
-void NightFall::Jogo::iniciarFase2(bool jogou)
+void NightFall::Jogo::iniciarFase2()
 {
    // Fase2.setJogador(&pJog1);
    //Fase2.setGerenciadorGrafico(&GG);
