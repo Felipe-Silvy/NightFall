@@ -80,6 +80,18 @@ void NightFall::Fases::Fase::criarCenario()
 	}
 }
 
+void NightFall::Fases::Fase::resetarFase()
+{
+	if (pJog1->getVida() <= 0)
+		pJog1->setVida(200);
+	lista_ents.deletarElementos();
+	GC.limparColecoes();
+	NightFall::Entidades::Obstaculos::Plataforma::resetPosicoes();
+	
+	numMorcegos = maxMorcegos - rand() % 8;
+	numPlataformas = maxPlataformas - rand() % 4;
+}
+
 void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG)
 {
 	if (pG == nullptr)

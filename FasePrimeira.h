@@ -20,7 +20,7 @@ namespace NightFall {
             FasePrimeira();
             ~FasePrimeira();
             void executar();
-
+            void resetarFase();
         };
     }
 }

@@ -51,6 +51,8 @@ namespace NightFall {
             virtual void criarObstaculo() = 0;
             void criarCenario();
             //FALTA COLOCAR ISSO EM ALGUM LUGAR
+
+            virtual void resetarFase();
         };
     }
 }

@@ -80,19 +80,17 @@ void NightFall::Fases::FasePrimeira::executar()
 		GC.executar();
 		pGG->mostraElementos();
 	}
+	resetarFase();
 
 	/* std::cout << "Jogador 1 fez " << pJog1->getPontos() << " pontos" << std::endl;
 	if(pJog2)
 		std::cout << "Jogador 2 fez " << pJog2->getPontos() << " pontos" << std::endl; */
+}
 
-	if (pJog1->getVida() <= 0)
-		pJog1->setVida(200);
-	lista_ents.deletarElementos();
-	GC.limparColecoes();
-	NightFall::Entidades::Obstaculos::Plataforma::resetPosicoes();
+void NightFall::Fases::FasePrimeira::resetarFase()
+{
 	NightFall::Entidades::Obstaculos::Teia::resetPosicoes();
 	numEsqueletos = maxEsqueletos - rand() % 4;
-	numMorcegos = maxMorcegos - rand() % 8;
-	numPlataformas = maxPlataformas - rand() % 4;
 	numTeias = maxTeias - rand() % 4;
+	Fase::resetarFase();
 }
