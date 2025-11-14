@@ -87,6 +87,7 @@ void NightFall::Fases::Fase::resetarFase()
 	lista_ents.deletarElementos();
 	GC.limparColecoes();
 	NightFall::Entidades::Obstaculos::Plataforma::resetPosicoes();
+	pGE->resetJogadores();
 	
 	numMorcegos = maxMorcegos - rand() % 8;
 	numPlataformas = maxPlataformas - rand() % 4;
