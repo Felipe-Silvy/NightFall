@@ -7,6 +7,7 @@
 #include <iostream>
 #include "Jogo.h"
 
+
 void NightFall::Fases::FasePrimeira::criarEsqueletos()
 {
 	NightFall::Entidades::Personagens::Esqueleto* alocadorEsqueleto = nullptr;

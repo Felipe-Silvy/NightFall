@@ -63,8 +63,12 @@ void NightFall::Fases::Fase::criarCenario()
 	sf::Vector2f tamJanela = static_cast<sf::Vector2f>(pGG->getWindow()->getSize());
 	if (numeroDaFase == 1)
 	{
-
 		setTextura("FundoFase1");
+	}
+	else {
+		setTextura("FundoFase2");
+	}
+
         const sf::Texture* pTextura = corpo.getTexture();
 
         if (pTextura == nullptr) {
@@ -77,7 +81,6 @@ void NightFall::Fases::Fase::criarCenario()
         corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
 
         corpo.setPosition(0.f, 0.f);
-	}
 }
 
 void NightFall::Fases::Fase::resetarFase()
