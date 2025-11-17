@@ -9,7 +9,6 @@ namespace NightFall {
     {
     private:
         Jogo* pJog;
-        Gerenciadores::Gerenciador_Grafico* pGG;
         // ...
 
         // Tela Menu
@@ -28,7 +27,6 @@ namespace NightFall {
         ~Menu();
         void executar();
         void setJogo(Jogo* pjogo);
-        void setGerGrafico(Gerenciadores::Gerenciador_Grafico* pGer);
         // ...
     };
 }

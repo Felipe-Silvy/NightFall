@@ -58,7 +58,7 @@ void NightFall::Entidades::Obstaculos::Teia::executar()
 
 	if (cooldownInteração >= 5.0f) {
 		if (rand() % 2) {
-			corpo.setScale(largura * 0.2f, largura * 0.2f);
+			corpo.setScale(largura * 0.15f, largura * 0.15f);
 		}
 		else {
 			corpo.setScale(largura * 0.1f, largura * 0.1f);

@@ -5,7 +5,6 @@
 NightFall::Menu::Menu() : Ente()
 {
 	pJog = nullptr;
-    pGG = nullptr;
 
     botaoFase1.setSize(sf::Vector2f(200, 100));
     botaoFase1.setFillColor(sf::Color(30, 30, 60));
@@ -40,80 +39,71 @@ void NightFall::Menu::setJogo(Jogo* pjogo)
 	pJog = pjogo;
 }
 
-void NightFall::Menu::setGerGrafico(Gerenciadores::Gerenciador_Grafico* pGer)
-{
-    pGG = pGer;
-
-    if (pGG)
-    {
-        sf::Font* fonte = pGG->getFonte();
-        if (fonte == nullptr) {
-            std::cout << "ERRO: Menu nao conseguiu pegar a fonte do pGG!" << std::endl;
-            return;
-        }
-
-    
-
-        // Aplicar a fonte
-        tituloMenu.setFont(*fonte);
-        textoFase1.setFont(*fonte);
-        textoFase2.setFont(*fonte);
-
-        // Posicionar os textos (centralizados)
-
-        // Centralizar Título (no topo da janela)
-        sf::Vector2f tamJanela = static_cast<sf::Vector2f>(pGG->getWindow()->getSize());
-        sf::FloatRect rectTitulo = tituloMenu.getGlobalBounds();
-        tituloMenu.setPosition((tamJanela.x - rectTitulo.width) / 2.0f, 50.0f);
-
-        // Centralizando e escalando Imagem de Fundo 
-        setTextura("FundoMenu");
-        const sf::Texture* pTextura = corpo.getTexture();
-        // Verificação de segurança (impede crash)
-        if (pTextura == nullptr) {
-            std::cout << "ERRO: Sprite 'corpo' (Menu) sem textura!" << std::endl;
-            return;
-        }
-        sf::Vector2f tamTextura = static_cast<sf::Vector2f>(pTextura->getSize());
-        // Calcula e aplica a escala
-        corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
-        
-        corpo.setPosition(0.f, 0.f);
- 
-        //Centralizando Botões
-        const float espacamento = 100.0f; // Espaço entre os botões
-        const float posY = 200.0f;      // Altura Y desejada
-
-        // Calcula o "X" inicial para o primeiro botão
-        float posX_Botao1 = (tamJanela.x - (botaoFase1.getSize().x + botaoFase2.getSize().x + espacamento)) / 2.0f;
-
-        // Define as posições
-        botaoFase1.setPosition(posX_Botao1, posY);
-        botaoFase2.setPosition(posX_Botao1 + botaoFase1.getSize().x + espacamento, posY);
-    
-
-        // Centralizar Texto 1 (dentro do botaoFase1)
-        sf::FloatRect rectBotao1 = botaoFase1.getGlobalBounds();
-        sf::FloatRect rectTexto1 = textoFase1.getGlobalBounds();
-        textoFase1.setPosition(
-            rectBotao1.left + (rectBotao1.width - rectTexto1.width) / 2.0f - rectTexto1.left,
-            rectBotao1.top + (rectBotao1.height - rectTexto1.height) / 2.0f - rectTexto1.top
-        );
-
-        // Centralizar Texto 2 (dentro do botaoFase2)
-        sf::FloatRect rectBotao2 = botaoFase2.getGlobalBounds();
-        sf::FloatRect rectTexto2 = textoFase2.getGlobalBounds();
-        textoFase2.setPosition(
-            rectBotao2.left + (rectBotao2.width - rectTexto2.width) / 2.0f - rectTexto2.left,
-            rectBotao2.top + (rectBotao2.height - rectTexto2.height) / 2.0f - rectTexto2.top
-        );
-    }
-}
-
 void NightFall::Menu::executar()
 {
     if (pGG == nullptr)
         return;
+
+
+    sf::Font* fonte = pGG->getFonte();
+    if (fonte == nullptr) {
+        std::cout << "ERRO: Menu nao conseguiu pegar a fonte do pGG!" << std::endl;
+        return;
+    }
+
+    // Aplicar a fonte
+    tituloMenu.setFont(*fonte);
+    textoFase1.setFont(*fonte);
+    textoFase2.setFont(*fonte);
+
+    // Posicionar os textos (centralizados)
+
+    // Centralizar Título (no topo da janela)
+    sf::Vector2f tamJanela = static_cast<sf::Vector2f>(pGG->getWindow()->getSize());
+    sf::FloatRect rectTitulo = tituloMenu.getGlobalBounds();
+    tituloMenu.setPosition((tamJanela.x - rectTitulo.width) / 2.0f, 50.0f);
+
+    // Centralizando e escalando Imagem de Fundo 
+    setTextura("FundoMenu");
+    const sf::Texture* pTextura = corpo.getTexture();
+    // Verificação de segurança (impede crash)
+    if (pTextura == nullptr) {
+        std::cout << "ERRO: Sprite 'corpo' (Menu) sem textura!" << std::endl;
+        return;
+    }
+    sf::Vector2f tamTextura = static_cast<sf::Vector2f>(pTextura->getSize());
+    // Calcula e aplica a escala
+    corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
+
+    corpo.setPosition(0.f, 0.f);
+
+    //Centralizando Botões
+    const float espacamento = 100.0f; // Espaço entre os botões
+    const float posY = 200.0f;      // Altura Y desejada
+
+    // Calcula o "X" inicial para o primeiro botão
+    float posX_Botao1 = (tamJanela.x - (botaoFase1.getSize().x + botaoFase2.getSize().x + espacamento)) / 2.0f;
+
+    // Define as posições
+    botaoFase1.setPosition(posX_Botao1, posY);
+    botaoFase2.setPosition(posX_Botao1 + botaoFase1.getSize().x + espacamento, posY);
+
+
+    // Centralizar Texto 1 (dentro do botaoFase1)
+    sf::FloatRect rectBotao1 = botaoFase1.getGlobalBounds();
+    sf::FloatRect rectTexto1 = textoFase1.getGlobalBounds();
+    textoFase1.setPosition(
+        rectBotao1.left + (rectBotao1.width - rectTexto1.width) / 2.0f - rectTexto1.left,
+        rectBotao1.top + (rectBotao1.height - rectTexto1.height) / 2.0f - rectTexto1.top
+    );
+
+    // Centralizar Texto 2 (dentro do botaoFase2)
+    sf::FloatRect rectBotao2 = botaoFase2.getGlobalBounds();
+    sf::FloatRect rectTexto2 = textoFase2.getGlobalBounds();
+    textoFase2.setPosition(
+        rectBotao2.left + (rectBotao2.width - rectTexto2.width) / 2.0f - rectTexto2.left,
+        rectBotao2.top + (rectBotao2.height - rectTexto2.height) / 2.0f - rectTexto2.top
+    );
 
     // UTILIZAR O GERENCIADOR DE EVENTOS DEPOIS
     sf::RenderWindow* janela = pGG->getWindow();

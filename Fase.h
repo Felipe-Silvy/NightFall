@@ -2,11 +2,11 @@
 #include "Ente.h"
 #include "Gerenciador_Colisoes.h"
 #include "ListaEntidades.h"
-#include "Gerenciador_Grafico.h"
 
 namespace NightFall {
-
     // Foward Declarations
+
+    class Jogo;
     namespace Entidades {
         namespace Personagens {
             class Jogador;
@@ -23,10 +23,10 @@ namespace NightFall {
         protected:
             NightFall::Listas::ListaEntidades lista_ents; 
             Gerenciadores::Gerenciador_Colisoes GC;
-            Gerenciadores::Gerenciador_Grafico* pGG; 
             Gerenciadores::Gerenciador_Eventos* pGE;
             Entidades::Personagens::Jogador* pJog1;
             Entidades::Personagens::Jogador* pJog2;
+            NightFall::Jogo* pJog;
 
             const int maxMorcegos;
             int numMorcegos;
@@ -42,8 +42,8 @@ namespace NightFall {
             Fase();
             ~Fase();
             virtual void executar();
-            void setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG);
             void setJogador(Entidades::Personagens::Jogador* pJog);
+            void setJogo(Jogo* pjogo);
         protected:
             void criarMorcegos(); // Verificar tipo
             void criarPlataformas(); // Verificar tipo

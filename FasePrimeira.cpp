@@ -5,6 +5,7 @@
 #include "Gerenciador_Grafico.h"
 #include "Gerenciador_Eventos.h"
 #include <iostream>
+#include "Jogo.h"
 
 void NightFall::Fases::FasePrimeira::criarEsqueletos()
 {
@@ -61,6 +62,7 @@ NightFall::Fases::FasePrimeira::~FasePrimeira()
 
 void NightFall::Fases::FasePrimeira::executar()
 {
+	NightFall::Fases::Fase::executar();
 	pGG->setAlturaChao(575.0f);
 	pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y) );
 	criarInimigos();
@@ -81,7 +83,10 @@ void NightFall::Fases::FasePrimeira::executar()
 		pGG->mostraElementos();
 	}
 	resetarFase();
-
+	if (!(pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)) 
+	{
+		pJog->iniciarFase2();
+	}
 	/* std::cout << "Jogador 1 fez " << pJog1->getPontos() << " pontos" << std::endl;
 	if(pJog2)
 		std::cout << "Jogador 2 fez " << pJog2->getPontos() << " pontos" << std::endl; */

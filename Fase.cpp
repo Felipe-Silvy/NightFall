@@ -5,14 +5,14 @@
 
 NightFall::Fases::Fase::Fase() :
 	lista_ents(), GC(),
-	pGG(),
 	pGE(NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()),
 	pJog1(nullptr), pJog2(nullptr),
 	maxMorcegos(10), maxPlataformas(6),
 	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(maxPlataformas - rand() % 4),
 	numeroDaFase(0),
 	pontoFinal(),
-	posFinal()
+	posFinal(),
+	pJog(nullptr)
 {
 	lista_ents.setGerColisao(&GC);
 }
@@ -93,16 +93,27 @@ void NightFall::Fases::Fase::resetarFase()
 	numPlataformas = maxPlataformas - rand() % 4;
 }
 
-void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG)
+void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 {
-	if (pG == nullptr)
-		return;
+	if (pJog != nullptr) {
+		if (pJog1 == nullptr)
+			pJog1 = pJog;
+		else
+			pJog2 = pJog;
 
+		pGE->setjogador(pJog);
 
-	pGG = pG;
+		lista_ents.incluir(pJog);
+		GC.setJogador(pJog);
+	}
+}
 
-	GC.setGerGrafico(pG);
-	pGE->setGerenciador_Grafico(pG);
+void NightFall::Fases::Fase::executar()
+{
+	std::cout << "EXECUTAR CHEGOU" << std::endl;
+
+	GC.setGerGrafico(pGG);
+	pGE->setGerenciador_Grafico(pGG);
 	pGE->setGerenciador_Colisoes(&GC);
 
 	//bandeira que representa o fim da fase
@@ -122,21 +133,7 @@ void NightFall::Fases::Fase::setGerenciadorGrafico(Gerenciadores::Gerenciador_Gr
 	pontoFinal.setPosition(posFinal);
 }
 
-void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
+void NightFall::Fases::Fase::setJogo(Jogo* pjogo)
 {
-	if (pJog != nullptr) {
-		if (pJog1 == nullptr)
-			pJog1 = pJog;
-		else
-			pJog2 = pJog;
-
-		pGE->setjogador(pJog);
-
-		lista_ents.incluir(pJog);
-		GC.setJogador(pJog);
-	}
-}
-
-void NightFall::Fases::Fase::executar()
-{
+	pJog = pjogo;
 }
