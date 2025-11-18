@@ -6,9 +6,15 @@
 #include <iostream>
 #include "Jogo.h"
 #include "Inimigo.h"
+#include "Cristal.h"
 
 
-NightFall::Fases::FaseSegunda::FaseSegunda() : Fase(), maxVampiros(4), numVampiros(maxVampiros - rand() % 2)
+NightFall::Fases::FaseSegunda::FaseSegunda() : 
+	Fase(), 
+	maxVampiros(4), 
+	numVampiros(maxVampiros - rand() % 2),
+	maxCristais(6),
+	numCristais(maxCristais - rand() % 4)
 {
 	numeroDaFase = 2;
 }
@@ -21,10 +27,23 @@ void NightFall::Fases::FaseSegunda::criarVampiros()
 {
 }
 
+void NightFall::Fases::FaseSegunda::criarCristais()
+{
+	NightFall::Entidades::Obstaculos::Cristal* alocadorCristal = nullptr;
+	int i;
+	for (i = 0; i < numCristais; i++) {
+		alocadorCristal = new NightFall::Entidades::Obstaculos::Cristal(); // VALORES DE TESTE
+		alocadorCristal->setTextura("Cristal");
+		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorCristal));
+		alocadorCristal->setPosicao(alocadorCristal->getPosicao().x, pGG->getAlturaChao() - alocadorCristal->getTamanho().y);
+		GC.incluirObstaculo(alocadorCristal);
+	}
+}
+
 void NightFall::Fases::FaseSegunda::executar()
 {
 	NightFall::Fases::Fase::executar();
-	pGG->setAlturaChao(575.0f);
+	pGG->setAlturaChao(600.0f);
 	pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
 	criarInimigos();
 	criarObstaculo();
@@ -56,15 +75,15 @@ void NightFall::Fases::FaseSegunda::executar()
 
 void NightFall::Fases::FaseSegunda::resetarFase()
 {
-	//NightFall::Entidades::Obstaculos::Teia::resetPosicoes();
+	NightFall::Entidades::Obstaculos::Cristal::resetPosicoes();
 	//numEsqueletos = maxEsqueletos - rand() % 4;
 	//numTeias = maxTeias - rand() % 4;
-	//Fase::resetarFase(); 
+	Fase::resetarFase(); 
 }
 
 void NightFall::Fases::FaseSegunda::criarObstaculo()
 {
-	// criarObstaculosDificeis();
+	criarCristais();
 	criarPlataformas();
 }
 

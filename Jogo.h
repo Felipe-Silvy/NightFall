@@ -5,6 +5,7 @@
 #include "Gerenciador_Grafico.h"
 #include "Menu.h"
 #include "FasePrimeira.h"
+#include "FaseSegunda.h"
 
 namespace NightFall {
     class Jogo
@@ -15,6 +16,7 @@ namespace NightFall {
         NightFall::Menu MenuJogo;
         NightFall::Fases::FasePrimeira Fase1;
         // ...
+        NightFall::Fases::FaseSegunda Fase2;
     public:
         Jogo();
         ~Jogo();

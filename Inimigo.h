@@ -17,7 +17,6 @@ namespace NightFall {
                 const float alcancePerseguir;
                 int direcaoAleatoria;
                 float tempoVagar;
-                float cooldownDano;
 
                 // ...
             public:
@@ -33,7 +32,6 @@ namespace NightFall {
                 virtual void perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo);
                 virtual void vagar();
                 static void setJogador(Jogador* pJogad);
-                const bool podeDanificar();
             };
         } // namespace Personagens
     } // namespace Entidades

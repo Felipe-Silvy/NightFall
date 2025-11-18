@@ -12,11 +12,14 @@ namespace NightFall {
 
 			float deltaTempo;
 			sf::Clock relogioMovimento;
+
+			float cooldownDano;
 		public:
 			Entidade();
 			~Entidade();
 			virtual void executar() = 0;
 			virtual void salvar() = 0;
+			const bool podeDanificar();
 		};
 	}
 }

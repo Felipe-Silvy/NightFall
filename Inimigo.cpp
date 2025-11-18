@@ -11,8 +11,7 @@ NightFall::Entidades::Personagens::Inimigo::Inimigo() :
 	nivel_maldade(10+rand()%20),
 	alcancePerseguir(200.0f),
 	direcaoAleatoria( rand() % 3 ),
-    tempoVagar(0.0f),
-    cooldownDano(0.0f)
+    tempoVagar(0.0f)
 {
     corpo.setOrigin(0.f, 0.f);
     
@@ -130,14 +129,3 @@ void NightFall::Entidades::Personagens::Inimigo::setJogador(Jogador* pJogad)
         pJogador2 = pJogad;
 }
 
-const bool NightFall::Entidades::Personagens::Inimigo::podeDanificar()
-{
-    cooldownDano += deltaTempo;
-
-    if (cooldownDano >= 0.5f)
-    {
-        cooldownDano = 0.f;
-        return true;
-    }
-    return false;
-}

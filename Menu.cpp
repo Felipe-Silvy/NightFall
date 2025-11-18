@@ -129,7 +129,7 @@ void NightFall::Menu::executar()
                     // Verifica se o clique ocorreu dentro do botão da Fase 2
                     else if (botaoFase2.getGlobalBounds().contains(mousePos)) {
                         std::cout << "Botao Fase 2 clicado!" << std::endl;
-                       // pJog->iniciarFase2(); 
+                       pJog->iniciarFase2(); 
                     }
                 }
             }

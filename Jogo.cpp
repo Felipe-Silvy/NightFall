@@ -6,6 +6,7 @@ NightFall::Jogo::Jogo() : pJog1(), GG(), MenuJogo(), Fase1() // SOBRECARGA COM P
     Ente::setGG(&GG);
     MenuJogo.setJogo(this);
     Fase1.setJogo(this);
+    Fase2.setJogo(this);
     executar();
 }
 
@@ -27,7 +28,7 @@ void NightFall::Jogo::iniciarFase1()
 void NightFall::Jogo::iniciarFase2()
 {
     std::cout << "FASE 2 INICIADA" << std::endl;
-   // Fase2.setJogador(&pJog1);
+    Fase2.setJogador(&pJog1);
    //Fase2.setGerenciadorGrafico(&GG);
-   // Fase2.executar();
+    Fase2.executar();
 }

@@ -9,7 +9,7 @@ NightFall::Entidades::Personagens::Jogador::Jogador() : Personagem() , pontos(0)
     corpo.setScale(0.07f, 0.07f);
     velocidade = 200.0f;
     num_vidas = 200;
-    forcaPulo = 600.0f;
+    forcaPulo = 650.0f;
 }
 
 NightFall::Entidades::Personagens::Jogador::~Jogador() { pontos = 0; }

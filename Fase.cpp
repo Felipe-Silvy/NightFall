@@ -65,22 +65,24 @@ void NightFall::Fases::Fase::criarCenario()
 	{
 		setTextura("FundoFase1");
 	}
-	else {
+	else if(numeroDaFase == 2)
+	{
 		setTextura("FundoFase2");
 	}
 
-        const sf::Texture* pTextura = corpo.getTexture();
+    const sf::Texture* pTextura = corpo.getTexture();
 
-        if (pTextura == nullptr) {
-            std::cout << "ERRO: Sprite 'corpo' (Menu) sem textura!" << std::endl;
-            return;
-        }
-        sf::Vector2f tamTextura = static_cast<sf::Vector2f>(pTextura->getSize());
+    if (pTextura == nullptr)
+	{
+		std::cout << "erro - textura da fase nao alocada" << std::endl;
+        return;
+    }
+    sf::Vector2f tamTextura = static_cast<sf::Vector2f>(pTextura->getSize());
 
-		//Adequa o tamanho da janela
-        corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
+	//Adequa o tamanho da janela
+    corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
 
-        corpo.setPosition(0.f, 0.f);
+    corpo.setPosition(0.f, 0.f);
 }
 
 void NightFall::Fases::Fase::resetarFase()

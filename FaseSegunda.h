@@ -9,11 +9,11 @@ namespace NightFall {
         private:
            const int maxVampiros;
            int numVampiros;
-           // const int maxTeias;
-           // int numTeias;
+           const int maxCristais;
+           int numCristais;
         protected:
             void criarVampiros();
-            // void criarObstaculosDificeis();
+            void criarCristais();
             void criarInimigos();
             void criarObstaculo();
         public:

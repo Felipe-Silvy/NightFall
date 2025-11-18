@@ -7,16 +7,21 @@ namespace NightFall
     {
         namespace Obstaculos
         {
-            class Bandeira : public Obstaculo
+            class Cristal :
+                public Obstaculo
             {
             private:
-                bool chegouFinal;
+                short int danosidade;
+                static std::vector<float> posicoesXCristal;
+
             public:
-                Bandeira();
-                ~Bandeira();
-                const bool getChegouFinal() const;
+                Cristal();
+                ~Cristal();
+                void salvarDataBuffer();
                 void executar();
                 void obstaculizar(Personagens::Jogador* p);
+
+                static void resetPosicoes();
                 void salvar();
             };
         }

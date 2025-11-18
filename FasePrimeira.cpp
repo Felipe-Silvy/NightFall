@@ -16,7 +16,7 @@ void NightFall::Fases::FasePrimeira::criarEsqueletos()
 		alocadorEsqueleto = new NightFall::Entidades::Personagens::Esqueleto();
 		alocadorEsqueleto->setTextura("Esqueleto");
 		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorEsqueleto));
-		std::cout << "Criou um Esqueleto" << std::endl;
+		//std::cout << "Criou um Esqueleto" << std::endl;
 		GC.incluirInimigo(alocadorEsqueleto);
 	}
 	alocadorEsqueleto->resetarUltimaPosicao();
@@ -87,6 +87,10 @@ void NightFall::Fases::FasePrimeira::executar()
 	if (!(pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)) 
 	{
 		pJog->iniciarFase2();
+	}
+	else
+	{
+		pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
 	}
 	/* std::cout << "Jogador 1 fez " << pJog1->getPontos() << " pontos" << std::endl;
 	if(pJog2)

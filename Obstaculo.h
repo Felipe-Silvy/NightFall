@@ -15,8 +15,6 @@ namespace NightFall {
                 float cooldownInteração;
                 // ...
 
-                
-
             public:
                 Obstaculo();
                 // Obstaculo(int x = 0, int y = 0, bool dan = false); Construtor, recebendo posição e se é danoso
@@ -30,6 +28,8 @@ namespace NightFall {
 
                 // Método virtual puro (abstrato) específico de Obstaculo
                 virtual void obstaculizar(Personagens::Jogador* p) = 0;
+            
+                //static virtual void resetPosicoes() = 0;
             };
         }
     }
