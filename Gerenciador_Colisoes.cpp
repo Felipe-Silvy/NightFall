@@ -1,9 +1,9 @@
 #include "Gerenciador_Colisoes.h"
-#include "Projetil.h"
 #include "Inimigo.h"
 #include "Jogador.h"
 #include "Obstaculo.h"
 #include "Gerenciador_Grafico.h"
+#include "Faca.h"
 
 NightFall::Gerenciadores::Gerenciador_Colisoes* NightFall::Gerenciadores::Gerenciador_Colisoes::pColisao = nullptr;
 
@@ -157,7 +157,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsProjeteis
 	//inimigosEntidade vai assumir o valor de cada inimigo para comparar no
 	//verificar colisao
 
-	std::set<Entidades::Projetil*>::iterator it;
+	std::set<Entidades::Faca*>::iterator it;
 
 	bool colisaoProjeteis = false;
 
@@ -199,7 +199,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::incluirObstaculo(Entidades:
 		LOs.push_back(po);
 }
 
-void NightFall::Gerenciadores::Gerenciador_Colisoes::incluirProjetil(Entidades::Projetil* pj)
+void NightFall::Gerenciadores::Gerenciador_Colisoes::incluirProjetil(Entidades::Faca* pj)
 {
 	if (pj)
 		LPs.insert(pj);
@@ -235,6 +235,11 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setJogador(Entidades::Perso
 std::vector<NightFall::Entidades::Personagens::Inimigo*>* NightFall::Gerenciadores::Gerenciador_Colisoes::getListaInimigos()
 {
 	return &LIs;
+}
+
+std::set<NightFall::Entidades::Faca*>* NightFall::Gerenciadores::Gerenciador_Colisoes::getListaProjeteis()
+{
+	return &LPs;
 }
 
  

@@ -1,5 +1,5 @@
 #include "FaseSegunda.h"
-// #include "Vampiro.h"
+#include "Vampiro.h"
 #include "Plataforma.h"
 #include "Gerenciador_Grafico.h"
 #include "Gerenciador_Eventos.h"
@@ -7,6 +7,7 @@
 #include "Jogo.h"
 #include "Inimigo.h"
 #include "Cristal.h"
+#include "Faca.h"
 
 
 NightFall::Fases::FaseSegunda::FaseSegunda() : 
@@ -25,6 +26,30 @@ NightFall::Fases::FaseSegunda::~FaseSegunda()
 
 void NightFall::Fases::FaseSegunda::criarVampiros()
 {
+	NightFall::Entidades::Personagens::Vampiro* alocadorVampiro = nullptr;
+	std::set<NightFall::Entidades::Faca*>* Lista_projeteis = GC.getListaProjeteis();
+	int i;
+	for (i = 0; i < numVampiros; i++) {
+		alocadorVampiro = new NightFall::Entidades::Personagens::Vampiro();
+		alocadorVampiro->setTextura("Vampiro");
+		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorVampiro));
+		//std::cout << "Criou um Vampiro" << std::endl;
+		GC.incluirInimigo(alocadorVampiro);
+	}
+	alocadorVampiro->resetarUltimaPosicao();
+}
+
+void NightFall::Fases::FaseSegunda::criarProjeteis()
+{
+	NightFall::Entidades::Faca* alocadorFaca = nullptr;
+	int i;
+	for (i = 0; i < numVampiros; i++) {
+		alocadorFaca = new NightFall::Entidades::Faca();
+		alocadorFaca->setTextura("Faca");
+		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorFaca));
+		//std::cout << "Criou um Faca" << std::endl;
+		GC.incluirProjetil(alocadorFaca);
+	}
 }
 
 void NightFall::Fases::FaseSegunda::criarCristais()
@@ -65,9 +90,13 @@ void NightFall::Fases::FaseSegunda::executar()
 	resetarFase();
 	if (!(pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y))
 	{
-		pJog->iniciarFase2();
+		std::cout << "Parabens vc ganhou" << std::endl;
 	}
-	/* std::cout << "Jogador 1 fez " << pJog1->getPontos() << " pontos" << std::endl;
+	else
+	{
+		pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
+	}
+	/* 
 	if(pJog2)
 		std::cout << "Jogador 2 fez " << pJog2->getPontos() << " pontos" << std::endl; */
 }
@@ -87,8 +116,10 @@ void NightFall::Fases::FaseSegunda::criarObstaculo()
 	criarPlataformas();
 }
 
+
 void NightFall::Fases::FaseSegunda::criarInimigos()
 {
+	criarProjeteis();
 	criarVampiros();
 	criarMorcegos();
 	NightFall::Entidades::Personagens::Inimigo::setJogador(pJog1);

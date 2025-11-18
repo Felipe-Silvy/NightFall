@@ -1,41 +1,43 @@
-#include "Esqueleto.h"
 #include "Jogador.h"
 #include "Gerenciador_Grafico.h"
 #include <iostream>
+#include "Vampiro.h"
 
-sf::Vector2f NightFall::Entidades::Personagens::Esqueleto::ultimaPosicao = { 0, 0 };
-
-NightFall::Entidades::Personagens::Esqueleto::Esqueleto() : Inimigo(), tamanho(0)
+NightFall::Entidades::Personagens::Vampiro::Vampiro()
 {
-    nivel_maldade = 40;
-    num_vidas = 50;
+    forca = 2;
+    nivel_maldade = 50;
+    num_vidas = 80;
     corpo.setScale(0.1f, 0.1f);
     ultimaPosicao.x += 200.0f + ((rand() % 10) - 5) * 10;
     setPosicao(ultimaPosicao);
     velocidade = 50.0f;
 }
 
-NightFall::Entidades::Personagens::Esqueleto::~Esqueleto()
+NightFall::Entidades::Personagens::Vampiro::~Vampiro()
 {
 }
 
-void NightFall::Entidades::Personagens::Esqueleto::danificar(Jogador* p)
+sf::Vector2f NightFall::Entidades::Personagens::Vampiro::ultimaPosicao = { 0, 0 };
+
+
+void NightFall::Entidades::Personagens::Vampiro::danificar(Jogador* p)
 {
     if (p != nullptr && podeDanificar())
     {
-        p->receberDano(nivel_maldade);
+        p->receberDano(forca*nivel_maldade);
         std::cout << "Esqueleto danificou" << std::endl;
     }
 }
 
-void NightFall::Entidades::Personagens::Esqueleto::salvar()
+void NightFall::Entidades::Personagens::Vampiro::salvar()
 {
 }
 
-void NightFall::Entidades::Personagens::Esqueleto::executar()
+void NightFall::Entidades::Personagens::Vampiro::executar()
 {
     //Estrutura de codigo inspirada e parecida com codigo do ex-monitor Giovane Limas Salvi
-    
+
     sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
     sf::Vector2f posJogador2;
 
@@ -49,7 +51,7 @@ void NightFall::Entidades::Personagens::Esqueleto::executar()
         perseguir(posJogador1, posInimigo);
     }
     else if (fabs(posJogador2.x - posInimigo.x) <= alcancePerseguir &&
-            fabs(posJogador2.y - posInimigo.y) <= alcancePerseguir)
+        fabs(posJogador2.y - posInimigo.y) <= alcancePerseguir)
     {
         perseguir(posJogador2, posInimigo);
     }
@@ -58,12 +60,12 @@ void NightFall::Entidades::Personagens::Esqueleto::executar()
         vagar();
     }
 
-    mover(); 
-    
+    mover();
+
     retornarCorNormal();
 }
 
-void NightFall::Entidades::Personagens::Esqueleto::resetarUltimaPosicao()
+void NightFall::Entidades::Personagens::Vampiro::resetarUltimaPosicao()
 {
     ultimaPosicao = sf::Vector2f(0.0f, 0.0f);
 }

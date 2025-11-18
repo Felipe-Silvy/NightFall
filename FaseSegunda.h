@@ -16,6 +16,7 @@ namespace NightFall {
             void criarCristais();
             void criarInimigos();
             void criarObstaculo();
+            void criarProjeteis();
         public:
             FaseSegunda();
             ~FaseSegunda();

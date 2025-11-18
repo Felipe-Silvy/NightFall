@@ -9,7 +9,7 @@
 
 namespace NightFall {
     namespace Entidades {
-        class Projetil;
+        class Faca;
         class Entidade;
 
         namespace Personagens {
@@ -30,7 +30,7 @@ namespace NightFall {
         private:
             std::vector<Entidades::Personagens::Inimigo*> LIs;
             std::list<Entidades::Obstaculos::Obstaculo*> LOs;
-            std::set<Entidades::Projetil*> LPs;
+            std::set<Entidades::Faca*> LPs;
             Entidades::Personagens::Jogador* pJog1;
             Entidades::Personagens::Jogador* pJog2;
             std::vector<Entidades::Entidade*> LJs;
@@ -54,12 +54,13 @@ namespace NightFall {
             void incluirInimigo(Entidades::Personagens::Inimigo* pi);
             void removeInimigo(Entidades::Personagens::Inimigo* pi);
             void incluirObstaculo(Entidades::Obstaculos::Obstaculo* po);
-            void incluirProjetil(Entidades::Projetil* pj);
+            void incluirProjetil(Entidades::Faca* pj);
             void executar();
             // ...
 
             void setJogador(Entidades::Personagens::Jogador* pJogador);
             std::vector<Entidades::Personagens::Inimigo*>* getListaInimigos();
+            std::set<Entidades::Faca*>* getListaProjeteis();
 
             // Conhecendo Gerenciador Grafico
             void setGerGrafico(Gerenciador_Grafico* pG);

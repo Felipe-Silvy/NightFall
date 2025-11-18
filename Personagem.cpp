@@ -11,9 +11,9 @@ NightFall::Entidades::Personagens::Personagem::Personagem() :
     noChao(false),
     velocidadeAtual(0.0f, 0.0f),
     aceleracao(0.0f, 0.0f),
-    forcaPulo(500.0f)
+    forcaPulo(500.0f),
+    tempoMudancaCor(0.f)
 {
-
 }
 
 NightFall::Entidades::Personagens::Personagem::~Personagem() {}
@@ -22,6 +22,8 @@ void NightFall::Entidades::Personagens::Personagem::receberDano(unsigned int dan
 {
     num_vidas -= dano;
     std::cout << "Dano recebido, vida:" << num_vidas << std::endl;
+    tempoMudancaCor = 0.2f;           // piscar vermelho por 0.2s
+    corpo.setColor(sf::Color(255, 0, 0));
 }
 
 void NightFall::Entidades::Personagens::Personagem::aplicarForca(sf::Vector2f forca)
@@ -74,9 +76,19 @@ const bool NightFall::Entidades::Personagens::Personagem::getNoChao() const
     return noChao;
 }
 
-void NightFall::Entidades::Personagens::Personagem::desenhar() {
+void NightFall::Entidades::Personagens::Personagem::desenhar()
+{
     if (pGG != nullptr && num_vidas > 0)
         pGG->desenharEnte(this);
+}
+void NightFall::Entidades::Personagens::Personagem::retornarCorNormal()
+{
+    if (tempoMudancaCor > 0.f) {
+        tempoMudancaCor -= deltaTempo;
+        if (tempoMudancaCor <= 0.f) {
+            corpo.setColor(sf::Color(255, 255, 255)); // volta ao normal
+        }
+    }
 }
 
 /*

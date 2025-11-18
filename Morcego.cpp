@@ -59,6 +59,8 @@ void NightFall::Entidades::Personagens::Morcego::executar()
     }
 
     mover();
+
+    retornarCorNormal();
 }
 
 void NightFall::Entidades::Personagens::Morcego::mover()

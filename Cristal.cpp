@@ -54,6 +54,8 @@ void NightFall::Entidades::Obstaculos::Cristal::executar()
 {
 	//Devemos implementar um executar no cristal
 	//Talvez semelhante a teia ou a plataforma?
+
+	deltaTempo = relogioMovimento.restart().asSeconds();
 }
 
 void NightFall::Entidades::Obstaculos::Cristal::obstaculizar(Personagens::Jogador* p)

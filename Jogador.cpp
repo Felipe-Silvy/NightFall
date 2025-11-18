@@ -24,6 +24,7 @@ void NightFall::Entidades::Personagens::Jogador::colidir(Entidades::Personagens:
 void NightFall::Entidades::Personagens::Jogador::executar ()
 {
     mover();
+    retornarCorNormal();
 }
 
 void NightFall::Entidades::Personagens::Jogador::salvar() {}

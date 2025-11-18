@@ -29,6 +29,5 @@ void NightFall::Jogo::iniciarFase2()
 {
     std::cout << "FASE 2 INICIADA" << std::endl;
     Fase2.setJogador(&pJog1);
-   //Fase2.setGerenciadorGrafico(&GG);
     Fase2.executar();
 }

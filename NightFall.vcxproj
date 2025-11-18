@@ -157,6 +157,7 @@
     <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Projetil.cpp" />
     <ClCompile Include="Teia.cpp" />
+    <ClCompile Include="Vampiro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cristal.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Projetil.h" />
     <ClInclude Include="Teia.h" />
+    <ClInclude Include="Vampiro.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
