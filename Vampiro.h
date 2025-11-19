@@ -12,6 +12,8 @@ namespace NightFall {
             {
             private:
                 short int forca;
+                bool jaAtirou;
+                float quandoAtirar;
                 static sf::Vector2f ultimaPosicao;
                 Entidades::Faca* pFaca;
             public:

@@ -21,10 +21,13 @@ void NightFall::Entidades::Faca::executar()
 	//feita essa verificacao para garantir o funcionamento correto
 	if (ativo)
 	{
-		if(esquerda)
-			corpo.move(-20.0f, 0.0f);
+		/*if(esquerda)
+			corpo.move(-20.0f, 0.0f); // Isso está errado, tem que utilizar o mover que nem em Inimigo 
 		else
-			corpo.move(20.0f, 0.0f);
+			corpo.move(20.0f, 0.0f);*/
+
+		// LEMBRAR QUE AO ATINGIR O JOGADOR OU CAIR NO CHÃO DEVE SER DELETADA, PONTEIRO DO VAMPIRO DEVE FICAR NULLPTR
+		
 	}
 	else
 	{

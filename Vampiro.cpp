@@ -5,7 +5,7 @@
 #include "Faca.h"
 
 NightFall::Entidades::Personagens::Vampiro::Vampiro() :
-    pFaca(nullptr)
+    pFaca(nullptr), quandoAtirar(0.0), jaAtirou(false)
 {
     forca = 2;
     nivel_maldade = 50;
@@ -65,9 +65,18 @@ void NightFall::Entidades::Personagens::Vampiro::executar()
     mover();
 
     retornarCorNormal();
+    
+    if (!jaAtirou)
+        quandoAtirar += deltaTempo;
 
-    if (deltaTempo >= 10.0f)
+    if (quandoAtirar >= 10.0f && pFaca != nullptr)
+    {
         ativarFaca();
+        std::cout << "Executou o deltatempo" << std::endl;
+        quandoAtirar = 0.0;
+        jaAtirou = true;
+    }
+        
 }
 
 void NightFall::Entidades::Personagens::Vampiro::resetarUltimaPosicao()

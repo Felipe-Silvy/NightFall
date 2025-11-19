@@ -76,14 +76,15 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 
 	for (i = 0; i < LJs.size(); i++)
 	{
-		Entidades::Personagens::Jogador* jogadorComparado = static_cast<Entidades::Personagens::Jogador*>(LJs[i]);
+		Entidades::Personagens::Jogador* jogadorComparado = LJs[i];
+		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
 
 		jogadorComparado->setNoChao(false);
 
 		for (it = LOs.begin(); it != LOs.end(); it++)
 		{
 			obstaculosEntidade = static_cast<Entidades::Entidade*>(*it);
-			bool colisaoObstaculo = VerificarColisao(LJs[i], obstaculosEntidade);
+			bool colisaoObstaculo = VerificarColisao(jogadorEntidade, obstaculosEntidade);
 
 			//verifica a colisao de cada jogador com todos os objetos
 			//nesse caso obstaculos
@@ -127,17 +128,19 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsInimigs()
 
 	for (i = 0; i < LJs.size(); i++)
 	{
+		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
+
 		for (it = LIs.begin(); it != LIs.end(); it++)
 		{
 			inimigosEntidade = static_cast<Entidades::Entidade*>(*it);
 			if (inimigosEntidade != nullptr)
 			{
-				colisaoInimigos = VerificarColisao(LJs[i], inimigosEntidade);
+				colisaoInimigos = VerificarColisao(jogadorEntidade, inimigosEntidade);
 				//verifica a colisao de cada jogador com todos os objetos
 				//nesse caso inimigos
 
 				if (colisaoInimigos)
-					(static_cast<Entidades::Personagens::Jogador*>(LJs[i]))->colidir((*it));
+					LJs[i]->colidir((*it));
 				//ativa o dano que o inimigo causa ao ser encostado
 			}
 		}
@@ -163,15 +166,17 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsProjeteis
 
 	for (i = 0; i < LJs.size(); i++)
 	{
+		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
+
 		for (it = LPs.begin(); it != LPs.end(); it++)
 		{
 			projeteisEntidade = static_cast<Entidades::Entidade*>(*it);
-			colisaoProjeteis = VerificarColisao(LJs[i], projeteisEntidade);
+			colisaoProjeteis = VerificarColisao(jogadorEntidade, projeteisEntidade);
 			//verifica a colisao de cada jogador com todos os objetos
 			//nesse caso objetos que sao projeteis
 
 			if (colisaoProjeteis)
-				(*it)->projDanificar(static_cast<Entidades::Personagens::Jogador*>(LJs[i]));
+				(*it)->projDanificar(LJs[i]);
 				//ativa o dano que o projetil causa ao ser encostado
 		}
 	}
@@ -220,12 +225,12 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setJogador(Entidades::Perso
 	if (pJog1 == nullptr)
 	{
 		pJog1 = pJogador;
-		LJs.push_back(static_cast<Entidades::Entidade*>(pJog1));
+		LJs.push_back(pJog1);
 	}
 	else if (pJog2 == nullptr)
 	{
 		pJog2 = pJogador;
-		LJs.push_back(static_cast<Entidades::Entidade*>(pJog2));
+		LJs.push_back(pJog2);
 	}
 	else
 		std::cout << "Alem do limite de jogadores" << std::endl;
