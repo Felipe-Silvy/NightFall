@@ -5,7 +5,7 @@
 
 sf::Vector2f NightFall::Entidades::Personagens::Morcego::ultimaPosicao = { 0.0f, 300.0f };
 
-NightFall::Entidades::Personagens::Morcego::Morcego() : Inimigo(), raio(0)
+NightFall::Entidades::Personagens::Morcego::Morcego() : Inimigo(), raio(1.5)
 {
 	nivel_maldade = 20;
 	num_vidas = 1;
@@ -43,13 +43,13 @@ void NightFall::Entidades::Personagens::Morcego::executar()
         posJogador2 = pJogador2->getCorpo().getPosition();
     sf::Vector2f posInimigo = corpo.getPosition();
 
-    if (fabs(posJogador1.x - posInimigo.x) <= alcancePerseguir &&
-        fabs(posJogador1.y - posInimigo.y) <= alcancePerseguir)
+    if (fabs(posJogador1.x - posInimigo.x) <= alcancePerseguir * raio &&
+        fabs(posJogador1.y - posInimigo.y) <= alcancePerseguir * raio)
     {
         perseguir(posJogador1, posInimigo);
     }
-    else if (fabs(posJogador2.x - posInimigo.x) <= alcancePerseguir &&
-        fabs(posJogador2.y - posInimigo.y) <= alcancePerseguir)
+    else if (fabs(posJogador2.x - posInimigo.x) <= alcancePerseguir * raio &&
+        fabs(posJogador2.y - posInimigo.y) <= alcancePerseguir * raio)
     {
         perseguir(posJogador2, posInimigo);
     }

@@ -33,7 +33,6 @@ namespace NightFall {
             std::set<Entidades::Faca*> LPs;
             Entidades::Personagens::Jogador* pJog1;
             Entidades::Personagens::Jogador* pJog2;
-            //std::vector<Entidades::Entidade*> LJs;
             std::vector<Entidades::Personagens::Jogador*> LJs;
             // ...
 
