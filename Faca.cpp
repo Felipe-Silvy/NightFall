@@ -21,17 +21,24 @@ void NightFall::Entidades::Faca::executar()
 	//feita essa verificacao para garantir o funcionamento correto
 	if (ativo)
 	{
-		/*if(esquerda)
-			corpo.move(-20.0f, 0.0f); // Isso está errado, tem que utilizar o mover que nem em Inimigo 
+		if(esquerda)
+			corpo.move(-0.07f, 0.0f); // Isso está errado, tem que utilizar o mover que nem em Inimigo 
 		else
-			corpo.move(20.0f, 0.0f);*/
+			corpo.move(0.07f, 0.0f);
 
 		// LEMBRAR QUE AO ATINGIR O JOGADOR OU CAIR NO CHÃO DEVE SER DELETADA, PONTEIRO DO VAMPIRO DEVE FICAR NULLPTR
 		
 	}
 	else
 	{
-		setPosicao(pVampiro->getPosicao());
+		if (pVampiro->getVida() > 0)
+		{
+			float meioVampiroX = pVampiro->getPosicao().x + pVampiro->getTamanho().x / 2;
+			float meioVampiroY = pVampiro->getPosicao().y + pVampiro->getTamanho().y / 2;
+			setPosicao(meioVampiroX, meioVampiroY);
+		}
+		else
+			setPosicao(0.0f, 0.0f);
 	}
 }
 
@@ -45,6 +52,7 @@ void NightFall::Entidades::Faca::projDanificar(NightFall::Entidades::Personagens
 	if (ativo)
 	{
 		pJogador->receberDano(danoFaca);
+		ativo = false;
 	}
 }
 

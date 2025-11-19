@@ -7,8 +7,8 @@
 NightFall::Entidades::Personagens::Vampiro::Vampiro() :
     pFaca(nullptr), quandoAtirar(0.0), jaAtirou(false)
 {
-    forca = 2;
-    nivel_maldade = 50;
+    forca = 5+ rand()%11;
+    nivel_maldade = 60;
     num_vidas = 80;
     corpo.setScale(0.1f, 0.1f);
     ultimaPosicao.x += 200.0f + ((rand() % 10) - 5) * 10;
@@ -27,7 +27,7 @@ void NightFall::Entidades::Personagens::Vampiro::danificar(Jogador* p)
 {
     if (p != nullptr && podeDanificar())
     {
-        p->receberDano(forca*nivel_maldade);
+        p->receberDano(nivel_maldade + forca);
         std::cout << "Esqueleto danificou" << std::endl;
     }
 }
@@ -69,7 +69,7 @@ void NightFall::Entidades::Personagens::Vampiro::executar()
     if (!jaAtirou)
         quandoAtirar += deltaTempo;
 
-    if (quandoAtirar >= 10.0f && pFaca != nullptr)
+    if (quandoAtirar >= forca && pFaca != nullptr)
     {
         ativarFaca();
         std::cout << "Executou o deltatempo" << std::endl;

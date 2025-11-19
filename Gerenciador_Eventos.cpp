@@ -96,7 +96,7 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 				float distY = std::abs(posInimigo.y - posJogador.y);
 				float distancia = std::sqrt(distX * distX + distY * distY);
 
-				if (distancia <= alcanceAtaque)
+				if (distancia <= alcanceAtaque)	
 				{
 					std::cout << "Acertou ataque!!" << std::endl;
 					// pJogador1->atacar();
