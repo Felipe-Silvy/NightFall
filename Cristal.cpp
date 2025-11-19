@@ -3,12 +3,12 @@
 #include "Gerenciador_Grafico.h"
 
 std::vector<float> NightFall::Entidades::Obstaculos::Cristal::posicoesXCristal = {
-	{150.0f},
-	{250.0f},
-	{450.0f},
-	{650.0f},
-	{850.0f},
-	{1050.0f}
+	{100.0f},
+	{300.0f},
+	{500.0f},
+	{700.0f},
+	{900.0f},
+	{1100.0f}
 };
 
 NightFall::Entidades::Obstaculos::Cristal::Cristal() :
@@ -70,12 +70,12 @@ void NightFall::Entidades::Obstaculos::Cristal::obstaculizar(Personagens::Jogado
 void NightFall::Entidades::Obstaculos::Cristal::resetPosicoes()
 {
 	NightFall::Entidades::Obstaculos::Cristal::posicoesXCristal = {
-		{150.0f},
-		{250.0f},
-		{450.0f},
-		{650.0f},
-		{850.0f},
-		{1050.0f}
+		{100.0f},
+		{300.0f},
+		{500.0f},
+		{700.0f},
+		{900.0f},
+		{1100.0f}
 	};
 }
 
