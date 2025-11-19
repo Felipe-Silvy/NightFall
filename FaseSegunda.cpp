@@ -28,6 +28,9 @@ void NightFall::Fases::FaseSegunda::criarVampiros()
 {
 	NightFall::Entidades::Personagens::Vampiro* alocadorVampiro = nullptr;
 	std::set<NightFall::Entidades::Faca*>* Lista_projeteis = GC.getListaProjeteis();
+
+	std::set<NightFall::Entidades::Faca*>::iterator itFaca = Lista_projeteis->begin();
+
 	int i;
 	for (i = 0; i < numVampiros; i++) {
 		alocadorVampiro = new NightFall::Entidades::Personagens::Vampiro();
@@ -35,6 +38,9 @@ void NightFall::Fases::FaseSegunda::criarVampiros()
 		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorVampiro));
 		//std::cout << "Criou um Vampiro" << std::endl;
 		GC.incluirInimigo(alocadorVampiro);
+
+		alocadorVampiro->setFaca((*itFaca));
+		itFaca++;
 	}
 	alocadorVampiro->resetarUltimaPosicao();
 }
@@ -92,10 +98,7 @@ void NightFall::Fases::FaseSegunda::executar()
 	{
 		std::cout << "Parabens vc ganhou" << std::endl;
 	}
-	else
-	{
-		pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
-	}
+	pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
 	/* 
 	if(pJog2)
 		std::cout << "Jogador 2 fez " << pJog2->getPontos() << " pontos" << std::endl; */
@@ -105,8 +108,8 @@ void NightFall::Fases::FaseSegunda::executar()
 void NightFall::Fases::FaseSegunda::resetarFase()
 {
 	NightFall::Entidades::Obstaculos::Cristal::resetPosicoes();
-	//numEsqueletos = maxEsqueletos - rand() % 4;
-	//numTeias = maxTeias - rand() % 4;
+	numVampiros = maxVampiros - rand() % 2;
+	numCristais = maxCristais - rand() % 4;
 	Fase::resetarFase(); 
 }
 

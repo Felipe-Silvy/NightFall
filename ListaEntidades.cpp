@@ -3,6 +3,7 @@
 #include "Inimigo.h"
 #include "Gerenciador_Colisoes.h"
 #include "Jogador.h"
+#include "Faca.h"
 
 
 NightFall::Listas::ListaEntidades::ListaEntidades() :
@@ -48,6 +49,15 @@ void NightFall::Listas::ListaEntidades::percorrer()
 
         if (!foiRemovido)
         {
+            Entidades::Faca* pFaca = dynamic_cast<Entidades::Faca*>(navegador);
+
+            if (pFaca != nullptr && !pFaca->getAtivo())
+            {
+                // Não desenha
+                navegador->executar();
+                continue;
+            }
+
             navegador->executar();
             navegador->desenhar();
         }

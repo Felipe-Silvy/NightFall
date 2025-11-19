@@ -2,8 +2,10 @@
 #include "Gerenciador_Grafico.h"
 #include <iostream>
 #include "Vampiro.h"
+#include "Faca.h"
 
-NightFall::Entidades::Personagens::Vampiro::Vampiro()
+NightFall::Entidades::Personagens::Vampiro::Vampiro() :
+    pFaca(nullptr)
 {
     forca = 2;
     nivel_maldade = 50;
@@ -63,9 +65,35 @@ void NightFall::Entidades::Personagens::Vampiro::executar()
     mover();
 
     retornarCorNormal();
+
+    if (deltaTempo >= 10.0f)
+        ativarFaca();
 }
 
 void NightFall::Entidades::Personagens::Vampiro::resetarUltimaPosicao()
 {
     ultimaPosicao = sf::Vector2f(0.0f, 0.0f);
+}
+
+void NightFall::Entidades::Personagens::Vampiro::setFaca(Faca* pFac)
+{
+    if (pFac != nullptr)
+    {
+        pFaca = pFac;
+        pFac->setVampiro(this);
+    }
+}
+
+void NightFall::Entidades::Personagens::Vampiro::ativarFaca()
+{
+    bool esquerda = true;
+    pFaca->setAtivo(true);
+    if ( pJogador1->getPosicao().x < getPosicao().x)
+    {
+        pFaca->setDirecao(esquerda);
+    }
+    else
+    {
+        pFaca->setDirecao(!esquerda);
+    }
 }
