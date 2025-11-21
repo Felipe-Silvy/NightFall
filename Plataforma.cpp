@@ -150,7 +150,18 @@ void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jog
 void NightFall::Entidades::Obstaculos::Plataforma::executar()
 {
     if (parede || !movel)
+    {
+        if (getPosicao().y < pGG->getAlturaChao() - getTamanho().y)
+        {
+            corpo.move(sf::Vector2f(0.0f, 0.01f));
+            if (!parede)                                    //as plataformas propriamente ditas
+            {                                               //(todas em que parede = false)
+                corpo.move(sf::Vector2f(0.0f, -0.01f));     //são capazes de flutuar, portanto, sobem tanto quanto
+            }                                               //descem, pelo efeito da gravidade
+        }
         return;
+    }
+        
 
     deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
     relogioMovimento.restart();
