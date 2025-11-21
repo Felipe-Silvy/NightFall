@@ -9,6 +9,7 @@ namespace NightFall {
             {
             private:
                 float raio;
+                float voo;
                 static sf::Vector2f ultimaPosicao;
             public:
                 Morcego();

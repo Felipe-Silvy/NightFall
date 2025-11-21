@@ -5,7 +5,10 @@
 
 sf::Vector2f NightFall::Entidades::Personagens::Morcego::ultimaPosicao = { 0.0f, 300.0f };
 
-NightFall::Entidades::Personagens::Morcego::Morcego() : Inimigo(), raio(1.5)
+NightFall::Entidades::Personagens::Morcego::Morcego() :
+    Inimigo(),
+    raio(1.5),
+    voo(1000.0f)
 {
 	nivel_maldade = 20;
 	num_vidas = 1;
@@ -85,7 +88,7 @@ void NightFall::Entidades::Personagens::Morcego::mover()
     if (!noChao)
     {
         aceleracao.y += 1000;
-        aceleracao.y -= 1000; //Gracas ao voo do morcego.
+        aceleracao.y -= voo; //Gracas ao voo do morcego.
         //Ele se acelera para cima com a mesma aceleracao
         //que a gravidade. Assim ele é mantido no lugar
     }
