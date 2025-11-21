@@ -2,6 +2,7 @@
 #include "Morcego.h"
 #include "Gerenciador_Eventos.h"
 #include "Plataforma.h"
+#include "Jogo.h"
 
 NightFall::Fases::Fase::Fase() :
 	lista_ents(), GC(),
@@ -89,6 +90,10 @@ void NightFall::Fases::Fase::resetarFase()
 {
 	if (pJog1->getVida() <= 0)
 		pJog1->setVida(200);
+
+	if (pJog2 != nullptr && pJog->getDoisJogadores() && pJog2->getVida() <= 0)
+		pJog2->setVida(200);
+
 	lista_ents.deletarElementos();
 	GC.limparColecoes();
 	NightFall::Entidades::Obstaculos::Plataforma::resetPosicoes();
@@ -107,7 +112,6 @@ void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 			pJog2 = pJog;
 
 		pGE->setjogador(pJog);
-
 		lista_ents.incluir(pJog);
 		GC.setJogador(pJog);
 	}

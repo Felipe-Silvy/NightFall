@@ -63,7 +63,8 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 	{
 		pGrafico->fecharJanela();
 	}
-	else if (pJogador1 != nullptr)
+
+	if (pJogador1 != nullptr)
 	{
 		if (tecla == sf::Keyboard::A)
 		{
@@ -96,7 +97,7 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 				float distY = std::abs(posInimigo.y - posJogador.y);
 				float distancia = std::sqrt(distX * distX + distY * distY);
 
-				if (distancia <= alcanceAtaque)	
+				if (distancia <= alcanceAtaque)
 				{
 					std::cout << "Acertou ataque!!" << std::endl;
 					// pJogador1->atacar();
@@ -106,23 +107,47 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 			}
 		}
 	}
-	else if (pJogador2 != nullptr)
+	if (pJogador2 != nullptr)
 	{
 		if (tecla == sf::Keyboard::Right)
 		{
-			pJogador2->aplicarForca(sf::Vector2f(-2000.f, 0.f));
+			pJogador2->aplicarForca(sf::Vector2f(2000.f, 0.f));
 		}
 		if (tecla == sf::Keyboard::Left)
 		{
-			pJogador2->aplicarForca(sf::Vector2f(2000.f, 0.f));
+			pJogador2->aplicarForca(sf::Vector2f(-2000.f, 0.f));
 		}
 		if (tecla == sf::Keyboard::Up)
 		{
 			pJogador2->pular();
 		}
-		if (tecla == sf::Keyboard::Numpad0)
+		if (tecla == sf::Keyboard::Down)
 		{
-			pJogador2->atacar();
+			std::vector<Entidades::Personagens::Inimigo*>* lista = pColisao->getListaInimigos();
+
+			sf::Vector2f posJogador = pJogador2->getCorpo().getPosition();
+			float alcanceAtaque = 150.f; // definir funcao
+
+			for (int i = 0; i < lista->size(); i++)
+			{
+				Entidades::Personagens::Inimigo* inimigo = lista->at(i);
+				if (inimigo == nullptr)
+					continue;
+
+				sf::Vector2f posInimigo = inimigo->getCorpo().getPosition();
+
+				float distX = std::abs(posInimigo.x - posJogador.x);
+				float distY = std::abs(posInimigo.y - posJogador.y);
+				float distancia = std::sqrt(distX * distX + distY * distY);
+
+				if (distancia <= alcanceAtaque)
+				{
+					std::cout << "Acertou ataque!!" << std::endl;
+					// pJogador1->atacar();
+					inimigo->receberDano(pJogador2->getDano());
+					pJogador2->operator++();
+				}
+			}
 		}
 	}
 }
@@ -159,6 +184,17 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclasSeguradas()
 			pJogador1->pular();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
 			pJogador1->atacar();
+	}
+	if (pJogador2 != nullptr)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			pJogador2->aplicarForca(sf::Vector2f(2000.f, 0.f));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			pJogador2->aplicarForca(sf::Vector2f(-2000.f, 0.f));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			pJogador2->pular();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
+			pJogador2->atacar();
 	}
 
 	// mesmo para pJogador2 se quiser

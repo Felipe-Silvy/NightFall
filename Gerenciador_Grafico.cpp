@@ -3,7 +3,7 @@
 NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() :
     window(sf::VideoMode(1280, 720), "NightFall") ,
     alturaChao(600.0f)
-{ // VERIFICAR INICIALIZÇÃO WINDOW
+{ 
     executar();
 }
 
@@ -98,7 +98,8 @@ const float NightFall::Gerenciadores::Gerenciador_Grafico::getAlturaChao() const
 }
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
-    carregarTextura("Jogador", "Assets/Imagens/jogador1.png");
+    carregarTextura("Jogador1", "Assets/Imagens/jogador1.png");
+    carregarTextura("Jogador2", "Assets/Imagens/jogador2.png");
     carregarTextura("Esqueleto", "Assets/Imagens/esqueleto.png");
     carregarTextura("Morcego", "Assets/Imagens/morcego.png");
     carregarTextura("FundoMenu", "Assets/Imagens/fundomenu.png");

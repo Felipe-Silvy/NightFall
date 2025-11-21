@@ -76,6 +76,9 @@ void NightFall::Fases::FaseSegunda::executar()
 	NightFall::Fases::Fase::executar();
 	pGG->setAlturaChao(600.0f);
 	pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
+	if (pJog2 != nullptr && pJog->getDoisJogadores())
+		pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
+
 	criarInimigos();
 	criarObstaculo();
 	criarCenario();

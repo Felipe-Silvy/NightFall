@@ -12,17 +12,22 @@ namespace NightFall {
     {
     private:
         NightFall::Entidades::Personagens::Jogador pJog1;
+        NightFall::Entidades::Personagens::Jogador pJog2;
         NightFall::Gerenciadores::Gerenciador_Grafico GG;
         NightFall::Menu MenuJogo;
         NightFall::Fases::FasePrimeira Fase1;
         // ...
         NightFall::Fases::FaseSegunda Fase2;
+
+        bool doisJogadores;
     public:
         Jogo();
         ~Jogo();
         void executar();
         void iniciarFase1();
         void iniciarFase2();
+        void setDoisJogadores(bool boleano);
+        const bool getDoisJogadores() const;
         // ...
     };
 }

@@ -121,8 +121,8 @@ void NightFall::Menu::escolheJogadores()
     centralizarTextos();
 
     loopComAcoes(
-        [this]() { std::cout << "1 jogador (Setar flag)" << std::endl; escolheFase(); },
-        [this]() { std::cout << "2 jogador (Setar flag)" << std::endl; escolheFase(); }
+        [this]() { pJog->setDoisJogadores(false); escolheFase(); },
+        [this]() { pJog->setDoisJogadores(true); escolheFase(); }
     );
 }
 

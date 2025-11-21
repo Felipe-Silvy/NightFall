@@ -1,7 +1,7 @@
 #include "Jogo.h"
 #include "Entidade.h"
 
-NightFall::Jogo::Jogo() : pJog1(), GG(), MenuJogo(), Fase1() // SOBRECARGA COM PARAMETROS TLVZ
+NightFall::Jogo::Jogo() : pJog1(), pJog2(), GG(), MenuJogo(), Fase1(), Fase2(), doisJogadores(false)
 {
     Ente::setGG(&GG);
     MenuJogo.setJogo(this);
@@ -14,14 +14,20 @@ NightFall::Jogo::~Jogo() {}
 
 void NightFall::Jogo::executar()
 {
-    pJog1.setTextura("Jogador");
-
+    pJog1.setTextura("Jogador1");
+    pJog2.setTextura("Jogador2");
     MenuJogo.executar();
 }
 
 void NightFall::Jogo::iniciarFase1()
 {
-    Fase1.setJogador(&pJog1); // passar parametro
+    std::cout << "FASE 1 INICIADA" << std::endl;
+    Fase1.setJogador(&pJog1); 
+    if (doisJogadores) {
+        Fase1.setJogador(&pJog2);
+        std::cout << "2 Jogadores" << std::endl;
+    }
+
     Fase1.executar();
 }
 
@@ -29,5 +35,20 @@ void NightFall::Jogo::iniciarFase2()
 {
     std::cout << "FASE 2 INICIADA" << std::endl;
     Fase2.setJogador(&pJog1);
+    if (doisJogadores) {
+        Fase2.setJogador(&pJog2);
+        std::cout << "2 Jogadores" << std::endl;
+    }
+
     Fase2.executar();
+}
+
+void NightFall::Jogo::setDoisJogadores(bool boleano)
+{
+    doisJogadores = boleano;
+}
+
+const bool NightFall::Jogo::getDoisJogadores() const
+{
+    return doisJogadores;
 }
