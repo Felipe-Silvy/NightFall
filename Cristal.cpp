@@ -56,6 +56,27 @@ void NightFall::Entidades::Obstaculos::Cristal::executar()
 	//Talvez semelhante a teia ou a plataforma?
 
 	deltaTempo = relogioMovimento.restart().asSeconds();
+	relogioMovimento.restart();
+	cooldownInteração += deltaTempo;
+
+	if (cooldownInteração >= 5.0f) {
+		if (rand() % 2) {
+			setPosicao(getPosicao().x + 10.0f, pGG->getAlturaChao() - getTamanho().y);
+		}
+		else {
+			setPosicao(getPosicao().x - 10.0f, pGG->getAlturaChao() - getTamanho().y);
+		}
+		cooldownInteração = 0;
+	}
+
+	if (getPosicao().y + getTamanho().y < pGG->getAlturaChao())
+	{
+		setPosicao(getPosicao().x, 0.01f);
+	}
+	else
+	{
+		setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
+	}
 }
 
 void NightFall::Entidades::Obstaculos::Cristal::obstaculizar(Personagens::Jogador* p)

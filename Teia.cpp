@@ -59,11 +59,22 @@ void NightFall::Entidades::Obstaculos::Teia::executar()
 	if (cooldownInteração >= 5.0f) {
 		if (rand() % 2) {
 			corpo.setScale(largura * 0.15f, largura * 0.15f);
+			setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
 		}
 		else {
 			corpo.setScale(largura * 0.1f, largura * 0.1f);
+			setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
 		}
 		cooldownInteração = 0;
+	}
+
+	if (getPosicao().y + getTamanho().y < pGG->getAlturaChao())
+	{
+		setPosicao(getPosicao().x, 0.01f);
+	}
+	else
+	{
+		setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
 	}
 }
 
