@@ -76,7 +76,7 @@ void NightFall::Fases::FasePrimeira::executar()
 	//trecho similar ao codigo do ex-monitor Giovane Limas Salvi
 	if (!(pJog->getDoisJogadores()))
 	{
-		while (pGG->verificaAbertura() && pJog1->getVida() > 0 && (pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)) // && pos_jog != pos_final && jogador->getvidas()
+		while (pGG->verificaAbertura() && pJog1->getVida() > 0 && (pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)) 
 		{
 			pGE->executar();
 			pGG->limpaJanela();
@@ -94,7 +94,6 @@ void NightFall::Fases::FasePrimeira::executar()
 		else
 		{
 			pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
-			pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
 		}
 	}
 	else 
