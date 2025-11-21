@@ -6,28 +6,27 @@ NightFall::Menu::Menu() : Ente()
 {
 	pJog = nullptr;
 
-    botaoFase1.setSize(sf::Vector2f(200, 100));
-    botaoFase1.setFillColor(sf::Color(30, 30, 60));
-    botaoFase1.setOutlineThickness(3);
-    botaoFase1.setOutlineColor(sf::Color::White);
+    botao1.setSize(sf::Vector2f(200, 100));
+    botao1.setFillColor(sf::Color(30, 30, 60));
+    botao1.setOutlineThickness(3);
+    botao1.setOutlineColor(sf::Color::White);
 
-    botaoFase2.setSize(sf::Vector2f(200, 100));
-    botaoFase2.setFillColor(sf::Color(60, 0, 0));
-    botaoFase2.setOutlineThickness(3);
-    botaoFase2.setOutlineColor(sf::Color::White);
+    botao2.setSize(sf::Vector2f(200, 100));
+    botao2.setFillColor(sf::Color(60, 0, 0));
+    botao2.setOutlineThickness(3);
+    botao2.setOutlineColor(sf::Color::White);
  
 
     tituloMenu.setString("NightFall");
     tituloMenu.setCharacterSize(60);
     tituloMenu.setFillColor(sf::Color::White);
 
-    textoFase1.setString("Fase 1");
-    textoFase1.setCharacterSize(30);
-    textoFase1.setFillColor(sf::Color::White);
 
-    textoFase2.setString("Fase 2");
-    textoFase2.setCharacterSize(30);
-    textoFase2.setFillColor(sf::Color::White);
+    textoBotao1.setCharacterSize(30);
+    textoBotao1.setFillColor(sf::Color::White);
+
+    textoBotao2.setCharacterSize(30);
+    textoBotao2.setFillColor(sf::Color::White);
 }
 
 NightFall::Menu::~Menu()
@@ -36,14 +35,13 @@ NightFall::Menu::~Menu()
 
 void NightFall::Menu::setJogo(Jogo* pjogo)
 {
-	pJog = pjogo;
+    pJog = pjogo;
 }
 
 void NightFall::Menu::executar()
 {
     if (pGG == nullptr)
         return;
-
 
     sf::Font* fonte = pGG->getFonte();
     if (fonte == nullptr) {
@@ -53,8 +51,8 @@ void NightFall::Menu::executar()
 
     // Aplicar a fonte
     tituloMenu.setFont(*fonte);
-    textoFase1.setFont(*fonte);
-    textoFase2.setFont(*fonte);
+    textoBotao1.setFont(*fonte);
+    textoBotao2.setFont(*fonte);
 
     // Posicionar os textos (centralizados)
 
@@ -82,69 +80,133 @@ void NightFall::Menu::executar()
     const float posY = 200.0f;      // Altura Y desejada
 
     // Calcula o "X" inicial para o primeiro botão
-    float posX_Botao1 = (tamJanela.x - (botaoFase1.getSize().x + botaoFase2.getSize().x + espacamento)) / 2.0f;
+    float posX_Botao1 = (tamJanela.x - (botao1.getSize().x + botao2.getSize().x + espacamento)) / 2.0f;
 
     // Define as posições
-    botaoFase1.setPosition(posX_Botao1, posY);
-    botaoFase2.setPosition(posX_Botao1 + botaoFase1.getSize().x + espacamento, posY);
+    botao1.setPosition(posX_Botao1, posY);
+    botao2.setPosition(posX_Botao1 + botao1.getSize().x + espacamento, posY);
 
 
-    // Centralizar Texto 1 (dentro do botaoFase1)
-    sf::FloatRect rectBotao1 = botaoFase1.getGlobalBounds();
-    sf::FloatRect rectTexto1 = textoFase1.getGlobalBounds();
-    textoFase1.setPosition(
-        rectBotao1.left + (rectBotao1.width - rectTexto1.width) / 2.0f - rectTexto1.left,
-        rectBotao1.top + (rectBotao1.height - rectTexto1.height) / 2.0f - rectTexto1.top
+    escolheAcao();
+}
+
+void NightFall::Menu::escolheAcao()
+{
+    textoBotao1.setString("Jogar");
+    textoBotao2.setString("Ranking");
+    centralizarTextos();
+
+    loopComAcoes(
+        [this]() { escolheJogo(); },
+        [this]() { mostrarRanking(); }
     );
+}
 
-    // Centralizar Texto 2 (dentro do botaoFase2)
-    sf::FloatRect rectBotao2 = botaoFase2.getGlobalBounds();
-    sf::FloatRect rectTexto2 = textoFase2.getGlobalBounds();
-    textoFase2.setPosition(
-        rectBotao2.left + (rectBotao2.width - rectTexto2.width) / 2.0f - rectTexto2.left,
-        rectBotao2.top + (rectBotao2.height - rectTexto2.height) / 2.0f - rectTexto2.top
+void NightFall::Menu::escolheJogo()
+{
+    textoBotao1.setString("Novo");
+    textoBotao2.setString("Continuar");
+    centralizarTextos();
+
+    loopComAcoes(
+        [this]() { escolheJogadores(); },
+        [this]() { continuarJogo(); }
     );
+}
 
-    // UTILIZAR O GERENCIADOR DE EVENTOS DEPOIS
+void NightFall::Menu::escolheJogadores()
+{
+    textoBotao1.setString("1 Jogador");
+    textoBotao2.setString("2 Jogadores");
+    centralizarTextos();
+
+    loopComAcoes(
+        [this]() { std::cout << "1 jogador (Setar flag)" << std::endl; escolheFase(); },
+        [this]() { std::cout << "2 jogador (Setar flag)" << std::endl; escolheFase(); }
+    );
+}
+
+void NightFall::Menu::escolheFase()
+{
+    textoBotao1.setString("Fase 1");
+    textoBotao2.setString("Fase 2");
+    centralizarTextos();
+
+    loopComAcoes(
+        [this]() { pJog->iniciarFase1(); escolheAcao(); },
+        [this]() { pJog->iniciarFase2(); escolheAcao(); }
+    );
+}
+
+void NightFall::Menu::mostrarRanking()
+{
+    std::cout << "Mostrando Ranking" << std::endl;
+}
+
+void NightFall::Menu::continuarJogo()
+{
+    std::cout << "Continuando Jogo Salvo" << std::endl;
+    // Vitor faça sua mágica aqui
+}
+
+void NightFall::Menu::loopComAcoes(
+    std::function<void()> acaoBotao1,
+    std::function<void()> acaoBotao2
+)
+{
     sf::RenderWindow* janela = pGG->getWindow();
 
-    while (janela->isOpen()) 
-	{
+    while (janela->isOpen())
+    {
         sf::Event event;
         while (janela->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 pGG->fecharJanela();
 
-            if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.mouseButton.button == sf::Mouse::Left) { // Se o botão esquerdo do mouse foi clicado
-                    // Obtém a posição do clique do mouse
-                    sf::Vector2f mousePos = janela->mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+            if (event.type == sf::Event::MouseButtonPressed &&
+                event.mouseButton.button == sf::Mouse::Left)
+            {
+                sf::Vector2f mousePos = janela->mapPixelToCoords(
+                    { event.mouseButton.x, event.mouseButton.y }
+                );
 
-                    // Verifica se o clique ocorreu dentro do botão da Fase 1
-                    if (botaoFase1.getGlobalBounds().contains(mousePos)) {
-                        std::cout << "Botao Fase 1 clicado!" << std::endl;
-                        pJog->iniciarFase1(); 
-                    }
-                    // Verifica se o clique ocorreu dentro do botão da Fase 2
-                    else if (botaoFase2.getGlobalBounds().contains(mousePos)) {
-                        std::cout << "Botao Fase 2 clicado!" << std::endl;
-                       pJog->iniciarFase2(); 
-                    }
-                }
+                if (botao1.getGlobalBounds().contains(mousePos))
+                    acaoBotao1();
+
+                if (botao2.getGlobalBounds().contains(mousePos))
+                    acaoBotao2();
             }
         }
 
-        janela->clear(); 
+        janela->clear();
 
-        janela->draw(corpo); // Desenha o fundo
-        janela->draw(botaoFase1);
-        janela->draw(botaoFase2);
+        janela->draw(corpo);
+        janela->draw(botao1);
+        janela->draw(botao2);
         janela->draw(tituloMenu);
-        janela->draw(textoFase1);
-        janela->draw(textoFase2);
+        janela->draw(textoBotao1);
+        janela->draw(textoBotao2);
 
         janela->display();
-	}
+    }
+}
 
+void NightFall::Menu::centralizarTextos()
+{
+    // Centralizar Texto 1
+    sf::FloatRect rectBotao1 = botao1.getGlobalBounds();
+    sf::FloatRect rectTexto1 = textoBotao1.getLocalBounds();
+    textoBotao1.setPosition(
+        rectBotao1.left + (rectBotao1.width - rectTexto1.width) / 2.0f - rectTexto1.left,
+        rectBotao1.top + (rectBotao1.height - rectTexto1.height) / 2.0f - rectTexto1.top
+    );
+
+    // Centralizar Texto 2
+    sf::FloatRect rectBotao2 = botao2.getGlobalBounds();
+    sf::FloatRect rectTexto2 = textoBotao2.getLocalBounds();
+    textoBotao2.setPosition(
+        rectBotao2.left + (rectBotao2.width - rectTexto2.width) / 2.0f - rectTexto2.left,
+        rectBotao2.top + (rectBotao2.height - rectTexto2.height) / 2.0f - rectTexto2.top
+    );
 }
