@@ -2,8 +2,9 @@
 #include "Gerenciador_Grafico.h"
 #include "Jogo.h"
 
-NightFall::Menu::Menu() : Ente()
+NightFall::Menu::Menu() : Ente(), sairDoLoop(false)
 {
+    id = 0;     //ID DA CLASSE MENU EH 0
 	pJog = nullptr;
 
     botao1.setSize(sf::Vector2f(200, 100));
@@ -90,6 +91,57 @@ void NightFall::Menu::executar()
     escolheAcao();
 }
 
+void NightFall::Menu::executarTelaPause()
+{
+    if (pGG == nullptr)
+        return;
+
+    sf::Font* fonte = pGG->getFonte();
+    if (fonte == nullptr) {
+        std::cout << "ERRO: Menu nao conseguiu pegar a fonte do pGG!" << std::endl;
+        return;
+    }
+
+    // Aplicar a fonte
+    tituloMenu.setFont(*fonte);
+    textoBotao1.setFont(*fonte);
+    textoBotao2.setFont(*fonte);
+
+    // Posicionar os textos (centralizados)
+
+    // Centralizar Título (no topo da janela)
+    sf::Vector2f tamJanela = static_cast<sf::Vector2f>(pGG->getWindow()->getSize());
+    sf::FloatRect rectTitulo = tituloMenu.getGlobalBounds();
+    tituloMenu.setPosition((tamJanela.x - rectTitulo.width) / 2.0f, 50.0f);
+
+    // Centralizando e escalando Imagem de Fundo 
+    setTextura("FundoMenu");
+    const sf::Texture* pTextura = corpo.getTexture();
+    // Verificação de segurança (impede crash)
+    if (pTextura == nullptr) {
+        std::cout << "ERRO: Sprite 'corpo' (Menu) sem textura!" << std::endl;
+        return;
+    }
+    sf::Vector2f tamTextura = static_cast<sf::Vector2f>(pTextura->getSize());
+    // Calcula e aplica a escala
+    corpo.setScale(tamJanela.x / tamTextura.x, tamJanela.y / tamTextura.y);
+
+    corpo.setPosition(0.f, 0.f);
+
+    //Centralizando Botões
+    const float espacamento = 100.0f; // Espaço entre os botões
+    const float posY = 200.0f;      // Altura Y desejada
+
+    // Calcula o "X" inicial para o primeiro botão
+    float posX_Botao1 = (tamJanela.x - (botao1.getSize().x + botao2.getSize().x + espacamento)) / 2.0f;
+
+    // Define as posições
+    botao1.setPosition(posX_Botao1, posY);
+    botao2.setPosition(posX_Botao1 + botao1.getSize().x + espacamento, posY);
+
+    escolhePause();
+}
+
 void NightFall::Menu::escolheAcao()
 {
     textoBotao1.setString("Jogar");
@@ -138,6 +190,20 @@ void NightFall::Menu::escolheFase()
     );
 }
 
+void NightFall::Menu::escolhePause()
+{
+    textoBotao1.setString("Voltar");
+    textoBotao2.setString("Salvar");
+    centralizarTextos();
+
+    loopComAcoes(
+        [&]() { sairDoLoop = true; },  // Voltar
+        [this]() { pJog->salvarJogo(); }
+    );
+    sairDoLoop = false;
+    std::cout << "Retornou!!!!!!!!!!!!!!!!!" << std::endl;
+}
+
 void NightFall::Menu::mostrarRanking()
 {
     std::cout << "Mostrando Ranking" << std::endl;
@@ -156,12 +222,12 @@ void NightFall::Menu::loopComAcoes(
 {
     sf::RenderWindow* janela = pGG->getWindow();
 
-    while (janela->isOpen())
+    while (janela->isOpen() && !sairDoLoop)
     {
         sf::Event event;
         while (janela->pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed)        //ADICIONAR FECHAR COM ESC AQUI DEPOIS
                 pGG->fecharJanela();
 
             if (event.type == sf::Event::MouseButtonPressed &&

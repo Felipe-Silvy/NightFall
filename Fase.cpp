@@ -10,10 +10,10 @@ NightFall::Fases::Fase::Fase() :
 	pJog1(nullptr), pJog2(nullptr),
 	maxMorcegos(10), maxPlataformas(6),
 	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(maxPlataformas - rand() % 4),
-	numeroDaFase(0),
 	pontoFinal(),
 	posFinal(),
-	pJog(nullptr)
+	pJog(nullptr),
+	fase_ativa(false)
 {
 	lista_ents.setGerColisao(&GC);
 }
@@ -62,11 +62,11 @@ void NightFall::Fases::Fase::criarPlataformas()
 void NightFall::Fases::Fase::criarCenario()
 {
 	sf::Vector2f tamJanela = static_cast<sf::Vector2f>(pGG->getWindow()->getSize());
-	if (numeroDaFase == 1)
+	if (id == 1)
 	{
 		setTextura("FundoFase1");
 	}
-	else if(numeroDaFase == 2)
+	else if(id == 2)
 	{
 		setTextura("FundoFase2");
 	}
@@ -103,6 +103,16 @@ void NightFall::Fases::Fase::resetarFase()
 	numPlataformas = maxPlataformas - rand() % 4;
 }
 
+const bool NightFall::Fases::Fase::getAtiva() const
+{
+	return fase_ativa;
+}
+
+void NightFall::Fases::Fase::salvarFase()
+{
+	lista_ents.salvarEntidades();
+}
+
 void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 {
 	if (pJog != nullptr) {
@@ -119,11 +129,15 @@ void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 
 void NightFall::Fases::Fase::executar()
 {
+	fase_ativa = true;
 	std::cout << "EXECUTAR CHEGOU" << std::endl;
 
 	GC.setGerGrafico(pGG);
 	pGE->setGerenciador_Grafico(pGG);
 	pGE->setGerenciador_Colisoes(&GC);
+
+	//IMPORTANTE, DESLIGA O PAUSE
+	pGE->setPause(false);
 
 	//bandeira que representa o fim da fase
 	pontoFinal.setTexture(pGG->getTextura("PontoFinal"));

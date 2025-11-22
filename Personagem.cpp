@@ -91,6 +91,20 @@ void NightFall::Entidades::Personagens::Personagem::retornarCorNormal()
     }
 }
 
+void NightFall::Entidades::Personagens::Personagem::salvarDataBuffer()
+{
+    Entidade::salvarDataBuffer();
+    buffer << num_vidas << " "
+        << velocidade << " "
+        << velocidadeAtual.x << " "
+        << velocidadeAtual.y << " "
+        << aceleracao.x << " "
+        << aceleracao.y << " "
+        << forcaPulo << " "
+        << noChao << " "
+        << tempoMudancaCor << " ";
+}
+
 /*
 void NightFall::Entidades::Personagens::Personagem::knockback(float direcao)
 {

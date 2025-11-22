@@ -3,13 +3,10 @@
 
 NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Ente::pGG = nullptr;
 
-int NightFall::Ente::cont_id = 0;
-
-NightFall::Ente::Ente() : id(cont_id) , corpo()
+NightFall::Ente::Ente() : id(-1) , corpo()
 {
    corpo.setPosition(0.f, 0.f);
    corpo.setScale(0.2f, 0.2f);
-   cont_id++;
 }
 
 NightFall::Ente::~Ente() {}

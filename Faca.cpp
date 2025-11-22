@@ -8,6 +8,7 @@ NightFall::Entidades::Faca::Faca() :
 	pVampiro(nullptr),
 	esquerda(false)
 {
+	id = 10;
 	corpo.setScale(0.05f, 0.05f);
 }
 
@@ -42,11 +43,6 @@ void NightFall::Entidades::Faca::executar()
 	}
 }
 
-void NightFall::Entidades::Faca::salvar()
-{
-
-}
-
 void NightFall::Entidades::Faca::projDanificar(NightFall::Entidades::Personagens::Jogador* pJogador)
 {
 	if (ativo)
@@ -77,4 +73,18 @@ void NightFall::Entidades::Faca::setAtivo(const bool novaAtividade)
 void NightFall::Entidades::Faca::setDirecao(bool esq)
 {
 	esquerda = esq;
+}
+
+void NightFall::Entidades::Faca::salvar()
+{
+	bufferInterno.str("");
+	buffer.clear();
+
+	salvarDataBuffer();
+}
+
+void NightFall::Entidades::Faca::salvarDataBuffer()
+{
+	Entidade::salvarDataBuffer();
+	buffer << ativo << " " << danoFaca << " " << esquerda << std::endl;
 }

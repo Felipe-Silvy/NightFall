@@ -1,8 +1,10 @@
 #include "Entidade.h"
 
 NightFall::Entidades::Entidade::Entidade() :
-	Ente(), deltaTempo(0.0f),
-	cooldownDano(0.0f)
+	Ente(), 
+	deltaTempo(0.0f),
+	cooldownDano(0.0f),
+	buffer(&bufferInterno)
 {
 	relogioMovimento.restart();
 }
@@ -11,7 +13,15 @@ NightFall::Entidades::Entidade::~Entidade() {}
 
 void NightFall::Entidades::Entidade::salvarDataBuffer()
 { 
-	// Implementar depois
+	//Informacoes pertinentes a ente
+	buffer << id << " "
+		<< corpo.getScale().x << " "
+		<< corpo.getScale().y << " "
+		<< corpo.getPosition().x << " "
+		<< corpo.getPosition().y << " "
+		//Informacoes pertinentes a entidade
+		<< deltaTempo << " "
+		<< cooldownDano << " ";
 };
 
 const bool NightFall::Entidades::Entidade::podeDanificar()
@@ -24,6 +34,17 @@ const bool NightFall::Entidades::Entidade::podeDanificar()
 		return true;
 	}
 	return false;
+}
+
+void NightFall::Entidades::Entidade::relogioMovimentoResetar()
+{
+	relogioMovimento.restart();
+	deltaTempo = 0.0f;
+}
+
+const std::string NightFall::Entidades::Entidade::getBufferString() const
+{
+	return bufferInterno.str(); ;
 }
 
 

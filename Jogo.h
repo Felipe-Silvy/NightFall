@@ -28,7 +28,8 @@ namespace NightFall {
         void iniciarFase2();
         void setDoisJogadores(bool boleano);
         const bool getDoisJogadores() const;
-        // ...
+        void jogoPausar();
+        void salvarJogo();
     };
 }
 

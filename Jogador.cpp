@@ -4,8 +4,12 @@
 #include <iostream>
 #include <iomanip>.
 
-NightFall::Entidades::Personagens::Jogador::Jogador() : Personagem() , pontos(0), poderDano(20)
+NightFall::Entidades::Personagens::Jogador::Jogador() : 
+    Personagem() , 
+    pontos(0), 
+    poderDano(20)
 {
+    id = 3; //ID DA CLASSE JOGADOR EH 3
     corpo.setScale(0.07f, 0.07f);
     velocidade = 200.0f;
     num_vidas = 200;
@@ -26,8 +30,6 @@ void NightFall::Entidades::Personagens::Jogador::executar ()
     mover();
     retornarCorNormal();
 }
-
-void NightFall::Entidades::Personagens::Jogador::salvar() {}
 
 void NightFall::Entidades::Personagens::Jogador::mover()
 {
@@ -114,4 +116,18 @@ const int NightFall::Entidades::Personagens::Jogador::getPontos() const
 void NightFall::Entidades::Personagens::Jogador::operator++()
 {
     pontos = pontos + 1;
+}
+
+void NightFall::Entidades::Personagens::Jogador::salvar()
+{
+    bufferInterno.str("");
+    buffer.clear();
+
+    salvarDataBuffer();
+}
+
+void NightFall::Entidades::Personagens::Jogador::salvarDataBuffer()
+{
+    Personagem::salvarDataBuffer();
+    buffer << pontos << " " << poderDano << std::endl;
 }

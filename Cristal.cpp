@@ -15,6 +15,8 @@ NightFall::Entidades::Obstaculos::Cristal::Cristal() :
 	danosidade(20),
 	Obstaculo()
 {
+	id = 8;
+	danoso = true;
 	corpo.setScale(0.25f, 0.25f);
 
 	if (Cristal::posicoesXCristal.empty())
@@ -45,11 +47,6 @@ NightFall::Entidades::Obstaculos::Cristal::~Cristal()
 
 }
 
-void NightFall::Entidades::Obstaculos::Cristal::salvarDataBuffer()
-{
-
-}
-
 void NightFall::Entidades::Obstaculos::Cristal::executar()
 {
 	//Devemos implementar um executar no cristal
@@ -57,16 +54,16 @@ void NightFall::Entidades::Obstaculos::Cristal::executar()
 
 	deltaTempo = relogioMovimento.restart().asSeconds();
 	relogioMovimento.restart();
-	cooldownInteração += deltaTempo;
+	cooldownInteracao += deltaTempo;
 
-	if (cooldownInteração >= 5.0f) {
+	if (cooldownInteracao >= 5.0f) {
 		if (rand() % 2) {
 			setPosicao(getPosicao().x + 10.0f, pGG->getAlturaChao() - getTamanho().y);
 		}
 		else {
 			setPosicao(getPosicao().x - 10.0f, pGG->getAlturaChao() - getTamanho().y);
 		}
-		cooldownInteração = 0;
+		cooldownInteracao = 0;
 	}
 
 	if (getPosicao().y + getTamanho().y < pGG->getAlturaChao())
@@ -102,5 +99,17 @@ void NightFall::Entidades::Obstaculos::Cristal::resetPosicoes()
 
 void NightFall::Entidades::Obstaculos::Cristal::salvar()
 {
+	bufferInterno.str("");
+	buffer.clear();
 
+	salvarDataBuffer();
+}
+
+void NightFall::Entidades::Obstaculos::Cristal::salvarDataBuffer()
+{
+	//cristal nao precisa passar danosidade para o buffer
+	//porque todos os cristais tem a mesmas danosidade
+	//possivelmente alterar danosidade para um valor rand?
+	Obstaculo::salvarDataBuffer();
+	//buffer << danosidade << std::endl;
 }

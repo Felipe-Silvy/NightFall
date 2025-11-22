@@ -52,3 +52,24 @@ const bool NightFall::Jogo::getDoisJogadores() const
 {
     return doisJogadores;
 }
+
+void NightFall::Jogo::jogoPausar()
+{
+    MenuJogo.executarTelaPause();
+}
+
+void NightFall::Jogo::salvarJogo()
+{
+    if (Fase1.getAtiva())
+    {
+        Fase1.salvarFase();
+    }
+    else if (Fase2.getAtiva())
+    {
+        Fase2.salvarFase();
+    }
+    else
+    {
+        std::cout << "Nao ha fase ativa, erro inesperado" << std::endl;
+    }
+}

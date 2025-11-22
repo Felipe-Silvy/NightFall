@@ -25,9 +25,12 @@ namespace NightFall {
                 ~Plataforma();
                 void executar();
                 void obstaculizar(Personagens::Jogador* p);
-                void salvar();
+
                 void setPosicaoOriginalY(float pos);
                 static void resetPosicoes();
+
+                void salvar();
+                void salvarDataBuffer();
             };
         }
     }

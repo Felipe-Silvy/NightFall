@@ -156,7 +156,6 @@
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Plataforma.cpp" />
-    <ClCompile Include="Projetil.cpp" />
     <ClCompile Include="Teia.cpp" />
     <ClCompile Include="Vampiro.cpp" />
   </ItemGroup>
@@ -182,7 +181,6 @@
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Plataforma.h" />
-    <ClInclude Include="Projetil.h" />
     <ClInclude Include="Teia.h" />
     <ClInclude Include="Vampiro.h" />
   </ItemGroup>

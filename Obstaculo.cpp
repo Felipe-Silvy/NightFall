@@ -8,7 +8,10 @@
 // danoso(dan) Inicializa o atributo danoso
 // {}
 
-NightFall::Entidades::Obstaculos::Obstaculo::Obstaculo() : Entidade(), danoso(false), cooldownInteração(0.0f)
+NightFall::Entidades::Obstaculos::Obstaculo::Obstaculo() : 
+	Entidade(), 
+	danoso(false), 
+	cooldownInteracao(0.0f)
 {
 }
 
@@ -20,4 +23,6 @@ NightFall::Entidades::Obstaculos::Obstaculo::~Obstaculo()
 // Este é um método concreto, então pode ter uma implementação padrão ou vazia.
 void NightFall::Entidades::Obstaculos::Obstaculo::salvarDataBuffer()
 {
+	Entidade::salvarDataBuffer();
+	buffer << cooldownInteracao;
 }

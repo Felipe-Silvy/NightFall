@@ -19,7 +19,10 @@ namespace NightFall {
                 ~Jogador();
                 void colidir(Entidades::Personagens::Inimigo* pIn);
                 void executar();
+
+                void salvarDataBuffer();
                 void salvar();
+
                 void mover(); 
                 // ...
 

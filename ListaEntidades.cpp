@@ -4,6 +4,7 @@
 #include "Gerenciador_Colisoes.h"
 #include "Jogador.h"
 #include "Faca.h"
+#include <fstream>
 
 
 NightFall::Listas::ListaEntidades::ListaEntidades() :
@@ -64,6 +65,45 @@ void NightFall::Listas::ListaEntidades::percorrer()
     }
 }
 
+void NightFall::Listas::ListaEntidades::resetarClocks()
+{
+    const int tam = LEs.getTam();
+
+    for (int i = 0; i < tam; i++)
+    {
+        Entidades::Entidade* navegador = LEs[i];
+
+        if (navegador == nullptr)
+            continue;
+
+        navegador->relogioMovimentoResetar();
+    }
+}
+
+void NightFall::Listas::ListaEntidades::salvarEntidades()
+{
+    const int tam = LEs.getTam();
+
+    std::ofstream arquivo("Salvamentos/Save.txt");
+
+    if (!arquivo)
+    {
+        std::cout << "Erro no arquivo de salvamento" << std::endl;
+        return;
+    }
+
+    for (int i = 0; i < tam; i++)
+    {
+        Entidades::Entidade* navegador = LEs[i];
+
+        if (navegador == nullptr)
+            continue;
+
+        navegador->salvar();
+        arquivo << "! " << navegador->getBufferString();
+        
+    }
+}
 
 void NightFall::Listas::ListaEntidades::setGerColisao(Gerenciadores::Gerenciador_Colisoes* pGC)
 {

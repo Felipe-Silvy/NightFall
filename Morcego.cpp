@@ -10,6 +10,7 @@ NightFall::Entidades::Personagens::Morcego::Morcego() :
     raio(1.5),
     voo(1000.0f)
 {
+    id = 5;
 	nivel_maldade = 20;
 	num_vidas = 1;
 	corpo.setScale(0.1f, 0.1f);
@@ -31,10 +32,6 @@ void NightFall::Entidades::Personagens::Morcego::danificar(Jogador* p)
         p->receberDano(nivel_maldade);
         std::cout << "Morcego danificou" << std::endl;
     }
-}
-
-void NightFall::Entidades::Personagens::Morcego::salvar()
-{
 }
 
 void NightFall::Entidades::Personagens::Morcego::executar()
@@ -134,4 +131,21 @@ void NightFall::Entidades::Personagens::Morcego::mover()
 void NightFall::Entidades::Personagens::Morcego::resetarUltimaPosicao()
 {
     ultimaPosicao = sf::Vector2f(0.0f, 300.0f);
+}
+
+void NightFall::Entidades::Personagens::Morcego::salvar()
+{
+    bufferInterno.str("");
+    buffer.clear();
+
+    salvarDataBuffer();
+}
+
+void NightFall::Entidades::Personagens::Morcego::salvarDataBuffer()
+{
+    //voo e raio sao sempre os mesmos para  todos 
+    //os morcegos logo nao precisam ser armazenados
+    Inimigo::salvarDataBuffer();
+    buffer << std::endl;
+   // buffer << raio;
 }

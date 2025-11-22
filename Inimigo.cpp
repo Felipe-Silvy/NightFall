@@ -129,3 +129,20 @@ void NightFall::Entidades::Personagens::Inimigo::setJogador(Jogador* pJogad)
         pJogador2 = pJogad;
 }
 
+void NightFall::Entidades::Personagens::Inimigo::salvar()
+{
+    buffer.clear();
+
+    salvarDataBuffer();
+}
+
+void NightFall::Entidades::Personagens::Inimigo::salvarDataBuffer()
+{
+    Personagem::salvarDataBuffer();
+    buffer << direcaoAleatoria << " "
+        << tempoVagar << " ";
+    //cada classe tem um nivel_maldade sempre igual e constante
+    //por isso desnecessario guardar
+    //alcance perseguir é sempre o mesmo desnecessario guardar
+}
+

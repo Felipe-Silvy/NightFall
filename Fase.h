@@ -32,11 +32,18 @@ namespace NightFall {
             int numMorcegos;
             const int maxPlataformas;
             int numPlataformas;
-
-            int numeroDaFase;
             
             sf::Sprite pontoFinal;
             sf::Vector2f posFinal;
+
+            bool fase_ativa;
+
+        protected:
+            void criarMorcegos(); // Verificar tipo
+            void criarPlataformas(); // Verificar tipo
+            virtual void criarInimigos() = 0;
+            virtual void criarObstaculo() = 0;
+            void criarCenario();
 
         public: 
             Fase();
@@ -44,15 +51,9 @@ namespace NightFall {
             virtual void executar();
             void setJogador(Entidades::Personagens::Jogador* pJog);
             void setJogo(Jogo* pjogo);
-        protected:
-            void criarMorcegos(); // Verificar tipo
-            void criarPlataformas(); // Verificar tipo
-            virtual void criarInimigos() = 0;
-            virtual void criarObstaculo() = 0;
-            void criarCenario();
-            //FALTA COLOCAR ISSO EM ALGUM LUGAR
-
             virtual void resetarFase();
+            const bool getAtiva() const;
+            void salvarFase();
         };
     }
 }

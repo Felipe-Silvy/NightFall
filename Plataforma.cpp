@@ -22,6 +22,7 @@ NightFall::Entidades::Obstaculos::Plataforma::Plataforma() :
     posicaoOriginalY(0),
     movel(rand()%3)
 {
+    id = 4;     //ID DA CLASSE PLATAFORMA EH 4
     corpo.setScale(0.3f, altura * 0.1f);
 
     if (Plataforma::posicoesParaPlataforma.empty())
@@ -53,6 +54,7 @@ NightFall::Entidades::Obstaculos::Plataforma::Plataforma(bool par, bool mov) :
     movel(mov),
     posicaoOriginalY(0)
 {
+    id = 4;
     if (par)
     {
         (this)->setTextura("Parede");
@@ -165,7 +167,7 @@ void NightFall::Entidades::Obstaculos::Plataforma::executar()
 
     deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
     relogioMovimento.restart();
-    cooldownInteração += deltaTempo;
+    cooldownInteracao += deltaTempo;
 
     float amplitude = 25.f;     //distancia entre o meio e o topo da onda senoide (matematica)
     float velocidade = 2.f;     //velocidade em que a onda varia
@@ -173,15 +175,10 @@ void NightFall::Entidades::Obstaculos::Plataforma::executar()
     //a funcao sin() do std é a funcao matematica seno, que varia entre -1 e 1.
     //nos multiplicamos pela amplitude para que ela nao varie apenas entre -1 e 1
     //e sim entre 25 pixels a baixo e 25 pixels a cima
-    float movimentoVertical = std::sin(cooldownInteração * velocidade) * amplitude;
+    float movimentoVertical = std::sin(cooldownInteracao * velocidade) * amplitude;
     //isso se assemelha a funcao matematica Y = sen(X* velocidade) * amplitude
         
     setPosicao(getPosicao().x, posicaoOriginalY + movimentoVertical);
-}
-
-void NightFall::Entidades::Obstaculos::Plataforma::salvar()
-{
-
 }
 
 void NightFall::Entidades::Obstaculos::Plataforma::setPosicaoOriginalY(float pos)
@@ -199,4 +196,20 @@ void NightFall::Entidades::Obstaculos::Plataforma::resetPosicoes()
     { 1050.0f, 230.0f },
     { 20.0f, 80.0f }
     };
+}
+
+void NightFall::Entidades::Obstaculos::Plataforma::salvar()
+{
+    bufferInterno.str("");
+    buffer.clear();
+
+    salvarDataBuffer();
+}
+
+void NightFall::Entidades::Obstaculos::Plataforma::salvarDataBuffer()
+{
+    Obstaculo::salvarDataBuffer();
+    buffer << altura << " " << movel << " "
+        << posicaoOriginalY << " " << parede 
+        << std::endl;
 }

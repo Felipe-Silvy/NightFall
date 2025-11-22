@@ -13,6 +13,7 @@ std::vector<float> NightFall::Entidades::Obstaculos::Teia::posicoesXTeia = {
 
 NightFall::Entidades::Obstaculos::Teia::Teia() : Obstaculo(), largura(-1), desaceleracao(-1)
 {
+	id = 6;
 }
 
 NightFall::Entidades::Obstaculos::Teia::Teia(const bool danosidade, const float desacel, const float larg) : Obstaculo()
@@ -20,6 +21,8 @@ NightFall::Entidades::Obstaculos::Teia::Teia(const bool danosidade, const float 
 	danoso = danosidade;
 	desaceleracao = desacel;
 	largura = larg;
+
+	id = 6;
 
 	corpo.setScale(largura * 0.1f, largura * 0.1f);
 
@@ -54,9 +57,9 @@ void NightFall::Entidades::Obstaculos::Teia::executar()
 {
 	deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
 	relogioMovimento.restart();
-	cooldownInteração += deltaTempo;
+	cooldownInteracao += deltaTempo;
 
-	if (cooldownInteração >= 5.0f) {
+	if (cooldownInteracao >= 5.0f) {
 		if (rand() % 2) {
 			corpo.setScale(largura * 0.15f, largura * 0.15f);
 			setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
@@ -65,7 +68,7 @@ void NightFall::Entidades::Obstaculos::Teia::executar()
 			corpo.setScale(largura * 0.1f, largura * 0.1f);
 			setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
 		}
-		cooldownInteração = 0;
+		cooldownInteracao = 0;
 	}
 
 	if (getPosicao().y + getTamanho().y < pGG->getAlturaChao())
@@ -97,5 +100,14 @@ void NightFall::Entidades::Obstaculos::Teia::resetPosicoes()
 
 void NightFall::Entidades::Obstaculos::Teia::salvar()
 {
+	bufferInterno.str("");
+	buffer.clear();
 
+	salvarDataBuffer();
+}
+
+void NightFall::Entidades::Obstaculos::Teia::salvarDataBuffer()
+{
+	Obstaculo::salvarDataBuffer();
+	buffer << largura << " " << desaceleracao << std::endl;
 }

@@ -31,6 +31,8 @@ namespace NightFall
 			void setGerColisao(Gerenciadores::Gerenciador_Colisoes* pGC);
 			NightFall::Entidades::Entidade* getPrimeiro() const;
 			void deletarElementos();
+			void resetarClocks();
+			void salvarEntidades();
 		};
 	}
 }

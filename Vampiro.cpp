@@ -7,6 +7,7 @@
 NightFall::Entidades::Personagens::Vampiro::Vampiro() :
     pFaca(nullptr), quandoAtirar(0.0), jaAtirou(false)
 {
+    id = 9;
     forca = 5+ rand()%11;
     nivel_maldade = 60;
     num_vidas = 80;
@@ -30,10 +31,6 @@ void NightFall::Entidades::Personagens::Vampiro::danificar(Jogador* p)
         p->receberDano(nivel_maldade + forca);
         std::cout << "Esqueleto danificou" << std::endl;
     }
-}
-
-void NightFall::Entidades::Personagens::Vampiro::salvar()
-{
 }
 
 void NightFall::Entidades::Personagens::Vampiro::executar()
@@ -105,4 +102,20 @@ void NightFall::Entidades::Personagens::Vampiro::ativarFaca()
     {
         pFaca->setDirecao(!esquerda);
     }
+}
+
+void NightFall::Entidades::Personagens::Vampiro::salvar()
+{
+    bufferInterno.str("");
+    buffer.clear();
+
+    salvarDataBuffer();
+}
+
+void NightFall::Entidades::Personagens::Vampiro::salvarDataBuffer()
+{
+    Inimigo::salvarDataBuffer();
+    buffer << forca << " " << jaAtirou << " " << std::endl;
+    //quandoAtirar é inicializado igual para todos os vampiros
+    //pFaca sera recuperado de forma diferente
 }

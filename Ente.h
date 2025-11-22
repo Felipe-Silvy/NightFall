@@ -9,10 +9,23 @@ namespace NightFall {
     class Ente {
     protected:
         int id;
+        /*
+        LEGENDA DE ID DAS CLASSES
+        -1 - Classe sem ID inicializado
+        0 - Menu
+        1 - FasePrimeira
+        2 - FaseSegunda
+        3 - Jogador
+        4 - Plataforma
+        5 - Morcego
+        6 - Teia
+        7 - Esqueleto
+        8 - Cristal
+        9 - Vampiro
+        10 - Faca
+        */
         static Gerenciadores::Gerenciador_Grafico* pGG;
         sf::Sprite corpo;
-    private:
-        static int cont_id;
     public:
         // Construtor e destrutor
         Ente();

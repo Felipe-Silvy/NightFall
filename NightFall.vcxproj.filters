@@ -63,9 +63,6 @@
     <ClCompile Include="ListaEntidades.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Projetil.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="FasePrimeira.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
@@ -135,9 +132,6 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Lista.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Projetil.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="FasePrimeira.h">

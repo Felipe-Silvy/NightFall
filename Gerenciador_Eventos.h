@@ -15,6 +15,9 @@ namespace NightFall
 			Entidades::Personagens::Jogador* pJogador2;
 
 			static Gerenciador_Eventos* pEventos;
+
+			bool emPause;
+
 			Gerenciador_Eventos();
 		public:
 			~Gerenciador_Eventos();
@@ -30,6 +33,8 @@ namespace NightFall
 			void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 			void executar();
 			void verificaTeclasSeguradas();
+			const bool getPause() const;
+			void setPause(const bool novoPause);
 		};
 	}
 }

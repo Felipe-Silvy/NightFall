@@ -30,7 +30,7 @@ namespace NightFall {
                 virtual void mover() = 0; 
                 
                 //Fora do UML
-                void receberDano(unsigned int dano);
+                virtual void receberDano(unsigned int dano);
                 void aplicarForca(sf::Vector2f forca);
                 void setVelocidadeX(float vx);
                 void setVelocidadeY(float vy);

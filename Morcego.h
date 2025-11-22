@@ -14,11 +14,13 @@ namespace NightFall {
             public:
                 Morcego();
                 ~Morcego();
-                void salvar();
                 void executar();
                 void danificar(Jogador* p);
                 void mover();
                 void resetarUltimaPosicao();
+
+                void salvarDataBuffer();
+                void salvar();
             };
         } // namespace Personagens
     } // namespace Entidades

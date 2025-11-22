@@ -25,12 +25,15 @@ namespace NightFall
 			Faca();
 			~Faca();
 			void executar();
-			void salvar();
+			
 			void projDanificar(NightFall::Entidades::Personagens::Jogador* pJogador);
 			void setVampiro(Personagens::Vampiro* vamps);
 			const bool getAtivo() const;
 			void setAtivo(const bool novaAtividade);
 			void setDirecao(bool esq);
+
+			void salvar();
+			void salvarDataBuffer();
 		};
 	}
 }

@@ -10,7 +10,8 @@ NightFall::Gerenciadores::Gerenciador_Eventos::Gerenciador_Eventos() :
 	pGrafico(nullptr),
 	pColisao(nullptr),
 	pJogador1(nullptr),
-	pJogador2(nullptr)
+	pJogador2(nullptr),
+	emPause(false)
 {}
 
 NightFall::Gerenciadores::Gerenciador_Eventos::~Gerenciador_Eventos()
@@ -61,7 +62,7 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 
 	if (tecla == sf::Keyboard::Escape)
 	{
-		pGrafico->fecharJanela();
+		emPause = true;
 	}
 
 	if (pJogador1 != nullptr)
@@ -198,4 +199,14 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclasSeguradas()
 	}
 
 	// mesmo para pJogador2 se quiser
+}
+
+const bool NightFall::Gerenciadores::Gerenciador_Eventos::getPause() const
+{
+	return emPause;
+}
+
+void NightFall::Gerenciadores::Gerenciador_Eventos::setPause(const bool novoPause)
+{
+	emPause = novoPause;
 }

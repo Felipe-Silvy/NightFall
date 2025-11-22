@@ -17,7 +17,7 @@ NightFall::Fases::FaseSegunda::FaseSegunda() :
 	maxCristais(6),
 	numCristais(maxCristais - rand() % 4)
 {
-	numeroDaFase = 2;
+	id = 2; //ID DA CLASSE FASESEGUNDA EH 2
 }
 
 NightFall::Fases::FaseSegunda::~FaseSegunda()
@@ -90,6 +90,12 @@ void NightFall::Fases::FaseSegunda::executar()
 		while (pGG->verificaAbertura() && pJog1->getVida() > 0 && (pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)) // && pos_jog != pos_final && jogador->getvidas()
 		{
 			pGE->executar();
+			if (pGE->getPause())
+			{
+				pJog->jogoPausar();
+				pGE->setPause(false);
+				lista_ents.resetarClocks();
+			}
 			pGG->limpaJanela();
 			(this)->desenhar();
 			pGG->getWindow()->draw(pontoFinal);
@@ -98,9 +104,11 @@ void NightFall::Fases::FaseSegunda::executar()
 			pGG->mostraElementos();
 		}
 		resetarFase();
-		if (!(pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y))
+		if (!(pJog1->getCorpo().getPosition().x < posFinal.x 
+			|| pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
 			// Adicionar Ranking
+			pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
 		}
 		else
 		{
@@ -112,6 +120,12 @@ void NightFall::Fases::FaseSegunda::executar()
 		while (pGG->verificaAbertura() && pJog1->getVida() > 0 && pJog2->getVida() > 0 && ((pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y) || (pJog2->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)))
 		{
 			pGE->executar();
+			if (pGE->getPause())
+			{
+				pJog->jogoPausar();
+				pGE->setPause(false);
+				lista_ents.resetarClocks();
+			}
 			pGG->limpaJanela();
 			(this)->desenhar();
 			pGG->getWindow()->draw(pontoFinal);
@@ -120,9 +134,12 @@ void NightFall::Fases::FaseSegunda::executar()
 			pGG->mostraElementos();
 		}
 		resetarFase();
-		if (!(pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y))
+		if (!(pJog1->getCorpo().getPosition().x < posFinal.x 
+			|| pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
 			// Adicionar no Ranking
+			pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
+			pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
 		}
 		else
 		{
@@ -130,6 +147,7 @@ void NightFall::Fases::FaseSegunda::executar()
 			pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
 		}
 	}
+	fase_ativa = false;
 }
 
 

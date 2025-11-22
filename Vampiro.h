@@ -19,12 +19,14 @@ namespace NightFall {
             public:
                 Vampiro();
                 ~Vampiro();
-                void salvar();
                 void executar();
                 void danificar(Jogador* p);
                 void resetarUltimaPosicao();
                 void setFaca(Faca* pFac);
                 void ativarFaca();
+
+                void salvarDataBuffer();
+                void salvar();
             };
         } // namespace Personagens
     } // namespace Entidades

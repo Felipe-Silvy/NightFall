@@ -23,16 +23,20 @@ namespace NightFall {
         sf::RectangleShape botao2;
         sf::Text textoBotao2;
 
+        bool sairDoLoop;
 
     public:
         Menu();
         ~Menu();
         void executar();
+        void executarTelaPause();
+
         void setJogo(Jogo* pjogo);
         void escolheAcao();
         void escolheJogo();
         void escolheJogadores();
         void escolheFase();
+        void escolhePause();
 
         void mostrarRanking();
         void continuarJogo();
