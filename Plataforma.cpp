@@ -15,15 +15,29 @@ std::vector<sf::Vector2f> NightFall::Entidades::Obstaculos::Plataforma::posicoes
     { 40.0f, 80.0f }
 };
 
+//ESTADOS DA PLATAFORMA
+//ESTADO 0 - PLATAFORMA IMOVEL
+//ESTADO 1 - PLATAFORMA MOVEL
+//ESTADO 2 - PAREDE
+
 NightFall::Entidades::Obstaculos::Plataforma::Plataforma() : 
     Obstaculo (),
     altura(3),
-    parede(false),
     posicaoOriginalY(0),
-    movel(rand()%3)
+    movel(rand()%3),
+    amplitudeMovimento(25.f)
 {
     id = 4;     //ID DA CLASSE PLATAFORMA EH 4
     corpo.setScale(0.3f, altura * 0.1f);
+
+    if (movel)
+    {
+        estado = 1;
+    }
+    else
+    {
+        estado = 0;
+    }
 
     if (Plataforma::posicoesParaPlataforma.empty())
     {
@@ -47,15 +61,15 @@ NightFall::Entidades::Obstaculos::Plataforma::Plataforma() :
     std::cout <<"Plataforma x = " << posicao.x << " y = " << posicao.y << std::endl;
 }
 
-NightFall::Entidades::Obstaculos::Plataforma::Plataforma(bool par, bool mov) :
+NightFall::Entidades::Obstaculos::Plataforma::Plataforma(int est) :
     Obstaculo(),
     altura(6),
-    parede(par),
-    movel(mov),
-    posicaoOriginalY(0)
+    posicaoOriginalY(0),
+    amplitudeMovimento(25.f)
 {
     id = 4;
-    if (par)
+    estado = est;
+    if (estado == 2)
     {
         (this)->setTextura("Parede");
         corpo.setScale(0.3f, altura * 0.1f);
@@ -63,6 +77,14 @@ NightFall::Entidades::Obstaculos::Plataforma::Plataforma(bool par, bool mov) :
     }
     else
     {
+        if (est)
+        {
+            movel = true;
+        }
+        else
+        {
+            movel = false;
+        }
         corpo.setScale(0.3f, altura * 0.1f);
 
         if (Plataforma::posicoesParaPlataforma.empty())
@@ -151,12 +173,12 @@ void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jog
 
 void NightFall::Entidades::Obstaculos::Plataforma::executar()
 {
-    if (parede || !movel)
+    if (estado != 1)
     {
         if (getPosicao().y < pGG->getAlturaChao() - getTamanho().y)
         {
             corpo.move(sf::Vector2f(0.0f, 0.01f));
-            if (!parede)                                    //as plataformas propriamente ditas
+            if (estado != 2)                                //as plataformas propriamente ditas
             {                                               //(todas em que parede = false)
                 corpo.move(sf::Vector2f(0.0f, -0.01f));     //são capazes de flutuar, portanto, sobem tanto quanto
             }                                               //descem, pelo efeito da gravidade
@@ -169,13 +191,13 @@ void NightFall::Entidades::Obstaculos::Plataforma::executar()
     relogioMovimento.restart();
     cooldownInteracao += deltaTempo;
 
-    float amplitude = 25.f;     //distancia entre o meio e o topo da onda senoide (matematica)
+    //amplitude é a distancia entre o meio e o topo da onda senoide (matematica)
     float velocidade = 2.f;     //velocidade em que a onda varia
 
     //a funcao sin() do std é a funcao matematica seno, que varia entre -1 e 1.
     //nos multiplicamos pela amplitude para que ela nao varie apenas entre -1 e 1
     //e sim entre 25 pixels a baixo e 25 pixels a cima
-    float movimentoVertical = std::sin(cooldownInteracao * velocidade) * amplitude;
+    float movimentoVertical = std::sin(cooldownInteracao * velocidade) * amplitudeMovimento;
     //isso se assemelha a funcao matematica Y = sen(X* velocidade) * amplitude
         
     setPosicao(getPosicao().x, posicaoOriginalY + movimentoVertical);
@@ -209,7 +231,16 @@ void NightFall::Entidades::Obstaculos::Plataforma::salvar()
 void NightFall::Entidades::Obstaculos::Plataforma::salvarDataBuffer()
 {
     Obstaculo::salvarDataBuffer();
-    buffer << altura << " " << movel << " "
-        << posicaoOriginalY << " " << parede 
+    buffer << altura << " " << posicaoOriginalY << " "
+        << movel << " " << amplitudeMovimento 
         << std::endl;
+}
+
+void NightFall::Entidades::Obstaculos::Plataforma::carregarPlataforma
+        (int alt, float origPosY, bool mobilidade, int amplitude)
+{
+    altura = alt;
+    posicaoOriginalY = origPosY;
+    movel = mobilidade;
+    amplitudeMovimento = amplitude;
 }

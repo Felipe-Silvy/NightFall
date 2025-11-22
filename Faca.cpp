@@ -88,3 +88,10 @@ void NightFall::Entidades::Faca::salvarDataBuffer()
 	Entidade::salvarDataBuffer();
 	buffer << ativo << " " << danoFaca << " " << esquerda << std::endl;
 }
+
+void NightFall::Entidades::Faca::carregarFaca(bool atividade, int dano, bool esq)
+{
+	ativo = atividade;
+	danoFaca = dano;
+	esquerda = esq;
+}

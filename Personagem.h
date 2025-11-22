@@ -24,11 +24,15 @@ namespace NightFall {
             public:
                 Personagem();
                 ~Personagem();
-                void salvarDataBuffer(); // Implementar depois
-                virtual void executar() = 0;
-                virtual void salvar() = 0;
-                virtual void mover() = 0; 
                 
+                virtual void executar() = 0;
+                
+                virtual void mover() = 0; 
+
+                virtual void salvar() = 0;
+                void salvarDataBuffer();
+                void carregarPersonagem(int vidasSalvas, int velMax, sf::Vector2f velAtual, int pulo, bool chao, float cortempo);
+
                 //Fora do UML
                 virtual void receberDano(unsigned int dano);
                 void aplicarForca(sf::Vector2f forca);

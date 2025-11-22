@@ -11,6 +11,7 @@ namespace NightFall {
            int numVampiros;
            const int maxCristais;
            int numCristais;
+
         protected:
             void criarVampiros();
             void criarCristais();
@@ -22,6 +23,8 @@ namespace NightFall {
             ~FaseSegunda();
             void executar();
             void resetarFase();
+
+            Entidades::Entidade* instanciarEntidadeExclusiva(int id, std::ifstream& arq);
         };
     }
 }

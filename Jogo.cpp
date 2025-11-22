@@ -1,6 +1,8 @@
 #include "Jogo.h"
 #include "Entidade.h"
 
+#include <fstream>
+
 NightFall::Jogo::Jogo() : pJog1(), pJog2(), GG(), MenuJogo(), Fase1(), Fase2(), doisJogadores(false)
 {
     Ente::setGG(&GG);
@@ -28,7 +30,7 @@ void NightFall::Jogo::iniciarFase1()
         std::cout << "2 Jogadores" << std::endl;
     }
 
-    Fase1.executar();
+    Fase1.povoarFase();
 }
 
 void NightFall::Jogo::iniciarFase2()
@@ -40,7 +42,7 @@ void NightFall::Jogo::iniciarFase2()
         std::cout << "2 Jogadores" << std::endl;
     }
 
-    Fase2.executar();
+    Fase2.povoarFase();
 }
 
 void NightFall::Jogo::setDoisJogadores(bool boleano)
@@ -71,5 +73,33 @@ void NightFall::Jogo::salvarJogo()
     else
     {
         std::cout << "Nao ha fase ativa, erro inesperado" << std::endl;
+    }
+}
+
+void NightFall::Jogo::recuperarJogo()
+{
+    std::ifstream recuperaIdFase("Salvamentos/Save.txt");
+
+    if (!recuperaIdFase)
+    {
+        std::cout << "Arquivo para encontra qual fase foi salva esta incorreto" << std::endl;
+    }
+
+    int idFase;
+    recuperaIdFase >> idFase;
+
+    if (idFase == 1)
+    {   
+        Fase1.setJogador(&pJog1);
+        Fase1.recuperarFase();
+    }
+    else if (idFase == 2)
+    {
+        Fase2.setJogador(&pJog1);
+        Fase2.recuperarFase();
+    }
+    else
+    {
+        std::cout << "Fase sendo recuperada possui id impossivel, erro inesperado" << std::endl;
     }
 }

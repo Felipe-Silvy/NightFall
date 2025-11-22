@@ -201,7 +201,6 @@ void NightFall::Menu::escolhePause()
         [this]() { pJog->salvarJogo(); }
     );
     sairDoLoop = false;
-    std::cout << "Retornou!!!!!!!!!!!!!!!!!" << std::endl;
 }
 
 void NightFall::Menu::mostrarRanking()
@@ -213,6 +212,7 @@ void NightFall::Menu::continuarJogo()
 {
     std::cout << "Continuando Jogo Salvo" << std::endl;
     // Vitor faça sua mágica aqui
+    pJog->recuperarJogo();
 }
 
 void NightFall::Menu::loopComAcoes(

@@ -112,6 +112,13 @@ void NightFall::Entidades::Personagens::Vampiro::salvar()
     salvarDataBuffer();
 }
 
+void NightFall::Entidades::Personagens::Vampiro::carregarVampiro
+    (short int forcaSalva, bool atirou)
+{
+    forca = forcaSalva;
+    jaAtirou = atirou;
+}
+
 void NightFall::Entidades::Personagens::Vampiro::salvarDataBuffer()
 {
     Inimigo::salvarDataBuffer();

@@ -126,6 +126,12 @@ void NightFall::Entidades::Personagens::Jogador::salvar()
     salvarDataBuffer();
 }
 
+void NightFall::Entidades::Personagens::Jogador::carregarJogador(int pont, int poder)
+{
+    pontos = pont;
+    poderDano = poder;
+}
+
 void NightFall::Entidades::Personagens::Jogador::salvarDataBuffer()
 {
     Personagem::salvarDataBuffer();

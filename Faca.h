@@ -34,6 +34,7 @@ namespace NightFall
 
 			void salvar();
 			void salvarDataBuffer();
+			void carregarFaca(bool atividade, int dano, bool esq);
 		};
 	}
 }

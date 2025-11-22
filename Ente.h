@@ -24,6 +24,10 @@ namespace NightFall {
         9 - Vampiro
         10 - Faca
         */
+        //Personagens tem id SEMPRE IMPAR
+        //Obstaculos tem indice SEMPRE PAR
+        //Isso é importante deve ser respeitado
+        
         static Gerenciadores::Gerenciador_Grafico* pGG;
         sf::Sprite corpo;
     public:
@@ -45,6 +49,7 @@ namespace NightFall {
         const sf::Vector2f getPosicao() const;
     
         void setTamanho(float x, float y);
+        void setTamanho(sf::Vector2f tam);
         void setPosicao(float x, float y);
         void setPosicao(sf::Vector2f pos);
         void moverCorpo(sf::Vector2f deslocamento);

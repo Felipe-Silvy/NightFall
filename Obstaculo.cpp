@@ -11,7 +11,8 @@
 NightFall::Entidades::Obstaculos::Obstaculo::Obstaculo() : 
 	Entidade(), 
 	danoso(false), 
-	cooldownInteracao(0.0f)
+	cooldownInteracao(0.0f),
+	estado(0)
 {
 }
 
@@ -24,5 +25,15 @@ NightFall::Entidades::Obstaculos::Obstaculo::~Obstaculo()
 void NightFall::Entidades::Obstaculos::Obstaculo::salvarDataBuffer()
 {
 	Entidade::salvarDataBuffer();
-	buffer << cooldownInteracao;
+	buffer << estado << " ";
+}
+
+void NightFall::Entidades::Obstaculos::Obstaculo::carregarObstaculo(int estado)
+{
+	this->estado = estado;
+}
+
+const int NightFall::Entidades::Obstaculos::Obstaculo::getEstado() const
+{
+	return estado;
 }

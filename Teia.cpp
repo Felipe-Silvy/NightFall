@@ -63,10 +63,12 @@ void NightFall::Entidades::Obstaculos::Teia::executar()
 		if (rand() % 2) {
 			corpo.setScale(largura * 0.15f, largura * 0.15f);
 			setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
+			estado = 1;
 		}
 		else {
 			corpo.setScale(largura * 0.1f, largura * 0.1f);
 			setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
+			estado = 0;
 		}
 		cooldownInteracao = 0;
 	}
@@ -83,7 +85,11 @@ void NightFall::Entidades::Obstaculos::Teia::executar()
 
 void NightFall::Entidades::Obstaculos::Teia::obstaculizar(Personagens::Jogador* p)
 {
-	p->setVelocidadeX((p->getVelocidade().x * desaceleracao));
+	int desacelerar_pratico = desaceleracao;
+	if (!estado)
+		desacelerar_pratico *= 0.5f;
+	
+	p->setVelocidadeX((p->getVelocidade().x * desacelerar_pratico));
 }
 
 void NightFall::Entidades::Obstaculos::Teia::resetPosicoes()
@@ -104,6 +110,12 @@ void NightFall::Entidades::Obstaculos::Teia::salvar()
 	buffer.clear();
 
 	salvarDataBuffer();
+}
+
+void NightFall::Entidades::Obstaculos::Teia::carregarTeia(float larg, float desacel)
+{
+	largura = larg;
+	desaceleracao = desacel;
 }
 
 void NightFall::Entidades::Obstaculos::Teia::salvarDataBuffer()

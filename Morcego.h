@@ -21,6 +21,7 @@ namespace NightFall {
 
                 void salvarDataBuffer();
                 void salvar();
+                void carregarMorcego(float rai);
             };
         } // namespace Personagens
     } // namespace Entidades

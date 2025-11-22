@@ -8,7 +8,7 @@ NightFall::Entidades::Personagens::Jogador* NightFall::Entidades::Personagens::I
 
 NightFall::Entidades::Personagens::Inimigo::Inimigo() : 
 	Personagem(), 
-	nivel_maldade(10+rand()%20),
+	nivel_maldade(10),
 	alcancePerseguir(200.0f),
 	direcaoAleatoria( rand() % 3 ),
     tempoVagar(0.0f)
@@ -131,6 +131,7 @@ void NightFall::Entidades::Personagens::Inimigo::setJogador(Jogador* pJogad)
 
 void NightFall::Entidades::Personagens::Inimigo::salvar()
 {
+    bufferInterno.str("");
     buffer.clear();
 
     salvarDataBuffer();
@@ -144,5 +145,11 @@ void NightFall::Entidades::Personagens::Inimigo::salvarDataBuffer()
     //cada classe tem um nivel_maldade sempre igual e constante
     //por isso desnecessario guardar
     //alcance perseguir é sempre o mesmo desnecessario guardar
+}
+
+void NightFall::Entidades::Personagens::Inimigo::carregarInimigo(int direcao, int vagar)
+{
+    direcaoAleatoria = direcao;
+    tempoVagar = vagar;
 }
 

@@ -49,19 +49,20 @@ NightFall::Entidades::Obstaculos::Cristal::~Cristal()
 
 void NightFall::Entidades::Obstaculos::Cristal::executar()
 {
-	//Devemos implementar um executar no cristal
-	//Talvez semelhante a teia ou a plataforma?
-
 	deltaTempo = relogioMovimento.restart().asSeconds();
 	relogioMovimento.restart();
 	cooldownInteracao += deltaTempo;
 
 	if (cooldownInteracao >= 5.0f) {
-		if (rand() % 2) {
+		if (rand() % 2)
+		{
 			setPosicao(getPosicao().x + 10.0f, pGG->getAlturaChao() - getTamanho().y);
+			estado = 0;
 		}
-		else {
+		else
+		{
 			setPosicao(getPosicao().x - 10.0f, pGG->getAlturaChao() - getTamanho().y);
+			estado = 1;
 		}
 		cooldownInteracao = 0;
 	}
@@ -81,7 +82,10 @@ void NightFall::Entidades::Obstaculos::Cristal::obstaculizar(Personagens::Jogado
 	if (p != nullptr && podeDanificar())
 	{
 		std::cout << "Machucado pelo cristal" << std::endl;
-		p->receberDano(danosidade);
+		if (estado)
+			p->receberDano(danosidade * 1.5f);
+		else
+			p->receberDano(danosidade);
 	}
 }
 
@@ -103,6 +107,11 @@ void NightFall::Entidades::Obstaculos::Cristal::salvar()
 	buffer.clear();
 
 	salvarDataBuffer();
+}
+
+void NightFall::Entidades::Obstaculos::Cristal::carregarCristal(int danosi)
+{
+	danosidade = danosi;
 }
 
 void NightFall::Entidades::Obstaculos::Cristal::salvarDataBuffer()

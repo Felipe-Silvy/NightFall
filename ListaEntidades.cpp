@@ -80,7 +80,7 @@ void NightFall::Listas::ListaEntidades::resetarClocks()
     }
 }
 
-void NightFall::Listas::ListaEntidades::salvarEntidades()
+void NightFall::Listas::ListaEntidades::salvarEntidades(int idDaFase)
 {
     const int tam = LEs.getTam();
 
@@ -92,6 +92,21 @@ void NightFall::Listas::ListaEntidades::salvarEntidades()
         return;
     }
 
+    //A primeira linha iremos inserir qual fase é a que está sendo salva
+
+    if (idDaFase == 1)
+    {
+        arquivo << "1" << std::endl;
+    }
+    else if (idDaFase == 2)
+    {
+        arquivo << "2" << std::endl;
+    }
+    else
+    {
+        std::cout << "Erro relacionado ao id da fase no salvamento" << std::endl;
+    }
+
     for (int i = 0; i < tam; i++)
     {
         Entidades::Entidade* navegador = LEs[i];
@@ -100,8 +115,7 @@ void NightFall::Listas::ListaEntidades::salvarEntidades()
             continue;
 
         navegador->salvar();
-        arquivo << "! " << navegador->getBufferString();
-        
+        arquivo << navegador->getBufferString();
     }
 }
 

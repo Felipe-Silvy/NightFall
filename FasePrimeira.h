@@ -21,6 +21,8 @@ namespace NightFall {
             ~FasePrimeira();
             void executar();
             void resetarFase();
+
+            Entidades::Entidade* instanciarEntidadeExclusiva(int id, std::ifstream& arq);
         };
     }
 }

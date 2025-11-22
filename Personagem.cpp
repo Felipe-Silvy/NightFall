@@ -98,11 +98,20 @@ void NightFall::Entidades::Personagens::Personagem::salvarDataBuffer()
         << velocidade << " "
         << velocidadeAtual.x << " "
         << velocidadeAtual.y << " "
-        << aceleracao.x << " "
-        << aceleracao.y << " "
         << forcaPulo << " "
         << noChao << " "
         << tempoMudancaCor << " ";
+}
+
+void NightFall::Entidades::Personagens::Personagem::carregarPersonagem
+    (int vidasSalvas, int velMax, sf::Vector2f velAtual, int pulo, bool chao, float cortempo)
+{
+    num_vidas = vidasSalvas;
+    velocidade = velMax;
+    velocidadeAtual = velAtual;
+    forcaPulo = pulo;
+    noChao = chao;
+    tempoMudancaCor = cortempo;
 }
 
 /*

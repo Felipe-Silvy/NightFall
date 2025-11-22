@@ -30,6 +30,7 @@ namespace NightFall {
         const bool getDoisJogadores() const;
         void jogoPausar();
         void salvarJogo();
+        void recuperarJogo();
     };
 }
 

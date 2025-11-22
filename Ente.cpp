@@ -62,6 +62,11 @@ void NightFall::Ente::setTamanho(float x, float y)
     corpo.setScale(x, y);
 }
 
+void NightFall::Ente::setTamanho(sf::Vector2f tam)
+{
+    corpo.setScale(tam);
+}
+
 void NightFall::Ente::setPosicao(float x, float y)
 {
     corpo.setPosition(x, y);

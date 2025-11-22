@@ -28,6 +28,7 @@ namespace NightFall
 
                 void salvarDataBuffer();
                 void salvar();
+                void carregarTeia(float larg, float desacel);
             };
         }
     }

@@ -6,6 +6,7 @@
 #include "Gerenciador_Eventos.h"
 #include <iostream>
 #include "Jogo.h"
+#include <fstream>
 
 
 void NightFall::Fases::FasePrimeira::criarEsqueletos()
@@ -38,7 +39,7 @@ void NightFall::Fases::FasePrimeira::criarInimigos()
 {
 	criarEsqueletos();
 	criarMorcegos();
-	NightFall::Entidades::Personagens::Inimigo::setJogador(pJog1);
+	
 }
 
 void NightFall::Fases::FasePrimeira::criarObstaculo()
@@ -61,22 +62,67 @@ NightFall::Fases::FasePrimeira::~FasePrimeira()
 {
 }
 
+NightFall::Entidades::Entidade* NightFall::Fases::FasePrimeira::instanciarEntidadeExclusiva(int id, std::ifstream& arq)
+{
+	//personagem
+	int vidas = -1, velMax = -1;
+	sf::Vector2f velAtual;
+	int pulo = -1;
+	bool chao = false;
+	float tempoCor = 0.0f;
+
+	//inimigo
+	int direcao;
+	float tempovagar;
+
+	//obstaculo
+	int esta;
+
+	float larg = -1.f, desac = -1.f;
+	int tam = -1, rigidez = -1;
+
+	NightFall::Entidades::Obstaculos::Teia* alocadorTeia = nullptr;
+
+	switch (id) {
+	case 6: // TEIA
+		std::cout << "Teia" << std::endl;
+
+		arq >>  larg >> desac;
+		alocadorTeia = new NightFall::Entidades::Obstaculos::Teia();
+		alocadorTeia->carregarTeia(larg, desac);
+
+		alocadorTeia->setTextura("Teia");
+		return alocadorTeia;
+
+	case 7: // ESQUELETO
+		std::cout << "Esqueleto" << std::endl;
+		arq >> direcao >> tempovagar >> tam >> rigidez;
+		NightFall::Entidades::Personagens::Esqueleto* alocadorEsqueleto = new NightFall::Entidades::Personagens::Esqueleto();
+		
+		alocadorEsqueleto->carregarInimigo(direcao, tempovagar);		
+		alocadorEsqueleto->carregarEsqueleto(tam, rigidez);
+
+		alocadorEsqueleto->setTextura("Esqueleto");
+		GC.incluirInimigo(alocadorEsqueleto);
+		alocadorEsqueleto->resetarUltimaPosicao();
+
+		return alocadorEsqueleto;
+	}
+	return nullptr; 
+}
+
+
 void NightFall::Fases::FasePrimeira::executar()
 {
 	NightFall::Fases::Fase::executar();
-	pGG->setAlturaChao(575.0f);
-	pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y) );
-	if (pJog2 != nullptr && pJog->getDoisJogadores())
-		pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
-
-	criarInimigos();
-	criarObstaculo();
-	criarCenario();
-
 	
+
 	if (!(pJog->getDoisJogadores()))
 	{
 		//trecho similar ao codigo do ex-monitor Giovane Limas Salvi
+
+		std::cout << "Parou logo apos pJog1->getVida()" << std::endl;
+
 		while (pGG->verificaAbertura() && 
 			pJog1->getVida() > 0 && 
 			(pJog1->getCorpo().getPosition().x < posFinal.x || 

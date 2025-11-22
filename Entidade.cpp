@@ -1,7 +1,7 @@
 #include "Entidade.h"
 
 NightFall::Entidades::Entidade::Entidade() :
-	Ente(), 
+	Ente(),
 	deltaTempo(0.0f),
 	cooldownDano(0.0f),
 	buffer(&bufferInterno)
@@ -12,17 +12,14 @@ NightFall::Entidades::Entidade::Entidade() :
 NightFall::Entidades::Entidade::~Entidade() {}
 
 void NightFall::Entidades::Entidade::salvarDataBuffer()
-{ 
+{
 	//Informacoes pertinentes a ente
 	buffer << id << " "
 		<< corpo.getScale().x << " "
 		<< corpo.getScale().y << " "
 		<< corpo.getPosition().x << " "
-		<< corpo.getPosition().y << " "
-		//Informacoes pertinentes a entidade
-		<< deltaTempo << " "
-		<< cooldownDano << " ";
-};
+		<< corpo.getPosition().y << " ";
+}
 
 const bool NightFall::Entidades::Entidade::podeDanificar()
 {

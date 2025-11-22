@@ -88,6 +88,13 @@ void NightFall::Entidades::Personagens::Esqueleto::salvar()
     salvarDataBuffer();
 }
 
+void NightFall::Entidades::Personagens::Esqueleto::carregarEsqueleto
+    (int tam, int rigid)
+{
+    tamanho = tam;
+    rigidez_ossea = rigid;
+}
+
 void NightFall::Entidades::Personagens::Esqueleto::salvarDataBuffer()
 {
     Inimigo::salvarDataBuffer();

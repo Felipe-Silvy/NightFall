@@ -9,6 +9,8 @@
 #include "Cristal.h"
 #include "Faca.h"
 
+#include <fstream>
+
 
 NightFall::Fases::FaseSegunda::FaseSegunda() : 
 	Fase(), 
@@ -71,17 +73,11 @@ void NightFall::Fases::FaseSegunda::criarCristais()
 	}
 }
 
+
 void NightFall::Fases::FaseSegunda::executar()
 {
 	NightFall::Fases::Fase::executar();
-	pGG->setAlturaChao(600.0f);
-	pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
-	if (pJog2 != nullptr && pJog->getDoisJogadores())
-		pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
-
-	criarInimigos();
-	criarObstaculo();
-	criarCenario();
+		//precisa ser antes para o funcionamento dos cristais
 
 	//trecho similar ao codigo do ex-monitor Giovane Limas Salvi
 
@@ -171,5 +167,59 @@ void NightFall::Fases::FaseSegunda::criarInimigos()
 	criarProjeteis();
 	criarVampiros();
 	criarMorcegos();
-	NightFall::Entidades::Personagens::Inimigo::setJogador(pJog1);
+}
+
+NightFall::Entidades::Entidade* NightFall::Fases::FaseSegunda::instanciarEntidadeExclusiva(int id, std::ifstream& arq)
+{
+	NightFall::Entidades::Obstaculos::Cristal* alocadorCristal = nullptr;
+	NightFall::Entidades::Personagens::Vampiro* alocadorVampiro = nullptr;
+	NightFall::Entidades::Faca* alocadorFaca = nullptr;
+
+	//personagem
+	int vidas = -1, velMax = -1;
+	sf::Vector2f velAtual;
+	int pulo = -1;
+	bool chao = false;
+	float tempoCor = 0.0f;
+
+	//inimigo
+	int direcao;
+	float tempovagar;
+
+	//obstaculo
+	int esta;
+
+	switch (id) {
+	case 8: // Cristal
+		int dan;
+		arq  >> dan;
+		alocadorCristal = new NightFall::Entidades::Obstaculos::Cristal();
+		alocadorCristal->carregarCristal(dan);
+		alocadorCristal->setTextura("Cristal");
+		return alocadorCristal;
+
+	case 9: // Vampiro
+		int forca, atirou;
+		arq >> direcao >> tempovagar >> forca >> atirou;
+		alocadorVampiro = new NightFall::Entidades::Personagens::Vampiro();
+
+		alocadorVampiro->carregarInimigo(direcao, tempovagar);
+		alocadorVampiro->carregarVampiro(forca, atirou);
+
+		alocadorVampiro->setTextura("Vampiro");
+		GC.incluirInimigo(alocadorVampiro);
+		alocadorVampiro->resetarUltimaPosicao();
+		return alocadorVampiro;
+
+	case 10: // Faca
+		bool ativ; int dano; bool esq;
+		arq >> ativ >> dano >> esq;
+		alocadorFaca = new NightFall::Entidades::Faca();
+		alocadorFaca->carregarFaca(ativ, dano, esq);
+		alocadorFaca->setTextura("Faca");
+		GC.incluirProjetil(alocadorFaca);
+
+		return alocadorFaca;
+	}
+	return nullptr;
 }

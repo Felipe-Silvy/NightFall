@@ -22,6 +22,7 @@ namespace NightFall {
 
                 void salvarDataBuffer();
                 void salvar();
+                void carregarJogador(int pont, int poder);
 
                 void mover(); 
                 // ...

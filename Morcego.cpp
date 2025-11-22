@@ -7,7 +7,7 @@ sf::Vector2f NightFall::Entidades::Personagens::Morcego::ultimaPosicao = { 0.0f,
 
 NightFall::Entidades::Personagens::Morcego::Morcego() :
     Inimigo(),
-    raio(1.5),
+    raio(1.5f),
     voo(1000.0f)
 {
     id = 5;
@@ -141,11 +141,15 @@ void NightFall::Entidades::Personagens::Morcego::salvar()
     salvarDataBuffer();
 }
 
+void NightFall::Entidades::Personagens::Morcego::carregarMorcego(float rai)
+{
+    raio = rai;
+}
+
 void NightFall::Entidades::Personagens::Morcego::salvarDataBuffer()
 {
-    //voo e raio sao sempre os mesmos para  todos 
+    //voo e raio sao sempre os mesmos para todos 
     //os morcegos logo nao precisam ser armazenados
     Inimigo::salvarDataBuffer();
-    buffer << std::endl;
-   // buffer << raio;
+    buffer << raio << std::endl;
 }
