@@ -231,6 +231,7 @@ void NightFall::Menu::loopComAcoes(
             if (event.type == sf::Event::Closed)        //ADICIONAR FECHAR COM ESC AQUI DEPOIS
                 pGG->fecharJanela();
 
+            //VOLTAR PARA O PRIMEIRO MENU
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
             {
                 sairDoLoop = true;
