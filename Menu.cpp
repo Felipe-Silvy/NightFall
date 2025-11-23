@@ -193,7 +193,7 @@ void NightFall::Menu::escolheFase()
 
 void NightFall::Menu::escolhePause()
 {
-    textoBotao1.setString("Voltar");
+    textoBotao1.setString("Voltar a fase");
     textoBotao2.setString("Salvar");
     centralizarTextos();
 
