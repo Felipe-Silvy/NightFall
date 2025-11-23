@@ -34,7 +34,7 @@ namespace NightFall {
             
                 virtual void salvar() = 0;
                 virtual void salvarDataBuffer();
-                void carregarInimigo(int direcao, int vagar);
+                void carregarInimigo(int direcao, float vagar);
             };
         } // namespace Personagens
     } // namespace Entidades

@@ -74,7 +74,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 
 	std::list<Entidades::Obstaculos::Obstaculo*>::iterator it;
 
-	for (i = 0; i < LJs.size(); i++)
+	for (i = 0; i < (int) LJs.size(); i++)
 	{
 		Entidades::Personagens::Jogador* jogadorComparado = LJs[i];
 		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
@@ -126,7 +126,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsInimigs()
 
 	bool colisaoInimigos = false;
 
-	for (i = 0; i < LJs.size(); i++)
+	for (i = 0; i < (int) LJs.size(); i++)
 	{
 		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
 
@@ -164,7 +164,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsProjeteis
 
 	bool colisaoProjeteis = false;
 
-	for (i = 0; i < LJs.size(); i++)
+	for (i = 0; i < (int) LJs.size(); i++)
 	{
 		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
 

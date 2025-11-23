@@ -186,12 +186,13 @@ NightFall::Entidades::Entidade* NightFall::Fases::FaseSegunda::instanciarEntidad
 	int direcao;
 	float tempovagar;
 
-	//obstaculo
-	int esta;
+	//ListaDeFacas para refazer a relacao entre as facas e os vampiros
+	std::set<NightFall::Entidades::Faca*>* Lista_projeteis = GC.getListaProjeteis();
+	std::set<NightFall::Entidades::Faca*>::iterator itFaca = Lista_projeteis->begin();
 
 	switch (id) {
 	case 8: // Cristal
-		int dan;
+		short int dan;
 		arq  >> dan;
 		alocadorCristal = new NightFall::Entidades::Obstaculos::Cristal();
 		alocadorCristal->carregarCristal(dan);
@@ -199,23 +200,38 @@ NightFall::Entidades::Entidade* NightFall::Fases::FaseSegunda::instanciarEntidad
 		return alocadorCristal;
 
 	case 9: // Vampiro
-		int forca, atirou;
-		arq >> direcao >> tempovagar >> forca >> atirou;
+		int forca, atirou, indVampFaca;
+		arq >> direcao >> tempovagar >> forca >> atirou >> indVampFaca;
 		alocadorVampiro = new NightFall::Entidades::Personagens::Vampiro();
 
 		alocadorVampiro->carregarInimigo(direcao, tempovagar);
-		alocadorVampiro->carregarVampiro(forca, atirou);
+		alocadorVampiro->carregarVampiro(forca, atirou, indVampFaca);
 
 		alocadorVampiro->setTextura("Vampiro");
 		GC.incluirInimigo(alocadorVampiro);
 		alocadorVampiro->resetarUltimaPosicao();
+
+		while (itFaca != Lista_projeteis->end())
+		{
+			if ((*itFaca)->getIndiceFaca() == indVampFaca)
+			{
+				alocadorVampiro->setFaca((*itFaca));
+				std::cout << "Faca foi reassociada!" << std::endl;
+			}
+				
+			itFaca++;
+		}
+
 		return alocadorVampiro;
 
 	case 10: // Faca
-		bool ativ; int dano; bool esq;
-		arq >> ativ >> dano >> esq;
+		bool ativ; 
+		int dano; 
+		bool esq;
+		int indFacaVamp;
+		arq >> ativ >> dano >> esq >> indFacaVamp;
 		alocadorFaca = new NightFall::Entidades::Faca();
-		alocadorFaca->carregarFaca(ativ, dano, esq);
+		alocadorFaca->carregarFaca(ativ, dano, esq, indFacaVamp);
 		alocadorFaca->setTextura("Faca");
 		GC.incluirProjetil(alocadorFaca);
 

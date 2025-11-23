@@ -16,6 +16,7 @@ namespace NightFall {
                 float quandoAtirar;
                 static sf::Vector2f ultimaPosicao;
                 Entidades::Faca* pFaca;
+                int indiceDaFacaAssociada;
             public:
                 Vampiro();
                 ~Vampiro();
@@ -27,7 +28,7 @@ namespace NightFall {
 
                 void salvarDataBuffer();
                 void salvar();
-                void carregarVampiro(short int forcaSalva, bool atirou);
+                void carregarVampiro(short int forcaSalva, bool atirou, int indFaca);
             };
         } // namespace Personagens
     } // namespace Entidades

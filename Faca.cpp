@@ -2,11 +2,14 @@
 #include "Jogador.h"
 #include "Vampiro.h"
 
+int NightFall::Entidades::Faca::contaIndices = 0;
+
 NightFall::Entidades::Faca::Faca() :
 	ativo(false),
 	danoFaca(30),
 	pVampiro(nullptr),
-	esquerda(false)
+	esquerda(false),
+	indiceFacaVampiro(contaIndices++)
 {
 	id = 10;
 	corpo.setScale(0.05f, 0.05f);
@@ -60,6 +63,11 @@ void NightFall::Entidades::Faca::setVampiro(Personagens::Vampiro* vamps)
 	}
 }
 
+const int NightFall::Entidades::Faca::getIndiceFaca() const
+{
+	return indiceFacaVampiro;
+}
+
 const bool NightFall::Entidades::Faca::getAtivo() const
 {
 	return ativo;
@@ -86,12 +94,15 @@ void NightFall::Entidades::Faca::salvar()
 void NightFall::Entidades::Faca::salvarDataBuffer()
 {
 	Entidade::salvarDataBuffer();
-	buffer << ativo << " " << danoFaca << " " << esquerda << std::endl;
+	buffer << ativo << " " << danoFaca << " " 
+		<< esquerda << " " << indiceFacaVampiro 
+		<< std::endl;
 }
 
-void NightFall::Entidades::Faca::carregarFaca(bool atividade, int dano, bool esq)
+void NightFall::Entidades::Faca::carregarFaca(bool atividade, int dano, bool esq, int indiceDaFaca)
 {
 	ativo = atividade;
 	danoFaca = dano;
 	esquerda = esq;
+	indiceFacaVampiro = indiceDaFaca;
 }

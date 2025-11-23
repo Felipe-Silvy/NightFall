@@ -28,7 +28,7 @@ void NightFall::Fases::FasePrimeira::criarTeias()
 	NightFall::Entidades::Obstaculos::Teia* alocadorTeia = nullptr;
 	int i;
 	for (i = 0; i < numTeias; i++) {
-		alocadorTeia = new NightFall::Entidades::Obstaculos::Teia(false, 0.90, 0.8f); // VALORES DE TESTE
+		alocadorTeia = new NightFall::Entidades::Obstaculos::Teia(false, 0.90f, 0.8f); // VALORES DE TESTE
 		alocadorTeia->setTextura("Teia");
 		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorTeia));
 		GC.incluirObstaculo(alocadorTeia);
@@ -75,9 +75,6 @@ NightFall::Entidades::Entidade* NightFall::Fases::FasePrimeira::instanciarEntida
 	int direcao;
 	float tempovagar;
 
-	//obstaculo
-	int esta;
-
 	float larg = -1.f, desac = -1.f;
 	int tam = -1, rigidez = -1;
 
@@ -117,7 +114,7 @@ void NightFall::Fases::FasePrimeira::executar()
 	NightFall::Fases::Fase::executar();
 	
 
-	if (!(pJog->getDoisJogadores()))
+	if (pJog->getDoisJogadores() == false)
 	{
 		//trecho similar ao codigo do ex-monitor Giovane Limas Salvi
 

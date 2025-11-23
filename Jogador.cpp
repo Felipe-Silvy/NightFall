@@ -2,7 +2,7 @@
 #include "Inimigo.h"
 #include "Gerenciador_Grafico.h"
 #include <iostream>
-#include <iomanip>.
+#include <iomanip>
 
 NightFall::Entidades::Personagens::Jogador::Jogador() : 
     Personagem() , 

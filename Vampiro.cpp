@@ -5,10 +5,13 @@
 #include "Faca.h"
 
 NightFall::Entidades::Personagens::Vampiro::Vampiro() :
-    pFaca(nullptr), quandoAtirar(0.0), jaAtirou(false)
+    pFaca(nullptr), 
+    quandoAtirar(0.0), 
+    jaAtirou(false),
+    indiceDaFacaAssociada(-1)
 {
     id = 9;
-    forca = 5+ rand()%11;
+    forca = 5 + rand()%11;
     nivel_maldade = 60;
     num_vidas = 80;
     corpo.setScale(0.1f, 0.1f);
@@ -87,6 +90,7 @@ void NightFall::Entidades::Personagens::Vampiro::setFaca(Faca* pFac)
     {
         pFaca = pFac;
         pFac->setVampiro(this);
+        indiceDaFacaAssociada = pFac->getIndiceFaca();
     }
 }
 
@@ -113,16 +117,18 @@ void NightFall::Entidades::Personagens::Vampiro::salvar()
 }
 
 void NightFall::Entidades::Personagens::Vampiro::carregarVampiro
-    (short int forcaSalva, bool atirou)
+    (short int forcaSalva, bool atirou, int indFaca)
 {
     forca = forcaSalva;
     jaAtirou = atirou;
+    indiceDaFacaAssociada = indFaca;
 }
 
 void NightFall::Entidades::Personagens::Vampiro::salvarDataBuffer()
 {
     Inimigo::salvarDataBuffer();
-    buffer << forca << " " << jaAtirou << " " << std::endl;
+    buffer << forca << " " << jaAtirou << " " 
+        << indiceDaFacaAssociada <<std::endl;
     //quandoAtirar é inicializado igual para todos os vampiros
     //pFaca sera recuperado de forma diferente
 }

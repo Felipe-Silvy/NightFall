@@ -23,7 +23,7 @@ namespace NightFall
 
                 static void resetPosicoes();
                 void salvar();
-                void carregarCristal(int danosi);
+                void carregarCristal(short int danosi);
             };
         }
     }

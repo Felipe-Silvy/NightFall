@@ -64,10 +64,12 @@ void NightFall::Fases::Fase::criarCenario()
 	if (id == 1)
 	{
 		setTextura("FundoFase1");
+		pGG->setAlturaChao(575.0f);
 	}
 	else if(id == 2)
 	{
 		setTextura("FundoFase2");
+		pGG->setAlturaChao(600.0f);
 	}
 
     const sf::Texture* pTextura = corpo.getTexture();
@@ -118,7 +120,7 @@ const bool NightFall::Fases::Fase::getAtiva() const
 
 void NightFall::Fases::Fase::salvarFase()
 {
-	lista_ents.salvarEntidades(id);
+	lista_ents.salvarEntidades(id, pJog->getDoisJogadores() );
 }
 
 void NightFall::Fases::Fase::recuperarFase()
@@ -126,14 +128,16 @@ void NightFall::Fases::Fase::recuperarFase()
 	std::ifstream recuperadorEntidades("Salvamentos/Save.txt");
 
 	if (!recuperadorEntidades.is_open())
-		std::cout << "ERRO: arquivo nao abriu" << std::endl;
-	int idFase;
-
-	std::cout << "Chegou no recuperarFase" << std::endl;
+	{
+		std::cout << "Arquivo nao abriu" << std::endl;
+	}
 
 	criarCenario();
 
-	recuperadorEntidades >> idFase;
+	//Apenas esvaziando essa parte do arquivo que nao sera usada agora
+	int idFase;
+	bool doisJogadores;
+	recuperadorEntidades >> idFase >> doisJogadores;
 	
 	//Parte de codigo inspirada no codigo do professor Jeans Simão
 	//E no codigo do ex-monitor Giovane Limas Salvi
@@ -150,10 +154,6 @@ void NightFall::Fases::Fase::recuperarFase()
 	int pulo = -1;
 	bool chao = false;
 	float tempoCor = 0.0f;
-
-	//inimigo
-	int direcao;
-	float tempovagar;
 
 	//obstaculo
 	int esta = -1;
@@ -203,6 +203,10 @@ void NightFall::Fases::Fase::recuperarFase()
 
 			std::cout << "Instanciou um obstaculo" << std::endl;
 		}
+		else //NESSE CASO O ID É 10 E É UMA FACA
+		{
+			novaEntidade = instanciarEntidadeExclusiva(idEntidade, recuperadorEntidades);
+		}
 		if (novaEntidade)
 		{
 			novaEntidade->setPosicao(posicao);
@@ -224,10 +228,6 @@ void NightFall::Fases::Fase::recuperarFase()
 
 NightFall::Entidades::Entidade* NightFall::Fases::Fase::instanciarEntidadeGenerica(int id, std::ifstream& arq, bool* primeiroJogador, int esta)
 {
-	//entidade e ente
-	int idEntidade = -1;
-	sf::Vector2f escala, posicao;
-
 	//personagem
 	int vidas = -1, velMax = -1;
 	sf::Vector2f velAtual;
@@ -239,11 +239,11 @@ NightFall::Entidades::Entidade* NightFall::Fases::Fase::instanciarEntidadeGeneri
 	int direcao;
 	float tempovagar;
 	
-	pJog->setDoisJogadores(false);
 	int pontos = -1, poder = -1;
 
 	NightFall::Entidades::Obstaculos::Plataforma* alocadorPlataforma = nullptr;
-	int altura = -1, origposy = -1;
+	int altura = -1;
+	float origposy = -1;
 	bool mobil = false;
 	int ampl = -1;
 
@@ -264,7 +264,6 @@ NightFall::Entidades::Entidade* NightFall::Fases::Fase::instanciarEntidadeGeneri
 		}
 		else
 		{
-			pJog->setDoisJogadores(true);
 			pJog2->carregarJogador(pontos, poder);
 			return pJog2;
 		}
@@ -324,18 +323,13 @@ void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)
 
 void NightFall::Fases::Fase::povoarFase()
 {
-	if(id == 1)
-		pGG->setAlturaChao(575.0f);
-	else if(id == 2)
-		pGG->setAlturaChao(600.0f);
-	
 	pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
 	if (pJog2 != nullptr && pJog->getDoisJogadores())
 		pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
 
+	criarCenario();	//deve ser o primeiro para o set chao ser feito no momento correto
 	criarInimigos();
 	criarObstaculo();
-	criarCenario();
 
 	executar();
 }
@@ -371,7 +365,7 @@ void NightFall::Fases::Fase::executar()
 
 
 	NightFall::Entidades::Personagens::Inimigo::setJogador(pJog1);
-	if(pJog->getDoisJogadores())
+	if(pJog2 != nullptr && pJog->getDoisJogadores())
 		NightFall::Entidades::Personagens::Inimigo::setJogador(pJog2);
 }
 

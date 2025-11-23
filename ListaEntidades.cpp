@@ -80,7 +80,7 @@ void NightFall::Listas::ListaEntidades::resetarClocks()
     }
 }
 
-void NightFall::Listas::ListaEntidades::salvarEntidades(int idDaFase)
+void NightFall::Listas::ListaEntidades::salvarEntidades(int idFase, bool doisJogadores)
 {
     const int tam = LEs.getTam();
 
@@ -93,18 +93,32 @@ void NightFall::Listas::ListaEntidades::salvarEntidades(int idDaFase)
     }
 
     //A primeira linha iremos inserir qual fase é a que está sendo salva
+    //E tambem a quantidade de jogadores na fase (0 = 1 jogador, 1 = 2 jogadores)
 
-    if (idDaFase == 1)
+    if (idFase == 1)
     {
-        arquivo << "1" << std::endl;
+        arquivo << "1 ";
     }
-    else if (idDaFase == 2)
+    else if (idFase == 2)
     {
-        arquivo << "2" << std::endl;
+        arquivo << "2 ";
     }
     else
     {
         std::cout << "Erro relacionado ao id da fase no salvamento" << std::endl;
+    }
+
+    if (doisJogadores == false)
+    {
+        arquivo << "0" << std::endl;
+    }
+    else if (doisJogadores == true)
+    {
+        arquivo << "1" << std::endl;
+    }
+    else
+    {
+        std::cout << "Erro numero jogadores salvamento" << std::endl;
     }
 
     for (int i = 0; i < tam; i++)

@@ -88,7 +88,7 @@ void NightFall::Menu::executar()
     botao2.setPosition(posX_Botao1 + botao1.getSize().x + espacamento, posY);
 
 
-    escolheAcao();
+    escolheAcao();      //JOGAR OU RANKING
 }
 
 void NightFall::Menu::executarTelaPause()
@@ -142,15 +142,15 @@ void NightFall::Menu::executarTelaPause()
     escolhePause();
 }
 
-void NightFall::Menu::escolheAcao()
+void NightFall::Menu::escolheAcao()     //JOGAR OU RANKING
 {
     textoBotao1.setString("Jogar");
     textoBotao2.setString("Ranking");
     centralizarTextos();
 
     loopComAcoes(
-        [this]() { escolheJogo(); },
-        [this]() { mostrarRanking(); }
+        [this]() { escolheJogo(); },        //NOVO OU CONTINUAR
+        [this]() { mostrarRanking(); }      //RANKING
     );
 }
 
@@ -174,7 +174,7 @@ void NightFall::Menu::escolheJogadores()
 
     loopComAcoes(
         [this]() { pJog->setDoisJogadores(false); escolheFase(); },
-        [this]() { pJog->setDoisJogadores(true); escolheFase(); }
+        [this]() { pJog->setDoisJogadores(true); escolheFase(); }   //FASE 1 OU 2
     );
 }
 
@@ -188,6 +188,7 @@ void NightFall::Menu::escolheFase()
         [this]() { pJog->iniciarFase1(); escolheAcao(); },
         [this]() { pJog->iniciarFase2(); escolheAcao(); }
     );
+    //Depois de acabar a fase, volta pro menu de escolher ação
 }
 
 void NightFall::Menu::escolhePause()

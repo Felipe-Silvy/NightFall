@@ -74,6 +74,7 @@ void NightFall::Jogo::salvarJogo()
     {
         std::cout << "Nao ha fase ativa, erro inesperado" << std::endl;
     }
+    std::cout << "Jogo Salvo!" << std::endl;
 }
 
 void NightFall::Jogo::recuperarJogo()
@@ -86,16 +87,33 @@ void NightFall::Jogo::recuperarJogo()
     }
 
     int idFase;
-    recuperaIdFase >> idFase;
+    bool doisJogadores;
+    recuperaIdFase >> idFase >> doisJogadores;
 
     if (idFase == 1)
     {   
         Fase1.setJogador(&pJog1);
+
+        setDoisJogadores(doisJogadores);
+        if (doisJogadores)
+        {
+            Fase1.setJogador(&pJog2);
+            std::cout << "2 Jogadores" << std::endl;
+        }
+
         Fase1.recuperarFase();
     }
     else if (idFase == 2)
     {
         Fase2.setJogador(&pJog1);
+
+        setDoisJogadores(doisJogadores);
+        if (doisJogadores)
+        {
+            Fase2.setJogador(&pJog2);
+            std::cout << "2 Jogadores" << std::endl;
+        }
+
         Fase2.recuperarFase();
     }
     else

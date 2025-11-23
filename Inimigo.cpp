@@ -147,7 +147,7 @@ void NightFall::Entidades::Personagens::Inimigo::salvarDataBuffer()
     //alcance perseguir é sempre o mesmo desnecessario guardar
 }
 
-void NightFall::Entidades::Personagens::Inimigo::carregarInimigo(int direcao, int vagar)
+void NightFall::Entidades::Personagens::Inimigo::carregarInimigo(int direcao, float vagar)
 {
     direcaoAleatoria = direcao;
     tempoVagar = vagar;

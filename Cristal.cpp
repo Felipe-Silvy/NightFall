@@ -83,7 +83,7 @@ void NightFall::Entidades::Obstaculos::Cristal::obstaculizar(Personagens::Jogado
 	{
 		std::cout << "Machucado pelo cristal" << std::endl;
 		if (estado)
-			p->receberDano(danosidade * 1.5f);
+			p->receberDano((unsigned int)(danosidade * 1.5f));
 		else
 			p->receberDano(danosidade);
 	}
@@ -109,7 +109,7 @@ void NightFall::Entidades::Obstaculos::Cristal::salvar()
 	salvarDataBuffer();
 }
 
-void NightFall::Entidades::Obstaculos::Cristal::carregarCristal(int danosi)
+void NightFall::Entidades::Obstaculos::Cristal::carregarCristal(short int danosi)
 {
 	danosidade = danosi;
 }
@@ -120,5 +120,5 @@ void NightFall::Entidades::Obstaculos::Cristal::salvarDataBuffer()
 	//porque todos os cristais tem a mesmas danosidade
 	//possivelmente alterar danosidade para um valor rand?
 	Obstaculo::salvarDataBuffer();
-	//buffer << danosidade << std::endl;
+	buffer << danosidade << std::endl;
 }

@@ -32,7 +32,7 @@ namespace NightFall
 			NightFall::Entidades::Entidade* getPrimeiro() const;
 			void deletarElementos();
 			void resetarClocks();
-			void salvarEntidades(int idDaFase);
+			void salvarEntidades(int idFase, bool doisJogadores);
 		};
 	}
 }

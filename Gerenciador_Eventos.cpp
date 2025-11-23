@@ -86,7 +86,7 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 			sf::Vector2f posJogador = pJogador1->getCorpo().getPosition();
 			float alcanceAtaque = 100.f; // definir funcao
 
-			for (int i = 0; i < lista->size(); i++)
+			for (int i = 0; i < (int) lista->size(); i++)
 			{
 				Entidades::Personagens::Inimigo* inimigo = lista->at(i);
 				if (inimigo == nullptr)
@@ -129,7 +129,7 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf:
 			sf::Vector2f posJogador = pJogador2->getCorpo().getPosition();
 			float alcanceAtaque = 150.f; // definir funcao
 
-			for (int i = 0; i < lista->size(); i++)
+			for (int i = 0; i < (int) lista->size(); i++)
 			{
 				Entidades::Personagens::Inimigo* inimigo = lista->at(i);
 				if (inimigo == nullptr)
