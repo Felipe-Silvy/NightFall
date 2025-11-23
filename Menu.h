@@ -38,6 +38,8 @@ namespace NightFall {
         void escolheFase();
         void escolhePause();
 
+        void atualizarRanking(const std::vector<int>& pontos);
+        std::string capturarNomeSFML(int numJog);
         void mostrarRanking();
         void continuarJogo();
         // ...

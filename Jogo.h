@@ -16,7 +16,6 @@ namespace NightFall {
         NightFall::Gerenciadores::Gerenciador_Grafico GG;
         NightFall::Menu MenuJogo;
         NightFall::Fases::FasePrimeira Fase1;
-        // ...
         NightFall::Fases::FaseSegunda Fase2;
 
         bool doisJogadores;
@@ -32,6 +31,7 @@ namespace NightFall {
         void salvarJogo();
         void recuperarJogo();
         void zerarJogador1();
+        void mudarRanking(const std::vector<int>& pontos);
     };
 }
 

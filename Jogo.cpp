@@ -126,3 +126,8 @@ void NightFall::Jogo::zerarJogador1()
 {
     pJog1.setVida(-1);
 }
+
+void NightFall::Jogo::mudarRanking(const std::vector<int>& pontos)
+{
+    MenuJogo.atualizarRanking(pontos);
+}

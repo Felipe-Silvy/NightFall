@@ -1,6 +1,11 @@
 #include "Menu.h"
 #include "Gerenciador_Grafico.h"
 #include "Jogo.h"
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
 
 NightFall::Menu::Menu() : Ente(), sairDoLoop(false)
 {
@@ -204,10 +209,194 @@ void NightFall::Menu::escolhePause()
     sairDoLoop = false;
 }
 
+void NightFall::Menu::atualizarRanking(const std::vector<int>& pontos)
+{
+    using namespace std;
+
+    struct Entrada {
+        string nome;
+        int score;
+    };
+
+    vector<Entrada> ranking;
+
+    ifstream arqIn("Ranking.txt");
+    if (arqIn.is_open()) {
+        string nome;
+        int score;
+
+        while (arqIn >> nome >> score) {
+            ranking.push_back({ nome, score });
+            if (ranking.size() >= 5) break;
+        }
+        arqIn.close();
+    }
+
+    sort(ranking.begin(), ranking.end(),
+        [](const Entrada& a, const Entrada& b) {
+            return a.score > b.score; // maior primeiro
+        }
+    );
+
+    for (size_t i = 0; i < pontos.size(); i++)
+    {
+        int pontosJogador = pontos[i];
+        bool entra = false;
+
+        if (ranking.size() < 5)
+            entra = true;
+        else if (pontosJogador > ranking.back().score)
+            entra = true;
+
+        if (!entra)
+            continue;
+
+        string nomeJogador = capturarNomeSFML(static_cast<int>(i) + 1);
+
+        ranking.push_back({ nomeJogador, pontosJogador });
+
+        sort(ranking.begin(), ranking.end(),
+            [](const Entrada& a, const Entrada& b) {
+                return a.score > b.score;
+            }
+        );
+
+        if (ranking.size() > 5)
+            ranking.resize(5);
+    }
+
+    // -----------------------------
+    // 6. Salvar tudo no arquivo
+    // -----------------------------
+    ofstream arqOut("Ranking.txt", ios::trunc);
+    if (!arqOut.is_open()) {
+        cout << "ERRO AO SALVAR RANKING!" << endl;
+        return;
+    }
+
+    for (auto& e : ranking)
+        arqOut << e.nome << " " << e.score << "\n";
+
+    arqOut.close();
+
+    cout << "Ranking atualizado com sucesso!" << endl;
+}
+
+
+
 void NightFall::Menu::mostrarRanking()
 {
-    std::cout << "Mostrando Ranking" << std::endl;
+    // Lê o ranking do arquivo
+    struct Entrada {
+        std::string nome;
+        int score;
+    };
+
+    std::vector<Entrada> ranking;
+
+    std::ifstream arq("Ranking.txt");
+    if (arq.is_open()) {
+        std::string nome;
+        int score;
+        while (arq >> nome >> score) {
+            ranking.push_back({ nome, score });
+        }
+        arq.close();
+    }
+
+    // ordenar (garantia)
+    std::sort(ranking.begin(), ranking.end(),
+        [](const Entrada& a, const Entrada& b) {
+            return a.score > b.score;
+        }
+    );
+
+    sf::RenderWindow* janela = pGG->getWindow();
+
+    // Ajustar textos dos botões para "Voltar"
+    textoBotao1.setString("Voltar");
+    textoBotao2.setString("");
+    centralizarTextos();
+
+    // Título da tela de ranking
+    sf::Text titulo;
+    titulo.setFont(*(pGG->getFonte()));
+    titulo.setString("Ranking");
+    titulo.setCharacterSize(60);
+    titulo.setFillColor(sf::Color::White);
+
+    sf::Vector2f tamJanela = (sf::Vector2f)janela->getSize();
+    sf::FloatRect rectTitulo = titulo.getGlobalBounds();
+    titulo.setPosition((tamJanela.x - rectTitulo.width) / 2.f, 40.f);
+
+    // Textos do ranking
+    sf::Text textoLinha;
+    textoLinha.setFont(*(pGG->getFonte()));
+    textoLinha.setCharacterSize(32);
+    textoLinha.setFillColor(sf::Color::White);
+
+    // Posição inicial das linhas
+    float startY = 160.f;
+
+    sairDoLoop = false;
+
+    // loop da tela
+    while (janela->isOpen() && !sairDoLoop)
+    {
+        sf::Event event;
+        while (janela->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                pGG->fecharJanela();
+
+            if (event.type == sf::Event::MouseButtonPressed &&
+                event.mouseButton.button == sf::Mouse::Left)
+            {
+                sf::Vector2f mousePos = janela->mapPixelToCoords(
+                    { event.mouseButton.x, event.mouseButton.y }
+                );
+
+                // Botão "Voltar"
+                if (botao1.getGlobalBounds().contains(mousePos))
+                {
+                    sairDoLoop = true;
+                    escolheAcao();      // <-- VOLTA PARA O MENU PRINCIPAL
+                }
+            }
+        }
+
+        janela->clear();
+
+        janela->draw(corpo);
+        janela->draw(titulo);
+
+        // Desenha cada linha do ranking
+        float y = startY;
+        for (int i = 0; i < ranking.size(); i++)
+        {
+            textoLinha.setString(
+                std::to_string(i + 1) + ".  " +
+                ranking[i].nome + " - " +
+                std::to_string(ranking[i].score)
+            );
+
+            float posX = botao1.getPosition().x + botao1.getSize().x + 40.f;
+            textoLinha.setPosition(posX, y);
+            y += 50.f;
+
+            janela->draw(textoLinha);
+        }
+
+        // Botão voltar
+        janela->draw(botao1);
+        janela->draw(textoBotao1);
+
+        janela->display();
+    }
+
+    sairDoLoop = false;
 }
+
 
 void NightFall::Menu::continuarJogo()
 {
@@ -283,4 +472,57 @@ void NightFall::Menu::centralizarTextos()
         rectBotao2.left + (rectBotao2.width - rectTexto2.width) / 2.0f - rectTexto2.left,
         rectBotao2.top + (rectBotao2.height - rectTexto2.height) / 2.0f - rectTexto2.top
     );
+}
+
+std::string NightFall::Menu::capturarNomeSFML(int numJog)
+{
+    std::string nome = "";
+    sf::Text texto;
+    texto.setFont(*(pGG->getFonte()));
+    texto.setCharacterSize(40);
+    texto.setFillColor(sf::Color::White);
+    texto.setPosition(100.f, 200.f);
+
+    sf::RenderWindow* janela = pGG->getWindow();
+
+    while (janela->isOpen())
+    {
+        sf::Event event;
+        while (janela->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                janela->close();
+
+            // Captura caracteres
+            if (event.type == sf::Event::TextEntered)
+            {
+                // ENTER finaliza
+                if (event.text.unicode == '\r' || event.text.unicode == '\n')
+                    return nome;
+
+                // BACKSPACE
+                if (event.text.unicode == 8)
+                {
+                    if (!nome.empty())
+                        nome.pop_back();
+                }
+                // Caractere normal
+                else if (event.text.unicode < 128 &&
+                    std::isalnum(static_cast<char>(event.text.unicode)))
+                {
+                    if (nome.size() < 12)  // limite opcional
+                        nome += static_cast<char>(event.text.unicode);
+                }
+            }
+        }
+
+        texto.setString("Digite o nome do Jogador " + std::to_string(numJog) + ":\n" + nome);
+
+        janela->clear();
+        janela->draw(corpo);
+        janela->draw(texto);
+        janela->display();
+    }
+
+    return nome;
 }

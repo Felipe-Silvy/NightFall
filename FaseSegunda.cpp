@@ -104,7 +104,10 @@ void NightFall::Fases::FaseSegunda::executar()
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x 
 			|| pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
-			// Adicionar Ranking
+			std::vector<int> valores;
+			valores.push_back(pJog1->getPontos());
+			pJog->mudarRanking(valores);
+
 			pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
 		}
 		else
@@ -135,7 +138,11 @@ void NightFall::Fases::FaseSegunda::executar()
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x 
 			|| pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
-			// Adicionar no Ranking
+			std::vector<int> valores;
+			valores.push_back(pJog1->getPontos());
+			valores.push_back(pJog2->getPontos());
+			pJog->mudarRanking(valores);
+
 			pJog1->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog1->getTamanho().y));
 			pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
 		}

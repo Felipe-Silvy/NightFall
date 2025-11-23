@@ -115,7 +115,7 @@ const int NightFall::Entidades::Personagens::Jogador::getPontos() const
 
 void NightFall::Entidades::Personagens::Jogador::operator++()
 {
-    pontos = pontos + 1;
+    pontos = pontos + 5;
 }
 
 void NightFall::Entidades::Personagens::Jogador::salvar()
