@@ -231,6 +231,12 @@ void NightFall::Menu::loopComAcoes(
             if (event.type == sf::Event::Closed)        //ADICIONAR FECHAR COM ESC AQUI DEPOIS
                 pGG->fecharJanela();
 
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+            {
+                sairDoLoop = true;
+                pJog->zerarJogador1();
+            }
+
             if (event.type == sf::Event::MouseButtonPressed &&
                 event.mouseButton.button == sf::Mouse::Left)
             {

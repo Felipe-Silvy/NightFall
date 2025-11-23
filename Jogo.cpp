@@ -121,3 +121,8 @@ void NightFall::Jogo::recuperarJogo()
         std::cout << "Fase sendo recuperada possui id impossivel, erro inesperado" << std::endl;
     }
 }
+
+void NightFall::Jogo::zerarJogador1()
+{
+    pJog1.setVida(-1);
+}

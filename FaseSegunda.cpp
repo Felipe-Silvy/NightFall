@@ -100,6 +100,7 @@ void NightFall::Fases::FaseSegunda::executar()
 			pGG->mostraElementos();
 		}
 		resetarFase();
+		fase_ativa = false;
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x 
 			|| pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
@@ -130,6 +131,7 @@ void NightFall::Fases::FaseSegunda::executar()
 			pGG->mostraElementos();
 		}
 		resetarFase();
+		fase_ativa = false;
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x 
 			|| pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
@@ -143,7 +145,6 @@ void NightFall::Fases::FaseSegunda::executar()
 			pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
 		}
 	}
-	fase_ativa = false;
 }
 
 

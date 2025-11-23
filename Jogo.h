@@ -31,6 +31,7 @@ namespace NightFall {
         void jogoPausar();
         void salvarJogo();
         void recuperarJogo();
+        void zerarJogador1();
     };
 }
 

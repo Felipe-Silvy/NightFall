@@ -140,6 +140,7 @@ void NightFall::Fases::FasePrimeira::executar()
 			pGG->mostraElementos();
 		}
 		resetarFase();
+		fase_ativa = false;
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
 			pJog->iniciarFase2();
@@ -173,8 +174,8 @@ void NightFall::Fases::FasePrimeira::executar()
 			GC.executar();
 			pGG->mostraElementos();
 		}
-			
 		resetarFase();
+		fase_ativa = false;
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x ||	//Testa se nao esta a esquerda da bandeira
 			pJog1->getCorpo().getPosition().y < posFinal.y))	//ou se nao esta a cima dela,
 		{														//para ser verdadeiro, ambos devem ser falsos
