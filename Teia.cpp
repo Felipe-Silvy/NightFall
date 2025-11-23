@@ -85,11 +85,11 @@ void NightFall::Entidades::Obstaculos::Teia::executar()
 
 void NightFall::Entidades::Obstaculos::Teia::obstaculizar(Personagens::Jogador* p)
 {
-	int desacelerar_pratico = desaceleracao;
+	float desacelerar_pratico = desaceleracao;
 	if (!estado)
-		desacelerar_pratico *= 0.5f;
+		desacelerar_pratico *= 0.8f;
 	
-	p->setVelocidadeX((p->getVelocidade().x * desacelerar_pratico));
+	p->setVelocidadeX(p->getVelocidade().x * desacelerar_pratico);
 }
 
 void NightFall::Entidades::Obstaculos::Teia::resetPosicoes()

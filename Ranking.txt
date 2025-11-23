@@ -1,5 +1,5 @@
- 485
- 430
+485 430
+Vitor 185
 Felipe 12
 Mario 10
 Laura 7
