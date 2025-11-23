@@ -35,14 +35,17 @@ void NightFall::Entidades::Faca::executar()
 	}
 	else
 	{
-		if (pVampiro->getVida() > 0)
+		if (pVampiro != nullptr)
 		{
-			float meioVampiroX = pVampiro->getPosicao().x + pVampiro->getTamanho().x / 2;
-			float meioVampiroY = pVampiro->getPosicao().y + pVampiro->getTamanho().y / 3;
-			setPosicao(meioVampiroX, meioVampiroY);
+			if (pVampiro->getVida() > 0)
+			{
+				float meioVampiroX = pVampiro->getPosicao().x + pVampiro->getTamanho().x / 2;
+				float meioVampiroY = pVampiro->getPosicao().y + pVampiro->getTamanho().y / 3;
+				setPosicao(meioVampiroX, meioVampiroY);
+			}
+			else
+				setPosicao(0.0f, 0.0f);
 		}
-		else
-			setPosicao(0.0f, 0.0f);
 	}
 }
 
