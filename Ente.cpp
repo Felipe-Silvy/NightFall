@@ -11,6 +11,7 @@ NightFall::Ente::Ente() : id(-1) , corpo()
 
 NightFall::Ente::~Ente() {}
 
+// Solicita ao Gerenciador Gráfico que desenhe este ente na tela.
 void NightFall::Ente::desenhar() {
    if (pGG != nullptr)
       pGG->desenharEnte(this);
@@ -77,6 +78,7 @@ void NightFall::Ente::setPosicao(sf::Vector2f pos)
     corpo.setPosition(pos);
 }
 
+// Move o sprite pelo deslocamento fornecido.
 void NightFall::Ente::moverCorpo(sf::Vector2f deslocamento)
 {
     corpo.move(deslocamento);

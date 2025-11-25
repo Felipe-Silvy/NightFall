@@ -57,5 +57,5 @@ namespace NightFall {
             void setGerGrafico(Gerenciador_Grafico* pG);
             void limparColecoes();
         };
-    } // namespace Gerenciadores
-} // namespace NightFall
+    } 
+} 

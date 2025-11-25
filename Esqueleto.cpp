@@ -32,6 +32,7 @@ void NightFall::Entidades::Personagens::Esqueleto::danificar(Jogador* p)
     }
 }
 
+// Decide entre perseguir jogadores ou vagar e então executa o movimento e restaura a cor normal.
 void NightFall::Entidades::Personagens::Esqueleto::executar()
 {
     //Estrutura de codigo inspirada e parecida com codigo do ex-monitor Giovane Limas Salvi
@@ -72,7 +73,7 @@ void NightFall::Entidades::Personagens::Esqueleto::receberDano(unsigned int dano
 {
     dano -= rigidez_ossea;
 
-    //a rigidez ossea do esqueleto faz ele receber menos dano
+    // A rigidez ossea do esqueleto faz ele receber menos dano
 
     num_vidas -= dano;
     std::cout << "Dano reduzido em " << rigidez_ossea << " recebido, vida:" << num_vidas << std::endl;

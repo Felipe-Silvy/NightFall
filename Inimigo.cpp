@@ -51,7 +51,7 @@ void NightFall::Entidades::Personagens::Inimigo::mover()
 
     moverCorpo(movimento);
 
-    if (fabs(aceleracao.x) < 0.001f && noChao) //nao esta se movendo para nenhum dos dois lados (eu acho)
+    if (fabs(aceleracao.x) < 0.001f && noChao) 
     {
         if (velocidadeAtual.x > 0.0f || velocidadeAtual.x < 0.0f)
         {
@@ -65,7 +65,6 @@ void NightFall::Entidades::Personagens::Inimigo::mover()
             velocidadeAtual.x -= sinal_da_friccao * FRICCAO * deltaTempo;
 
             if ((sinal_da_friccao > 0 && velocidadeAtual.x < 0) || (sinal_da_friccao < 0 && velocidadeAtual.x > 0))
-                //isso é errado porque o sinal da friccao deve ser o mesmo da velocidade
                 velocidadeAtual.x = 0;
         }
     }

@@ -16,7 +16,6 @@ namespace NightFall
 		protected:
 			bool ativo;
 			unsigned int danoFaca;
-			// . . .
 
 			Entidades::Personagens::Vampiro* pVampiro;
 			bool esquerda;

@@ -5,12 +5,11 @@ NightFall::Gerenciadores::Gerenciador_Grafico::Gerenciador_Grafico() :
     alturaChao(600.0f)
 { 
     executar();
+    // Carrega todas as texturas e fontes assim que o gerenciador gráfico é criado.
 }
 
 
-NightFall::Gerenciadores::Gerenciador_Grafico::~Gerenciador_Grafico() {
-    // Liberar memória
-}
+NightFall::Gerenciadores::Gerenciador_Grafico::~Gerenciador_Grafico() {}
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::desenharEnte(Ente* e) {
     if (e != nullptr)
@@ -19,6 +18,7 @@ void NightFall::Gerenciadores::Gerenciador_Grafico::desenharEnte(Ente* e) {
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::carregarTextura(const std::string& id, const std::string& caminho)
 {
+    // Carrega uma textura a partir de arquivo e armazena no mapa usando 'id'.
     try {
         sf::Texture textura;
         if (!textura.loadFromFile(caminho)) {
@@ -98,6 +98,10 @@ const float NightFall::Gerenciadores::Gerenciador_Grafico::getAlturaChao() const
 }
 
 void NightFall::Gerenciadores::Gerenciador_Grafico::executar() {
+    // Carrega todas as texturas e a fonte principal usadas no jogo.
+    // Imagens dos sprites foram geradas com Inteligência Aritificial
+    // Fonte Minecraft retirada de: www.dafont.com/pt/minecrafter.font
+
     carregarTextura("Jogador1", "Assets/Imagens/jogador1.png");
     carregarTextura("Jogador2", "Assets/Imagens/jogador2.png");
     carregarTextura("Esqueleto", "Assets/Imagens/esqueleto.png");

@@ -95,6 +95,7 @@ void NightFall::Fases::Fase::criarCenario()
 	GC.incluirObstaculo(alocadorPlataforma);
 }
 
+// Reinicia estado da fase: reseta vida/pontos dos jogadores, limpa entidades e atualiza contadores de spawns.
 void NightFall::Fases::Fase::resetarFase()
 {
 	std::cout << "Resetou" << std::endl;
@@ -131,6 +132,7 @@ void NightFall::Fases::Fase::salvarFase()
 	lista_ents.salvarEntidades(id, pJog->getDoisJogadores() );
 }
 
+// Carrega fase a partir do arquivo salvo, recria entidades e restaura seus estados.
 void NightFall::Fases::Fase::recuperarFase()
 {
 	std::ifstream recuperadorEntidades("Salvamentos/Save.txt");
@@ -315,6 +317,7 @@ NightFall::Entidades::Entidade* NightFall::Fases::Fase::instanciarEntidadeGeneri
 	
 }
 
+// Atualiza eventos, trata pausa, desenha cenário e processa entidades e colisões a cada frame.
 void NightFall::Fases::Fase::fluir()
 {
 	pGE->executar();

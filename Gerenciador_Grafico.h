@@ -52,5 +52,5 @@ namespace NightFall {
             const float getAlturaChao() const;
         };
 
-    } // namespace Gerenciadores
-} // namespace NightFall
+    } 
+} 

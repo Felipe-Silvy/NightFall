@@ -57,7 +57,7 @@ void NightFall::Entidades::Personagens::Jogador::mover()
 
     moverCorpo(movimento);
 
-    if ( fabs(aceleracao.x) < 0.001f && noChao) //nao esta se movendo para nenhum dos dois lados (eu acho)
+    if ( fabs(aceleracao.x) < 0.001f && noChao) 
     {
         if (velocidadeAtual.x > 0.0f || velocidadeAtual.x < 0.0f)
         {
@@ -71,7 +71,6 @@ void NightFall::Entidades::Personagens::Jogador::mover()
             velocidadeAtual.x -= sinal_da_friccao * FRICCAO * deltaTempo;
 
             if ((sinal_da_friccao > 0 && velocidadeAtual.x < 0) || (sinal_da_friccao < 0 && velocidadeAtual.x > 0))
-            //isso é errado porque o sinal da friccao deve ser o mesmo da velocidade
                 velocidadeAtual.x = 0;
         }
     }
@@ -90,7 +89,7 @@ void NightFall::Entidades::Personagens::Jogador::pular()
 
 void NightFall::Entidades::Personagens::Jogador::atacar(std::vector<Inimigo*>* lista)
 {
-    float alcanceAtaque = 100.f; // definir funcao
+    float alcanceAtaque = 100.f; 
 
     for (int i = 0; i < (int)lista->size(); i++)
     {

@@ -14,10 +14,8 @@ NightFall::Entidades::Personagens::Morcego::Morcego() :
 	nivel_maldade = 20;
 	num_vidas = 1;
 	corpo.setScale(0.1f, 0.1f);
-	ultimaPosicao.x += 100.0f + ((rand() % 10) - 2) * 10; // mudar número
+	ultimaPosicao.x += 100.0f + ((rand() % 10) - 2) * 10; 
 
-	//retirado para manter os morcegos em mesmo nivel
-	//ultimaPosicao.y += 30.0f + ((rand() % 10) - 2) * 10; // mudar números
 	setPosicao(ultimaPosicao);
 }
 
@@ -99,7 +97,7 @@ void NightFall::Entidades::Personagens::Morcego::mover()
     moverCorpo(movimento);
 
     
-     if (fabs(aceleracao.x) < 0.001f && noChao) //nao esta se movendo para nenhum dos dois lados (eu acho)
+     if (fabs(aceleracao.x) < 0.001f && noChao)
     {
         if (velocidadeAtual.x > 0.0f || velocidadeAtual.x < 0.0f)
         {
@@ -113,7 +111,6 @@ void NightFall::Entidades::Personagens::Morcego::mover()
             velocidadeAtual.x -= sinal_da_friccao * FRICCAO * deltaTempo;
 
             if ((sinal_da_friccao > 0 && velocidadeAtual.x < 0) || (sinal_da_friccao < 0 && velocidadeAtual.x > 0))
-                //isso é errado porque o sinal da friccao deve ser o mesmo da velocidade
                 velocidadeAtual.x = 0;
         }
     }

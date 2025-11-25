@@ -21,6 +21,7 @@ void NightFall::Entidades::Entidade::salvarDataBuffer()
 		<< corpo.getPosition().y << " ";
 }
 
+// Controla o cooldown de dano; permite causar dano novamente após 0.5s.
 const bool NightFall::Entidades::Entidade::podeDanificar()
 {
 	cooldownDano += deltaTempo;
@@ -33,12 +34,14 @@ const bool NightFall::Entidades::Entidade::podeDanificar()
 	return false;
 }
 
+// Reinicia o relógio de movimento e zera o delta de tempo.
 void NightFall::Entidades::Entidade::relogioMovimentoResetar()
 {
 	relogioMovimento.restart();
 	deltaTempo = 0.0f;
 }
 
+// Retorna o conteúdo atual armazenado no buffer interno como string.
 const std::string NightFall::Entidades::Entidade::getBufferString() const
 {
 	return bufferInterno.str(); ;

@@ -25,8 +25,8 @@ namespace NightFall {
 
                 void voar();
             };
-        } // namespace Personagens
-    } // namespace Entidades
-} // namespace NightFall
+        } 
+    } 
+} 
 
 

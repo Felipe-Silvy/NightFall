@@ -12,12 +12,9 @@ namespace NightFall {
             {
             private:
                 int altura;
-                // ...
                 static std::vector<sf::Vector2f> posicoesParaPlataforma;
                 float posicaoOriginalY;
-
                 bool movel;
-
                 float amplitudeMovimento;
 
             public:

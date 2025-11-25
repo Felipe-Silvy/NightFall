@@ -31,7 +31,6 @@ namespace NightFall {
                 void salvarDataBuffer();
                 void carregarPersonagem(int vidasSalvas, int velMax, sf::Vector2f velAtual, int pulo, bool chao, float cortempo);
 
-                //Fora do UML
                 virtual void receberDano(unsigned int dano);
                 void aplicarForca(sf::Vector2f forca);
                 void gravitar();

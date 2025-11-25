@@ -30,6 +30,6 @@ namespace NightFall {
                 void salvar();
                 void carregarVampiro(short int forcaSalva, bool atirou, int indFaca);
             };
-        } // namespace Personagens
-    } // namespace Entidades
-} // namespace NightFall
+        } 
+    } 
+} 

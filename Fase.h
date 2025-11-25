@@ -4,7 +4,6 @@
 #include "ListaEntidades.h"
 
 namespace NightFall {
-    // Foward Declarations
 
     class Jogo;
     namespace Entidades {
@@ -39,8 +38,8 @@ namespace NightFall {
             bool fase_ativa;
 
         protected:
-            void criarMorcegos(); // Verificar tipo
-            void criarPlataformas(); // Verificar tipo
+            void criarMorcegos(); 
+            void criarPlataformas();
             virtual void criarInimigos() = 0;
             virtual void criarObstaculo() = 0;
             void criarCenario();
@@ -66,28 +65,4 @@ namespace NightFall {
     }
 }
 
-/*
-//carregar abstratos
-void carregarObstaculo(int estado);
-void carregarPersonagem(int vidasSalvas, int velMax, sf::Vector2f velAtual, int pulo, bool chao, float cortempo);
-void carregarInimigo(int direcao, int vagar);
-
-//carregar concretos
-//ID 3
-void carregarJogador(int pont, int poder);
-//ID 4
-void carregarPlataforma(int alt, float origPosY, bool mobilidade, int amplitude);
-//ID 5
-void carregarMorcego(float rai);
-//ID 6
-void carregarTeia(float larg, float desacel);
-//ID 7
-void carregarEsqueleto(int tam, int rigid);
-//ID 8
-void carregarCristal(int danosi);
-//ID 9
-void carregarVampiro(short int forca, bool atirou);
-//ID 10
-void carregarFaca(bool atividade, int dano, int esq);
-*/
 

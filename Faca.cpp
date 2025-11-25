@@ -20,6 +20,8 @@ NightFall::Entidades::Faca::~Faca()
 {
 }
 
+// Atualiza movimento da faca: quando ativa, avança horizontalmente e sofre gravidade;
+// quando inativa, segue a posição do vampiro que a carrega.
 void NightFall::Entidades::Faca::executar()
 {
 	deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
@@ -35,7 +37,6 @@ void NightFall::Entidades::Faca::executar()
 			corpo.move(0.07f, 0.f);
 
 		gravitar();
-		// LEMBRAR QUE AO ATINGIR O JOGADOR OU CAIR NO CHÃO DEVE SER DELETADA, PONTEIRO DO VAMPIRO DEVE FICAR NULLPTR
 	}
 	else
 	{

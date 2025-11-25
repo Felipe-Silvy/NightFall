@@ -47,6 +47,7 @@ NightFall::Entidades::Obstaculos::Cristal::~Cristal()
 
 }
 
+// Atualiza o tempo, faz o cristal se mover aleatoriamente a cada 5 segundos e aplica gravidade.
 void NightFall::Entidades::Obstaculos::Cristal::executar()
 {
 	deltaTempo = relogioMovimento.restart().asSeconds();
@@ -70,6 +71,7 @@ void NightFall::Entidades::Obstaculos::Cristal::executar()
 	gravitar();
 }
 
+// Causa dano ao jogador quando há colisão e o cristal está apto a danificar.
 void NightFall::Entidades::Obstaculos::Cristal::obstaculizar(Personagens::Jogador* p)
 {
 	if (p != nullptr && podeDanificar())
@@ -82,6 +84,7 @@ void NightFall::Entidades::Obstaculos::Cristal::obstaculizar(Personagens::Jogado
 	}
 }
 
+// Restaura a lista de posições iniciais possíveis para os cristais.
 void NightFall::Entidades::Obstaculos::Cristal::resetPosicoes()
 {
 	NightFall::Entidades::Obstaculos::Cristal::posicoesXCristal = {
@@ -94,6 +97,7 @@ void NightFall::Entidades::Obstaculos::Cristal::resetPosicoes()
 	};
 }
 
+// Limpa os buffers internos e salva os dados do cristal.
 void NightFall::Entidades::Obstaculos::Cristal::salvar()
 {
 	bufferInterno.str("");
@@ -111,7 +115,6 @@ void NightFall::Entidades::Obstaculos::Cristal::salvarDataBuffer()
 {
 	//cristal nao precisa passar danosidade para o buffer
 	//porque todos os cristais tem a mesmas danosidade
-	//possivelmente alterar danosidade para um valor rand?
 	Obstaculo::salvarDataBuffer();
 	buffer << danosidade << std::endl;
 }

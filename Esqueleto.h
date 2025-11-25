@@ -24,9 +24,9 @@ namespace NightFall {
                 void salvar();
                 void carregarEsqueleto(int tam, int rigid);
             };
-        } // namespace Personagens
-    } // namespace Entidades
-} // namespace NightFall
+        } 
+    } 
+} 
 
 
 

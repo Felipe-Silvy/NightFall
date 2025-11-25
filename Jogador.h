@@ -33,7 +33,7 @@ namespace NightFall {
                 const int getPontos() const;
                 void setPontos(int pts);
             };
-        } // namespace Personagens
-    } // namespace Entidades
-} // namespace NightFall
+        } 
+    } 
+} 
 

@@ -134,10 +134,9 @@ void NightFall::Menu::executarTelaPause()
     corpo.setPosition(0.f, 0.f);
 
     //Centralizando Botões
-    const float espacamento = 100.0f; // Espaço entre os botões
-    const float posY = 200.0f;      // Altura Y desejada
+    const float espacamento = 100.0f; 
+    const float posY = 200.0f;     
 
-    // Calcula o "X" inicial para o primeiro botão
     float posX_Botao1 = (tamJanela.x - (botao1.getSize().x + botao2.getSize().x + espacamento)) / 2.0f;
 
     // Define as posições
@@ -234,7 +233,7 @@ void NightFall::Menu::atualizarRanking(const std::vector<int>& pontos)
 
     sort(ranking.begin(), ranking.end(),
         [](const Entrada& a, const Entrada& b) {
-            return a.score > b.score; // maior primeiro
+            return a.score > b.score; // Maior primeiro
         }
     );
 
@@ -265,9 +264,6 @@ void NightFall::Menu::atualizarRanking(const std::vector<int>& pontos)
             ranking.resize(5);
     }
 
-    // -----------------------------
-    // 6. Salvar tudo no arquivo
-    // -----------------------------
     ofstream arqOut("Ranking.txt", ios::trunc);
     if (!arqOut.is_open()) {
         cout << "ERRO AO SALVAR RANKING!" << endl;
@@ -304,7 +300,7 @@ void NightFall::Menu::mostrarRanking()
         arq.close();
     }
 
-    // ordenar (garantia)
+    // ordenar (
     std::sort(ranking.begin(), ranking.end(),
         [](const Entrada& a, const Entrada& b) {
             return a.score > b.score;
@@ -360,7 +356,7 @@ void NightFall::Menu::mostrarRanking()
                 if (botao1.getGlobalBounds().contains(mousePos))
                 {
                     sairDoLoop = true;
-                    escolheAcao();      // <-- VOLTA PARA O MENU PRINCIPAL
+                    escolheAcao();      // VOLTA PARA O MENU PRINCIPAL
                 }
             }
         }
@@ -401,7 +397,6 @@ void NightFall::Menu::mostrarRanking()
 void NightFall::Menu::continuarJogo()
 {
     std::cout << "Continuando Jogo Salvo" << std::endl;
-    // Vitor faça sua mágica aqui
     pJog->recuperarJogo();
 }
 
@@ -417,7 +412,7 @@ void NightFall::Menu::loopComAcoes(
         sf::Event event;
         while (janela->pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)        //ADICIONAR FECHAR COM ESC AQUI DEPOIS
+            if (event.type == sf::Event::Closed)  
                 pGG->fecharJanela();
 
             //VOLTAR PARA O PRIMEIRO MENU

@@ -14,11 +14,11 @@ namespace NightFall {
         // Título Principal
         sf::Text tituloMenu;
 
-        // Elementos para o botão 
+        // Elementos para o botão 1
         sf::RectangleShape botao1;
         sf::Text textoBotao1;
 
-        // Elementos para o botão da Fase 2
+        // Elementos para o botão 2
         sf::RectangleShape botao2;
         sf::Text textoBotao2;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstddef> // nullptr
+#include <cstddef> 
 
 namespace NightFall
 {

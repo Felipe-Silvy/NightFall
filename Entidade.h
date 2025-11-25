@@ -16,7 +16,7 @@ namespace NightFall {
 			sf::Clock relogioMovimento;
 			float cooldownDano;
 
-			void salvarDataBuffer(); // Implementar depois
+			void salvarDataBuffer(); 
 		public:
 			Entidade();
 			~Entidade();

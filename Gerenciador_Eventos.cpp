@@ -55,6 +55,7 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::resetJogadores()
 	pJogador2 = nullptr;
 }
 
+// Processa ações que acontecem apenas no momento da tecla ser pressionada (ataque, pulo, pause).
 void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 {
 
@@ -125,6 +126,7 @@ void NightFall::Gerenciadores::Gerenciador_Eventos::executar()
 	verificaTeclasSeguradas();
 }
 
+// Processa ações contínuas enquanto a tecla permanece pressionada (movimentação).
 void NightFall::Gerenciadores::Gerenciador_Eventos::verificaTeclasSeguradas()
 {
 	if (pJogador1 != nullptr)
