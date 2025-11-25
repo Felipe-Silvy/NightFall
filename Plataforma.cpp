@@ -12,7 +12,6 @@ std::vector<sf::Vector2f> NightFall::Entidades::Obstaculos::Plataforma::posicoes
     { 250.0f, 230.0f },
     { 650.0f, 230.0f },
     { 1050.0f, 230.0f },
-    { 40.0f, 80.0f }
 };
 
 //ESTADOS DA PLATAFORMA
@@ -138,7 +137,7 @@ void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jog
     sobrepos.y = (tamJog.y + tamPlat.y) * 0.5f - std::fabs(dist.y);
 
     if (sobrepos.x <= 0.f || sobrepos.y <= 0.f)
-        return; // sem colisao real
+        return; 
 
     if (sobrepos.x < sobrepos.y)
     {
@@ -149,7 +148,7 @@ void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jog
             p->setPosicao(posJog.x - sobrepos.x, posJog.y); // empurra pra esquerda
 
         // zera velocidade horizontal para não deslizar
-        p->setVelocidadeX(0.f);
+        p->setVelocidade(sf::Vector2f(0.f, p->getVelocidade().y));
     }
     else
     {
@@ -158,14 +157,14 @@ void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jog
         {
             // Jogador abaixo da plataforma
             p->setPosicao(posJog.x, posJog.y + sobrepos.y);
-            p->setVelocidadeY(0.f);
+            p->setVelocidade(sf::Vector2f(p->getVelocidade().x, 0.f));
         }
         else
         {
             // Jogador em cima da plataforma
             p->setPosicao(posJog.x, posJog.y - sobrepos.y);
-            p->setVelocidadeY(0.f);
-            p->setNoChao(true); // agora ele esta apoiado
+            p->setVelocidade(sf::Vector2f(p->getVelocidade().x, 0.f));
+            p->setNoChao(true);
         }
     }
 }
@@ -173,23 +172,22 @@ void NightFall::Entidades::Obstaculos::Plataforma::obstaculizar(Personagens::Jog
 
 void NightFall::Entidades::Obstaculos::Plataforma::executar()
 {
+    deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
+    relogioMovimento.restart();
+    cooldownInteracao += deltaTempo;
+    
     if (estado != 1)
     {
         if (getPosicao().y < pGG->getAlturaChao() - getTamanho().y)
         {
-            corpo.move(sf::Vector2f(0.0f, 0.01f));
-            if (estado != 2)                                //as plataformas propriamente ditas
-            {                                               //(todas em que parede = false)
-                corpo.move(sf::Vector2f(0.0f, -0.01f));     //são capazes de flutuar, portanto, sobem tanto quanto
-            }                                               //descem, pelo efeito da gravidade
+            gravitar();
+            if (estado != 2)  //as plataformas propriamente ditas
+            {                 //(todas em que estado != 2)
+                empuxo();     //são capazes de flutuar, portanto, sobem tanto quanto
+            }                 //descem, pelo efeito da gravidade
         }
         return;
     }
-        
-
-    deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
-    relogioMovimento.restart();
-    cooldownInteracao += deltaTempo;
 
     //amplitude é a distancia entre o meio e o topo da onda senoide (matematica)
     float velocidade = 2.f;     //velocidade em que a onda varia
@@ -216,7 +214,6 @@ void NightFall::Entidades::Obstaculos::Plataforma::resetPosicoes()
     { 250.0f, 230.0f },
     { 650.0f, 230.0f },
     { 1050.0f, 230.0f },
-    { 20.0f, 80.0f }
     };
 }
 
@@ -243,4 +240,22 @@ void NightFall::Entidades::Obstaculos::Plataforma::carregarPlataforma
     posicaoOriginalY = origPosY;
     movel = mobilidade;
     amplitudeMovimento = amplitude;
+}
+
+
+void NightFall::Entidades::Obstaculos::Plataforma::empuxo()
+{
+    float velocidade = 10.0f; // pixels por segundo
+
+    // Calcula nova posição subindo
+    float novaY = getPosicao().y - velocidade * deltaTempo;
+
+    // Limite superior (por exemplo, o teto ou posição limite)
+    float limiteSuperior = posicaoOriginalY; // você escolhe seu limite real
+
+    // Se passou do limite, fixa
+    if (novaY < limiteSuperior)
+        novaY = limiteSuperior;
+
+    setPosicao(getPosicao().x, novaY);
 }

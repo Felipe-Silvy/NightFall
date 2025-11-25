@@ -14,7 +14,7 @@ namespace NightFall {
         private:
             sf::RenderWindow window;
             std::map<std::string, sf::Texture> texturas;
-            // outros atributos se necessário
+            
             Gerenciador_Colisoes* pColisoes;
 
             sf::Font fontePrincipal;
@@ -23,8 +23,7 @@ namespace NightFall {
 
         public:
             Gerenciador_Grafico();
-
-            // Destrutor
+            
             ~Gerenciador_Grafico();
 
             void executar();
@@ -35,6 +34,7 @@ namespace NightFall {
             // Gerenciando Texturas e Fonte
             void carregarTextura(const std::string& id, const std::string& caminho);
             const sf::Texture& getTextura(const std::string& id) const;
+
             bool fonteCarregada; 
             sf::Font* getFonte(); 
 

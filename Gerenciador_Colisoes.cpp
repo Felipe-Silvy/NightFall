@@ -5,14 +5,11 @@
 #include "Gerenciador_Grafico.h"
 #include "Faca.h"
 
-NightFall::Gerenciadores::Gerenciador_Colisoes* NightFall::Gerenciadores::Gerenciador_Colisoes::pColisao = nullptr;
 
 NightFall::Gerenciadores::Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	LIs(),
 	LOs(),
 	LPs(),
-	pJog1(nullptr),
-	pJog2(nullptr),
 	pGrafico()
 {
 	LIs.clear();
@@ -24,14 +21,7 @@ NightFall::Gerenciadores::Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
 }
 
-NightFall::Gerenciadores::Gerenciador_Colisoes* NightFall::Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes()
-{
-	if (pColisao == nullptr)
-	{
-		pColisao = new Gerenciador_Colisoes();
-	}
-	return pColisao;
-}
+
 
 const bool NightFall::Gerenciadores::Gerenciador_Colisoes::VerificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2) const
 {
@@ -74,7 +64,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 
 	std::list<Entidades::Obstaculos::Obstaculo*>::iterator it;
 
-	for (i = 0; i < (int) LJs.size(); i++)
+	for (i = 0; i < (int)LJs.size(); i++)
 	{
 		Entidades::Personagens::Jogador* jogadorComparado = LJs[i];
 		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
@@ -95,7 +85,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsObstacs()
 			}
 		}
 
-		
+
 		sf::Vector2f pos = jogadorComparado->getPosicao();
 		sf::Vector2f vel = jogadorComparado->getVelocidade();
 
@@ -126,7 +116,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsInimigs()
 
 	bool colisaoInimigos = false;
 
-	for (i = 0; i < (int) LJs.size(); i++)
+	for (i = 0; i < (int)LJs.size(); i++)
 	{
 		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
 
@@ -164,7 +154,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsProjeteis
 
 	bool colisaoProjeteis = false;
 
-	for (i = 0; i < (int) LJs.size(); i++)
+	for (i = 0; i < (int)LJs.size(); i++)
 	{
 		Entidades::Entidade* jogadorEntidade = static_cast<Entidades::Entidade*>(LJs[i]);
 
@@ -177,7 +167,7 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::tratarColisoesJogsProjeteis
 
 			if (colisaoProjeteis)
 				(*it)->projDanificar(LJs[i]);
-				//ativa o dano que o projetil causa ao ser encostado
+			//ativa o dano que o projetil causa ao ser encostado
 		}
 	}
 }
@@ -222,15 +212,9 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::setJogador(Entidades::Perso
 	if (pJogador == nullptr)
 		return;
 
-	if (pJog1 == nullptr)
+	if (LJs.size() < 2)
 	{
-		pJog1 = pJogador;
-		LJs.push_back(pJog1);
-	}
-	else if (pJog2 == nullptr)
-	{
-		pJog2 = pJogador;
-		LJs.push_back(pJog2);
+		LJs.push_back(pJogador);
 	}
 	else
 		std::cout << "Alem do limite de jogadores" << std::endl;
@@ -247,7 +231,7 @@ std::set<NightFall::Entidades::Faca*>* NightFall::Gerenciadores::Gerenciador_Col
 	return &LPs;
 }
 
- 
+
 void NightFall::Gerenciadores::Gerenciador_Colisoes::setGerGrafico(Gerenciador_Grafico* pG)
 {
 	if (pG != nullptr) {
@@ -262,7 +246,4 @@ void NightFall::Gerenciadores::Gerenciador_Colisoes::limparColecoes()
 	LOs.clear();
 	LPs.clear();
 	LJs.clear();
-	pJog1 = nullptr;
-	pJog2 = nullptr;
 }
- 

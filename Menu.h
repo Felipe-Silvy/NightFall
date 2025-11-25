@@ -10,7 +10,6 @@ namespace NightFall {
     {
     private:
         Jogo* pJog;
-        // ...
 
         // Título Principal
         sf::Text tituloMenu;
@@ -30,19 +29,16 @@ namespace NightFall {
         ~Menu();
         void executar();
         void executarTelaPause();
-
         void setJogo(Jogo* pjogo);
         void escolheAcao();
         void escolheJogo();
         void escolheJogadores();
         void escolheFase();
         void escolhePause();
-
         void atualizarRanking(const std::vector<int>& pontos);
         std::string capturarNomeSFML(int numJog);
         void mostrarRanking();
         void continuarJogo();
-        // ...
         void loopComAcoes(std::function<void()> acaoBotao1,std::function<void()> acaoBotao2);
         void centralizarTextos();
     };

@@ -11,8 +11,6 @@ namespace NightFall {
                 int num_vidas;
                 float velocidade;
 
-                //Fora do UML
-                
                 sf::Vector2f velocidadeAtual;
 				sf::Vector2f aceleracao;
 				float forcaPulo;
@@ -36,10 +34,10 @@ namespace NightFall {
                 //Fora do UML
                 virtual void receberDano(unsigned int dano);
                 void aplicarForca(sf::Vector2f forca);
-                void setVelocidadeX(float vx);
-                void setVelocidadeY(float vy);
-                void setNoChao(bool valor);
+                void gravitar();
+
                 void setVelocidade(sf::Vector2f vel);
+                void setNoChao(bool valor);
                 const int getVida() const;
                 void setVida(int vd);
                 const sf::Vector2f getVelocidade() const;
@@ -47,7 +45,6 @@ namespace NightFall {
                 void desenhar();
 
                 void retornarCorNormal();
-                //void knockback(float direcao);
             };
         }
     }

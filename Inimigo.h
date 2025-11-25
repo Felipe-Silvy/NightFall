@@ -18,14 +18,14 @@ namespace NightFall {
                 int direcaoAleatoria;
                 float tempoVagar;
 
-                // ...
+
             public:
                 Inimigo();
                 ~Inimigo();
-                // void salvaDataBuffer();
+
                 virtual void executar() = 0;
                 virtual void danificar(Jogador* p) = 0;
-                // ...
+
                 virtual void resetarUltimaPosicao() = 0;
                 virtual void mover();
                 virtual void perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo);

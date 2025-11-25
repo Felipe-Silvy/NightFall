@@ -30,7 +30,8 @@ namespace NightFall
 			void executar();
 			
 			void projDanificar(NightFall::Entidades::Personagens::Jogador* pJogador);
-			
+			void salvar();
+
 			void setVampiro(Personagens::Vampiro* vamps);
 			const int getIndiceFaca() const;
 
@@ -38,9 +39,11 @@ namespace NightFall
 			void setAtivo(const bool novaAtividade);
 			void setDirecao(bool esq);
 
-			void salvar();
+			
 			void salvarDataBuffer();
 			void carregarFaca(bool atividade, int dano, bool esq, int indiceDaFaca);
+
+			void gravitar();
 		};
 	}
 }

@@ -1,6 +1,7 @@
 #include "Faca.h"
 #include "Jogador.h"
 #include "Vampiro.h"
+#include "Gerenciador_Grafico.h"
 
 int NightFall::Entidades::Faca::contaIndices = 0;
 
@@ -21,17 +22,20 @@ NightFall::Entidades::Faca::~Faca()
 
 void NightFall::Entidades::Faca::executar()
 {
+	deltaTempo = relogioMovimento.getElapsedTime().asSeconds();
+	relogioMovimento.restart();
+
 	//o executar da faca só é chamado quando ela está ativa, mas ainda é 
 	//feita essa verificacao para garantir o funcionamento correto
 	if (ativo)
 	{
 		if(esquerda)
-			corpo.move(-0.07f, 0.005f); // Isso está errado, tem que utilizar o mover que nem em Inimigo 
+			corpo.move(-0.07f, 0.f);
 		else
-			corpo.move(0.07f, 0.005f);
+			corpo.move(0.07f, 0.f);
 
+		gravitar();
 		// LEMBRAR QUE AO ATINGIR O JOGADOR OU CAIR NO CHÃO DEVE SER DELETADA, PONTEIRO DO VAMPIRO DEVE FICAR NULLPTR
-		
 	}
 	else
 	{
@@ -108,4 +112,19 @@ void NightFall::Entidades::Faca::carregarFaca(bool atividade, int dano, bool esq
 	danoFaca = dano;
 	esquerda = esq;
 	indiceFacaVampiro = indiceDaFaca;
+}
+
+void NightFall::Entidades::Faca::gravitar()
+{
+	float velocidade = 10.0f; // pixels/segundo
+
+	if (getPosicao().y + getTamanho().y < pGG->getAlturaChao())
+	{
+		setPosicao(getPosicao().x, getPosicao().y + velocidade * deltaTempo);
+	}
+	else
+	{
+		setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
+	}
+
 }

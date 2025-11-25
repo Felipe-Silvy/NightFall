@@ -33,6 +33,8 @@ namespace NightFall {
                 void salvar();
                 void salvarDataBuffer();
                 void carregarPlataforma(int alt, float origPosY, bool mobilidade, int amplitude);
+                
+                void empuxo();
             };
         }
     }

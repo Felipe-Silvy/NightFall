@@ -59,7 +59,9 @@ namespace NightFall {
             void recuperarFase();
 
             virtual Entidades::Entidade* instanciarEntidadeExclusiva(int id, std::ifstream& arq) = 0;
-            Entidades::Entidade* instanciarEntidadeGenerica(int id, std::ifstream& arq, bool* primeiroJogador, int esta);
+            Entidades::Entidade* instanciarEntidadeGenerica(int id, std::ifstream& arq, bool* primeiroJogador, int estadoParede);
+            
+            void fluir();
         };
     }
 }

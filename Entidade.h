@@ -11,12 +11,12 @@ namespace NightFall {
 		protected:
 			std::ostream buffer;
 			std::stringbuf bufferInterno;
-			void salvarDataBuffer(); // Implementar depois
 
 			float deltaTempo;
 			sf::Clock relogioMovimento;
-
 			float cooldownDano;
+
+			void salvarDataBuffer(); // Implementar depois
 		public:
 			Entidade();
 			~Entidade();
@@ -25,6 +25,8 @@ namespace NightFall {
 			const bool podeDanificar();
 			void relogioMovimentoResetar();
 			const std::string getBufferString() const;
+
+			virtual void gravitar() = 0;
 		};
 	}
 }

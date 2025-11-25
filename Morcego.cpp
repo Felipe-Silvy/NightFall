@@ -82,14 +82,8 @@ void NightFall::Entidades::Personagens::Morcego::mover()
         noChao = false;
     }
   
-    if (!noChao)
-    {
-        aceleracao.y += 1000;
-        aceleracao.y -= voo; //Gracas ao voo do morcego.
-        //Ele se acelera para cima com a mesma aceleracao
-        //que a gravidade. Assim ele é mantido no lugar
-    }
-            
+    gravitar();
+    voar();            
 
     //segundo a fisica, velocidade é aceleracao * tempo
 
@@ -144,6 +138,13 @@ void NightFall::Entidades::Personagens::Morcego::salvar()
 void NightFall::Entidades::Personagens::Morcego::carregarMorcego(float rai)
 {
     raio = rai;
+}
+
+void NightFall::Entidades::Personagens::Morcego::voar()
+{
+    aceleracao.y -= voo; //Gracas ao voo do morcego.
+    //Ele se acelera para cima com a mesma aceleracao
+    //que a gravidade. Assim ele é mantido no lugar
 }
 
 void NightFall::Entidades::Personagens::Morcego::salvarDataBuffer()

@@ -31,13 +31,7 @@ namespace NightFall {
             std::vector<Entidades::Personagens::Inimigo*> LIs;
             std::list<Entidades::Obstaculos::Obstaculo*> LOs;
             std::set<Entidades::Faca*> LPs;
-            Entidades::Personagens::Jogador* pJog1;
-            Entidades::Personagens::Jogador* pJog2;
             std::vector<Entidades::Personagens::Jogador*> LJs;
-            // ...
-
-            static Gerenciador_Colisoes* pColisao;
-            //Gerenciador_Colisoes();
 
             Gerenciador_Grafico* pGrafico;
 
@@ -45,28 +39,23 @@ namespace NightFall {
             void tratarColisoesJogsObstacs();
             void tratarColisoesJogsInimigs();
             void tratarColisoesJogsProjeteis();
-        public: 
+
+        public:
             Gerenciador_Colisoes();
             ~Gerenciador_Colisoes();
-
-            static Gerenciador_Colisoes* getGerenciador_Colisoes();
 
             void incluirInimigo(Entidades::Personagens::Inimigo* pi);
             void removeInimigo(Entidades::Personagens::Inimigo* pi);
             void incluirObstaculo(Entidades::Obstaculos::Obstaculo* po);
             void incluirProjetil(Entidades::Faca* pj);
             void executar();
-            // ...
-
             void setJogador(Entidades::Personagens::Jogador* pJogador);
             std::vector<Entidades::Personagens::Inimigo*>* getListaInimigos();
             std::set<Entidades::Faca*>* getListaProjeteis();
 
-            // Conhecendo Gerenciador Grafico
+            // Conhecendo o Gerenciador Grafico
             void setGerGrafico(Gerenciador_Grafico* pG);
-
             void limparColecoes();
         };
     } // namespace Gerenciadores
 } // namespace NightFall
-

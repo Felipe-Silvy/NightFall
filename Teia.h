@@ -25,7 +25,6 @@ namespace NightFall
                 void executar();
                 void obstaculizar(Personagens::Jogador* p);
                 static void resetPosicoes();
-
                 void salvarDataBuffer();
                 void salvar();
                 void carregarTeia(float larg, float desacel);

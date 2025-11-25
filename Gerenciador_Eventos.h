@@ -19,13 +19,13 @@ namespace NightFall
 			bool emPause;
 
 			Gerenciador_Eventos();
+
 		public:
 			~Gerenciador_Eventos();
 
+			// Conhecendo os demais Gerenciadores
 			void setGerenciador_Grafico(Gerenciadores::Gerenciador_Grafico* pGraf);
 			void setGerenciador_Colisoes(Gerenciadores::Gerenciador_Colisoes* pCol);
-			//O IDEAL É TRANSFORMAR O GERENCIADOR GRAFICO EM SINGLETON
-			//ENTAO ESSA  TORNA-SE DESNECESSARIA
 
 			static Gerenciador_Eventos* getGerenciador_Eventos();
 			void setjogador(Entidades::Personagens::Jogador* pJog);

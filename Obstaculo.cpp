@@ -1,5 +1,5 @@
 #include "Obstaculo.h"
-
+#include "Gerenciador_Grafico.h"
 
 
 // Construtor com parametros
@@ -36,4 +36,18 @@ void NightFall::Entidades::Obstaculos::Obstaculo::carregarObstaculo(int estado)
 const int NightFall::Entidades::Obstaculos::Obstaculo::getEstado() const
 {
 	return estado;
+}
+
+void NightFall::Entidades::Obstaculos::Obstaculo::gravitar()
+{
+	float velocidade = 10.0f; 
+
+	if (getPosicao().y + getTamanho().y < pGG->getAlturaChao())
+	{
+		setPosicao(getPosicao().x, getPosicao().y + velocidade * deltaTempo);
+	}
+	else
+	{
+		setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
+	}
 }

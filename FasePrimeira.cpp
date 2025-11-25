@@ -125,22 +125,9 @@ void NightFall::Fases::FasePrimeira::executar()
 			(pJog1->getCorpo().getPosition().x < posFinal.x || 
 			pJog1->getCorpo().getPosition().y < posFinal.y)) 
 		{
-			pGE->executar();
-			if (pGE->getPause())
-			{
-				pJog->jogoPausar();
-				pGE->setPause(false);
-				lista_ents.resetarClocks();
-			}
-			pGG->limpaJanela();
-			(this)->desenhar();
-			pGG->getWindow()->draw(pontoFinal);
-			lista_ents.percorrer();
-			GC.executar();
-			pGG->mostraElementos();
+			fluir();
 		}
 		resetarFase();
-		fase_ativa = false;
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
 			pJog->iniciarFase2();
@@ -160,22 +147,9 @@ void NightFall::Fases::FasePrimeira::executar()
 			(pJog2->getCorpo().getPosition().x < posFinal.x || 
 			pJog1->getCorpo().getPosition().y < posFinal.y)))
 		{
-			pGE->executar();
-			if (pGE->getPause())
-			{
-				pJog->jogoPausar();
-				pGE->setPause(false);
-				lista_ents.resetarClocks();
-			}
-			pGG->limpaJanela();
-			(this)->desenhar();
-			pGG->getWindow()->draw(pontoFinal);
-			lista_ents.percorrer();
-			GC.executar();
-			pGG->mostraElementos();
+			fluir();
 		}
 		resetarFase();
-		fase_ativa = false;
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x ||	//Testa se nao esta a esquerda da bandeira
 			pJog1->getCorpo().getPosition().y < posFinal.y))	//ou se nao esta a cima dela,
 		{														//para ser verdadeiro, ambos devem ser falsos
@@ -187,7 +161,6 @@ void NightFall::Fases::FasePrimeira::executar()
 			pJog2->setPosicao(sf::Vector2f(0.0f, pGG->getAlturaChao() - pJog2->getTamanho().y));
 		}
 	}
-	fase_ativa = false;
 }
 
 void NightFall::Fases::FasePrimeira::resetarFase()

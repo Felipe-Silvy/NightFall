@@ -17,7 +17,7 @@ NightFall::Entidades::Obstaculos::Cristal::Cristal() :
 {
 	id = 8;
 	danoso = true;
-	corpo.setScale(0.25f, 0.25f);
+	corpo.setScale(0.23f, 0.23f);
 
 	if (Cristal::posicoesXCristal.empty())
 	{
@@ -30,7 +30,7 @@ NightFall::Entidades::Obstaculos::Cristal::Cristal() :
 	sf::Vector2f posicao;
 
 	posicao.x = Cristal::posicoesXCristal[qualPosicao];
-	posicao.y = 0.0f;
+	posicao.y = pGG->getAlturaChao() - getTamanho().y;
 
 	if (qualPosicao != static_cast<int>(Cristal::posicoesXCristal.size()) - 1)
 	{
@@ -56,25 +56,18 @@ void NightFall::Entidades::Obstaculos::Cristal::executar()
 	if (cooldownInteracao >= 5.0f) {
 		if (rand() % 2)
 		{
-			setPosicao(getPosicao().x + 10.0f, pGG->getAlturaChao() - getTamanho().y);
+			setPosicao(getPosicao().x + 10.0f, getPosicao().y);
 			estado = 0;
 		}
 		else
 		{
-			setPosicao(getPosicao().x - 10.0f, pGG->getAlturaChao() - getTamanho().y);
+			setPosicao(getPosicao().x - 10.0f, getPosicao().y);
 			estado = 1;
 		}
 		cooldownInteracao = 0;
 	}
 
-	if (getPosicao().y + getTamanho().y < pGG->getAlturaChao())
-	{
-		setPosicao(getPosicao().x, 0.01f);
-	}
-	else
-	{
-		setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
-	}
+	gravitar();
 }
 
 void NightFall::Entidades::Obstaculos::Cristal::obstaculizar(Personagens::Jogador* p)

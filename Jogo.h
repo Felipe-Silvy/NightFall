@@ -19,6 +19,7 @@ namespace NightFall {
         NightFall::Fases::FaseSegunda Fase2;
 
         bool doisJogadores;
+
     public:
         Jogo();
         ~Jogo();
@@ -30,8 +31,8 @@ namespace NightFall {
         void jogoPausar();
         void salvarJogo();
         void recuperarJogo();
-        void zerarJogador1();
         void mudarRanking(const std::vector<int>& pontos);
+        void zerarJogador1();
     };
 }
 

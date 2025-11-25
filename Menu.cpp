@@ -476,6 +476,7 @@ void NightFall::Menu::centralizarTextos()
 
 std::string NightFall::Menu::capturarNomeSFML(int numJog)
 {
+    std::cout << "capturar nome inicio" << std::endl;
     std::string nome = "";
     sf::Text texto;
     texto.setFont(*(pGG->getFonte()));

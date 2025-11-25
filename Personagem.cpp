@@ -36,14 +36,17 @@ void NightFall::Entidades::Personagens::Personagem::aplicarForca(sf::Vector2f fo
     aceleracao += forca;
 }
 
-void NightFall::Entidades::Personagens::Personagem::setVelocidadeX(float vx)
+void NightFall::Entidades::Personagens::Personagem::gravitar()
 {
-    velocidadeAtual.x = vx;
-}
-
-void NightFall::Entidades::Personagens::Personagem::setVelocidadeY(float vy)
-{
-    velocidadeAtual.y = vy;
+    if (!noChao)
+    {
+        aceleracao.y += 1000.0f;
+    }
+    else
+    {
+        aceleracao.y = 0.0f;
+        velocidadeAtual.y = 0.0f;
+    }
 }
 
 void NightFall::Entidades::Personagens::Personagem::setNoChao(bool valor)
@@ -113,14 +116,3 @@ void NightFall::Entidades::Personagens::Personagem::carregarPersonagem
     noChao = chao;
     tempoMudancaCor = cortempo;
 }
-
-/*
-void NightFall::Entidades::Personagens::Personagem::knockback(float direcao)
-{
-    const float FORCA_EMPURAO_X = 50.f;
-    const float FORCA_PULO_Y = -10.f;
-
-    sf::Vector2f novaVel (direcao * FORCA_EMPURAO_X, getVelocidade().y + FORCA_PULO_Y);
-    setVelocidade(novaVel);
-}
-*/

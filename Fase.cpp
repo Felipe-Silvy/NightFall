@@ -9,7 +9,7 @@ NightFall::Fases::Fase::Fase() :
 	lista_ents(), GC(),
 	pGE(NightFall::Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()),
 	pJog1(nullptr), pJog2(nullptr),
-	maxMorcegos(10), maxPlataformas(6),
+	maxMorcegos(10), maxPlataformas(5),
 	numMorcegos(maxMorcegos - rand() % 8), numPlataformas(maxPlataformas - rand() % 4),
 	pontoFinal(),
 	posFinal(),
@@ -99,10 +99,17 @@ void NightFall::Fases::Fase::resetarFase()
 {
 	std::cout << "Resetou" << std::endl;
 	if (pJog1->getVida() <= 0)
+	{
 		pJog1->setVida(200);
+		pJog1->setPontos(0);
+	}
+		
 
 	if (pJog2 != nullptr && pJog->getDoisJogadores() && pJog2->getVida() <= 0)
+	{
 		pJog2->setVida(200);
+		pJog2->setPontos(0);
+	}
 
 	lista_ents.deletarElementos();
 	GC.limparColecoes();
@@ -111,6 +118,7 @@ void NightFall::Fases::Fase::resetarFase()
 	
 	numMorcegos = maxMorcegos - rand() % 8;
 	numPlataformas = maxPlataformas - rand() % 4;
+	fase_ativa = false;
 }
 
 const bool NightFall::Fases::Fase::getAtiva() const
@@ -226,7 +234,7 @@ void NightFall::Fases::Fase::recuperarFase()
 	executar();			//Espero que chame o executar da classe filha
 }
 
-NightFall::Entidades::Entidade* NightFall::Fases::Fase::instanciarEntidadeGenerica(int id, std::ifstream& arq, bool* primeiroJogador, int esta)
+NightFall::Entidades::Entidade* NightFall::Fases::Fase::instanciarEntidadeGenerica(int id, std::ifstream& arq, bool* primeiroJogador, int estadoParede)
 {
 	//personagem
 	int vidas = -1, velMax = -1;
@@ -273,7 +281,7 @@ NightFall::Entidades::Entidade* NightFall::Fases::Fase::instanciarEntidadeGeneri
 		arq >> altura >> origposy
 			>> mobil >> ampl;
 
-		if (esta != 2)	//NAO É PAREDE
+		if (estadoParede != 2)	//NAO É PAREDE
 		{
 			std::cout << "Plataforma" << std::endl;
 
@@ -305,6 +313,23 @@ NightFall::Entidades::Entidade* NightFall::Fases::Fase::instanciarEntidadeGeneri
 	}
 	return nullptr;
 	
+}
+
+void NightFall::Fases::Fase::fluir()
+{
+	pGE->executar();
+	if (pGE->getPause())
+	{
+		pJog->jogoPausar();
+		pGE->setPause(false);
+		lista_ents.resetarClocks();
+	}
+	pGG->limpaJanela();
+	(this)->desenhar();
+	pGG->getWindow()->draw(pontoFinal);
+	lista_ents.percorrer();
+	GC.executar();
+	pGG->mostraElementos();
 }
 
 void NightFall::Fases::Fase::setJogador(Entidades::Personagens::Jogador* pJog)

@@ -68,7 +68,7 @@ void NightFall::Fases::FaseSegunda::criarCristais()
 		alocadorCristal = new NightFall::Entidades::Obstaculos::Cristal(); // VALORES DE TESTE
 		alocadorCristal->setTextura("Cristal");
 		lista_ents.incluir(static_cast<NightFall::Entidades::Entidade*>(alocadorCristal));
-		alocadorCristal->setPosicao(alocadorCristal->getPosicao().x, pGG->getAlturaChao() - alocadorCristal->getTamanho().y);
+		//alocadorCristal->setPosicao(alocadorCristal->getPosicao().x, pGG->getAlturaChao() - alocadorCristal->getTamanho().y);
 		GC.incluirObstaculo(alocadorCristal);
 	}
 }
@@ -85,22 +85,9 @@ void NightFall::Fases::FaseSegunda::executar()
 	{
 		while (pGG->verificaAbertura() && pJog1->getVida() > 0 && (pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)) // && pos_jog != pos_final && jogador->getvidas()
 		{
-			pGE->executar();
-			if (pGE->getPause())
-			{
-				pJog->jogoPausar();
-				pGE->setPause(false);
-				lista_ents.resetarClocks();
-			}
-			pGG->limpaJanela();
-			(this)->desenhar();
-			pGG->getWindow()->draw(pontoFinal);
-			lista_ents.percorrer();
-			GC.executar();
-			pGG->mostraElementos();
+			fluir();
 		}
 		resetarFase();
-		fase_ativa = false;
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x 
 			|| pJog1->getCorpo().getPosition().y < posFinal.y))
 		{
@@ -119,22 +106,9 @@ void NightFall::Fases::FaseSegunda::executar()
 	{
 		while (pGG->verificaAbertura() && pJog1->getVida() > 0 && pJog2->getVida() > 0 && ((pJog1->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y) || (pJog2->getCorpo().getPosition().x < posFinal.x || pJog1->getCorpo().getPosition().y < posFinal.y)))
 		{
-			pGE->executar();
-			if (pGE->getPause())
-			{
-				pJog->jogoPausar();
-				pGE->setPause(false);
-				lista_ents.resetarClocks();
-			}
-			pGG->limpaJanela();
-			(this)->desenhar();
-			pGG->getWindow()->draw(pontoFinal);
-			lista_ents.percorrer();
-			GC.executar();
-			pGG->mostraElementos();
+			fluir();
 		}
 		resetarFase();
-		fase_ativa = false;
 		if (!(pJog1->getCorpo().getPosition().x < posFinal.x 
 			|| pJog1->getCorpo().getPosition().y < posFinal.y))
 		{

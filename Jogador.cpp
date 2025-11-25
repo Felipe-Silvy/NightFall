@@ -21,8 +21,6 @@ NightFall::Entidades::Personagens::Jogador::~Jogador() { pontos = 0; }
 void NightFall::Entidades::Personagens::Jogador::colidir(Entidades::Personagens::Inimigo* pIn)
 {
    pIn->danificar(this);
-   //float direcaoX = (getPosicao().x > pIn->getPosicao().x) ? 1.0f : -1.0f;
-   //knockback(direcaoX);
 }
 
 void NightFall::Entidades::Personagens::Jogador::executar ()
@@ -44,15 +42,7 @@ void NightFall::Entidades::Personagens::Jogador::mover()
         setPosicao(pos);
     }
     
-    if (!noChao)
-    {
-        aceleracao.y += 1000.0f;
-    }
-    else
-    {
-        aceleracao.y = 0.0f;
-        velocidadeAtual.y = 0.0f;
-    }
+    gravitar();
 
     //segundo a fisica, velocidade é aceleracao * tempo
 
@@ -98,8 +88,33 @@ void NightFall::Entidades::Personagens::Jogador::pular()
     }
 }
 
-void NightFall::Entidades::Personagens::Jogador::atacar()
+void NightFall::Entidades::Personagens::Jogador::atacar(std::vector<Inimigo*>* lista)
 {
+    float alcanceAtaque = 100.f; // definir funcao
+
+    for (int i = 0; i < (int)lista->size(); i++)
+    {
+        Entidades::Personagens::Inimigo* inimigo = lista->at(i);
+        if (inimigo == nullptr)
+            continue;
+
+        sf::Vector2f posInimigo = inimigo->getCorpo().getPosition();
+
+        float distX = std::abs(posInimigo.x - getPosicao().x);
+        float distY = std::abs(posInimigo.y - getPosicao().y);
+        float distancia = std::sqrt(distX * distX + distY * distY);
+
+        if (distancia <= alcanceAtaque)
+        {
+            std::cout << "Acertou ataque!!" << std::endl;
+
+            inimigo->receberDano(poderDano);
+            if (inimigo->getVida() <= 0)
+            {
+                operator++();
+            }
+        }
+    }
 }
 
 int NightFall::Entidades::Personagens::Jogador::getDano()
@@ -112,10 +127,15 @@ const int NightFall::Entidades::Personagens::Jogador::getPontos() const
     return pontos;
 }
 
+void NightFall::Entidades::Personagens::Jogador::setPontos(int pts)
+{
+    pontos = pts;
+}
+
 
 void NightFall::Entidades::Personagens::Jogador::operator++()
 {
-    pontos = pontos + 5;
+    pontos = pontos + 1;
 }
 
 void NightFall::Entidades::Personagens::Jogador::salvar()

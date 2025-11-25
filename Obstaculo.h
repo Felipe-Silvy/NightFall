@@ -11,23 +11,19 @@ namespace NightFall {
             class Obstaculo : public Entidade
             {
             protected:
-                bool danoso; // Atributo protegido conforme o UML
+                bool danoso; 
                 float cooldownInteracao;
                 int estado;
-                // ...
 
             public:
                 Obstaculo();
-                // Obstaculo(int x = 0, int y = 0, bool dan = false); Construtor, recebendo posição e se é danoso
-                virtual ~Obstaculo(); // Destrutor virtual
-
                 
-
-                // Métodos virtuais puros (abstratos) de Entidade, que Obstaculo também possui como abstratos
+                virtual ~Obstaculo(); 
+               
                 virtual void executar() = 0; // Método virtual puro (abstrato)
                 
                 virtual void salvar() = 0;   // Método virtual puro (abstrato)
-                void salvarDataBuffer(); // Implementação específica de salvamento (se houver)
+                void salvarDataBuffer(); 
                 void carregarObstaculo(int estado);
 
                 // Método virtual puro (abstrato) específico de Obstaculo
@@ -35,7 +31,7 @@ namespace NightFall {
                 
                 const int getEstado() const;
 
-                //static virtual void resetPosicoes() = 0;
+                void gravitar();
             };
         }
     }

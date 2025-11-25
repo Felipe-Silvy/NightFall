@@ -13,7 +13,7 @@ namespace NightFall {
             private:
                 int pontos;
                 int poderDano;
-                // #...
+
             public:
                 Jogador();
                 ~Jogador();
@@ -25,14 +25,13 @@ namespace NightFall {
                 void carregarJogador(int pont, int poder);
 
                 void mover(); 
-                // ...
-
-                //Fora da UML
+    
                 void pular();
-                void atacar();
+                void atacar(std::vector<Inimigo*>* lista);
                 int getDano();
                 void operator++();
                 const int getPontos() const;
+                void setPontos(int pts);
             };
         } // namespace Personagens
     } // namespace Entidades

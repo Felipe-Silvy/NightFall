@@ -36,15 +36,7 @@ void NightFall::Entidades::Personagens::Inimigo::mover()
         setPosicao(pos);
     }
 
-    if (!noChao)
-    {
-        aceleracao.y += 1000.0f;
-    }
-    else
-    {
-        aceleracao.y = 0.0f;
-        velocidadeAtual.y = 0.0f;
-    }
+    gravitar();
 
     //segundo a fisica, velocidade é aceleracao * tempo
 

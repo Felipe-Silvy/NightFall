@@ -73,14 +73,7 @@ void NightFall::Entidades::Obstaculos::Teia::executar()
 		cooldownInteracao = 0;
 	}
 
-	if (getPosicao().y + getTamanho().y < pGG->getAlturaChao())
-	{
-		setPosicao(getPosicao().x, 0.01f);
-	}
-	else
-	{
-		setPosicao(getPosicao().x, pGG->getAlturaChao() - getTamanho().y);
-	}
+	gravitar();
 }
 
 void NightFall::Entidades::Obstaculos::Teia::obstaculizar(Personagens::Jogador* p)
@@ -89,7 +82,7 @@ void NightFall::Entidades::Obstaculos::Teia::obstaculizar(Personagens::Jogador* 
 	if (!estado)
 		desacelerar_pratico *= 0.8f;
 	
-	p->setVelocidadeX(p->getVelocidade().x * desacelerar_pratico);
+	p->setVelocidade(sf::Vector2f(p->getVelocidade().x * desacelerar_pratico, p->getVelocidade().y));
 }
 
 void NightFall::Entidades::Obstaculos::Teia::resetPosicoes()
