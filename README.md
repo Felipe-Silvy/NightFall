@@ -93,7 +93,12 @@ A estrutura do projeto adota namespaces bem delimitados para garantir alta coes�
 * Listas (Lista, Elemento, ListaEntidades): Estruturas encadeadas genéricas (Templates) e organizadores customizados para iterar e atualizar as entidades de forma desacoplada.
 * Entidades (Personagens e Obstaculos): Hierarquia polimórfica que inclui Jogador, Esqueleto, Morcego, Vampiro, Plataforma, Teia, Cristal e Faca.
 
-📄 **[Clique aqui para abrir o Diagrama de Classes UML Completo (PDF Interactive)](Assets/diagrama_nightfall_definitivo.pdf)**
+<div align="center">
+  <a href="Assets/diagrama_nightfall_definitivo.pdf">
+    <img src="Assets/preview_diagrama.png" width="800" alt="Preview do Diagrama de Classes UML"><br>
+    <sub>📄 Clique na imagem para abrir o PDF completo do Diagrama de Classes UML</sub>
+  </a>
+</div>
 
 ---
 
