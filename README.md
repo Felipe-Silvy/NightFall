@@ -46,15 +46,28 @@ Em NightFall, o usuário controla caçadores que avançam por cenários hostis r
 
 ## 🚀 Funcionalidades e Menus
 
-![Menu Principal do Jogo](Assets/menu_principal.png)
-
 * Multiplayer Local Simultâneo: Suporte configurável para 1 ou 2 jogadores na mesma tela.
 * Mecânicas de Inimigos: Algoritmos de movimento aleatório, perseguição por raio de proximidade e projéteis (facas arremessadas pelo Vampiro).
 * Física e Colisões: Sistema próprio de gravidade, forças de atrito, equações de movimento, operações vetoriais de colisão e variação senoidal em plataformas.
 * Persistência de Dados (Save/Load): Salvamento e carregamento completo do estado do jogo via arquivo, além do registro do histórico de pontuação (Ranking com top 5).
 * Geração Aleatória: Instanciação aleatória do número e posicionamento de entidades (inimigos e obstáculos) no início das fases.
 
-![Tela de Ranking](Assets/ranking.png)
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="Assets/menu.png" width="400" alt="Captura da Fase 1 - O Cemitério"><br>
+      <b>Fase 1: O Cemitério</b>
+    </td>
+    <td align="center">
+      <img src="Assets/ranking.png" width="400" alt="Captura da Fase 2 - O Castelo"><br>
+      <b>Fase 2: O Castelo</b>
+    </td>
+  </tr>
+</table>
+
+</div>
 
 ---
 
