@@ -11,7 +11,7 @@ Em NightFall, o usuário controla caçadores que avançam por cenários hostis r
 1. Fase 1 (O Cemitério): Os jogadores enfrentam ondas de Esqueletos e Morcegos, ultrapassam o obstáculo desacelerador de Teias e navegam por plataformas para transpor uma grande parede central.
 2. Fase 2 (O Castelo): Ambientada no interior de um castelo, onde os jogadores enfrentam Morcegos e o chefão Vampiro (capaz de arremessar facas de sangue), desviando de Cristais móveis que causam dano ao contato.
 
-![Captura da Fase 1 - O Cemitério](Assets/fase1.png)
+![Captura da Fase 1 - O Cemitério](fase1.png)
 ![Captura da Fase 2 - O Castelo](Assets/fase2.png)
 
 ---
