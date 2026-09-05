@@ -112,3 +112,13 @@ A estrutura do projeto adota namespaces bem delimitados para garantir alta coes�
 1. Clone este repositório:
    ```bash
    git clone [https://github.com/Felipe-Silvy/NightFall.git](https://github.com/Felipe-Silvy/NightFall.git)
+   ```
+   
+2. Acesse a pasta do projeto:
+   cd NightFall
+
+3. Compilação e Execução:
+   - Via IDE (VS Code / Visual Studio):
+     Abra a pasta na sua IDE com a SFML configurada e rode o projeto (F5).
+
+* Nota: Garanta que as DLLs da SFML e a pasta de assets estejam no mesmo diretório do executável.
