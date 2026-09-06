@@ -124,3 +124,9 @@ A estrutura do projeto adota namespaces bem delimitados para garantir alta coes�
      Abra a pasta na sua IDE com a SFML configurada e rode o projeto (F5).
 
 * Nota: Garanta que as DLLs da SFML e a pasta de assets estejam no mesmo diretório do executável.
+
+---
+
+## 👤 Autores
+
+Desenvolvido por **Felipe Silvy** e **Vitor Rossi**.
