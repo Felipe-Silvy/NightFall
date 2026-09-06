@@ -1,6 +1,6 @@
 #include "Morcego.h"
 #include "Jogador.h"
-#include "Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
 #include <iostream>
 
 sf::Vector2f NightFall::Entidades::Personagens::Morcego::ultimaPosicao = { 0.0f, 300.0f };

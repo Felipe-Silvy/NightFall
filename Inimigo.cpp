@@ -1,6 +1,6 @@
 #include "Inimigo.h"
 #include "Jogador.h"
-#include "Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
 #include <cmath>
 
 NightFall::Entidades::Personagens::Jogador* NightFall::Entidades::Personagens::Inimigo::pJogador1 = nullptr;

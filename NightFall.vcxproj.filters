@@ -30,10 +30,10 @@
     <ClCompile Include="Entidade.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Gerenciador_Colisoes.cpp">
+    <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Gerenciador_Grafico.cpp">
+    <ClCompile Include="Gerenciadores\Gerenciador_Grafico.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Inimigo.cpp">
@@ -72,7 +72,7 @@
     <ClCompile Include="Teia.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Gerenciador_Eventos.cpp">
+    <ClCompile Include="Gerenciadores\Gerenciador_Eventos.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Morcego.cpp">
@@ -98,10 +98,10 @@
     <ClInclude Include="Entidade.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Gerenciador_Colisoes.h">
+    <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Gerenciador_Grafico.h">
+    <ClInclude Include="Gerenciadores\Gerenciador_Grafico.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Inimigo.h">
@@ -143,7 +143,7 @@
     <ClInclude Include="Teia.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Gerenciador_Eventos.h">
+    <ClInclude Include="Gerenciadores\Gerenciador_Eventos.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Morcego.h">

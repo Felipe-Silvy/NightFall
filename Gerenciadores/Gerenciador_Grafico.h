@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Ente.h"
+#include "../Ente.h"
 
 namespace NightFall {
     namespace Gerenciadores {

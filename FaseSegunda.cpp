@@ -1,8 +1,8 @@
 #include "FaseSegunda.h"
 #include "Vampiro.h"
 #include "Plataforma.h"
-#include "Gerenciador_Grafico.h"
-#include "Gerenciador_Eventos.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Eventos.h"
 #include <iostream>
 #include "Jogo.h"
 #include "Inimigo.h"

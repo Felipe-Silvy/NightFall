@@ -1,5 +1,5 @@
 #include "Ente.h"
-#include "Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
 
 NightFall::Gerenciadores::Gerenciador_Grafico* NightFall::Ente::pGG = nullptr;
 

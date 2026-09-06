@@ -1,7 +1,7 @@
 #include "Gerenciador_Eventos.h"
 #include "Gerenciador_Colisoes.h"
-#include "Jogador.h"
-#include "Inimigo.h"
+#include "../Jogador.h"
+#include "../Inimigo.h"
 #include <iostream>
 
 NightFall::Gerenciadores::Gerenciador_Eventos* NightFall::Gerenciadores::Gerenciador_Eventos::pEventos = nullptr;

@@ -1,6 +1,6 @@
 #include "Fase.h"
 #include "Morcego.h"
-#include "Gerenciador_Eventos.h"
+#include "Gerenciadores/Gerenciador_Eventos.h"
 #include "Plataforma.h"
 #include "Jogo.h"
 #include <fstream>

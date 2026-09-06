@@ -1,7 +1,7 @@
 #include "ListaEntidades.h"
 #include "Entidade.h"
 #include "Inimigo.h"
-#include "Gerenciador_Colisoes.h"
+#include "Gerenciadores/Gerenciador_Colisoes.h"
 #include "Jogador.h"
 #include "Faca.h"
 #include <fstream>

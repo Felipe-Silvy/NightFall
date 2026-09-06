@@ -1,5 +1,5 @@
 #include "Jogador.h"
-#include "Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
 #include <iostream>
 #include "Vampiro.h"
 #include "Faca.h"

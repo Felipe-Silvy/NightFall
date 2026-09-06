@@ -1,6 +1,6 @@
 #pragma once
 #include "Ente.h"
-#include "Gerenciador_Colisoes.h"
+#include "Gerenciadores/Gerenciador_Colisoes.h"
 #include "ListaEntidades.h"
 
 namespace NightFall {

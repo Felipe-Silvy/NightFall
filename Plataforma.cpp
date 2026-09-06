@@ -1,7 +1,7 @@
 #include "Plataforma.h"
 #include "Teia.h"
 #include "Jogador.h"
-#include "Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
 #include <algorithm> 
 #include <cstdlib>  
 #include <ctime>

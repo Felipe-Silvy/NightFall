@@ -1,9 +1,9 @@
 #include "Gerenciador_Colisoes.h"
-#include "Inimigo.h"
-#include "Jogador.h"
-#include "Obstaculo.h"
+#include "../Inimigo.h"
+#include "../Jogador.h"
+#include "../Obstaculo.h"
 #include "Gerenciador_Grafico.h"
-#include "Faca.h"
+#include "../Faca.h"
 
 
 NightFall::Gerenciadores::Gerenciador_Colisoes::Gerenciador_Colisoes() :

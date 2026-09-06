@@ -1,6 +1,6 @@
 #include "Jogador.h"
 #include "Inimigo.h"
-#include "Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
 #include <iostream>
 #include <iomanip>
 

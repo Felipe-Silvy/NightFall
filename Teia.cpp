@@ -1,6 +1,6 @@
 #include "Teia.h"
 #include "Jogador.h"
-#include "Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
 
 std::vector<float> NightFall::Entidades::Obstaculos::Teia::posicoesXTeia = {
 	{100.0f},

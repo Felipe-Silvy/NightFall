@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "Gerenciador_Grafico.h"
+#include "Gerenciadores/Gerenciador_Grafico.h"
 #include "Jogo.h"
 #include <fstream>
 #include <iostream>
