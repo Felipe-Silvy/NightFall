@@ -140,9 +140,9 @@
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Esqueleto.cpp" />
     <ClCompile Include="Faca.cpp" />
-    <ClCompile Include="Fase.cpp" />
-    <ClCompile Include="FasePrimeira.cpp" />
-    <ClCompile Include="FaseSegunda.cpp" />
+    <ClCompile Include="Fases\Fase.cpp" />
+    <ClCompile Include="Fases\FasePrimeira.cpp" />
+    <ClCompile Include="Fases\FaseSegunda.cpp" />
     <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp" />
     <ClCompile Include="Gerenciadores\Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciadores\Gerenciador_Grafico.cpp" />
@@ -165,9 +165,9 @@
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Esqueleto.h" />
     <ClInclude Include="Faca.h" />
-    <ClInclude Include="Fase.h" />
-    <ClInclude Include="FasePrimeira.h" />
-    <ClInclude Include="FaseSegunda.h" />
+    <ClInclude Include="Fases\Fase.h" />
+    <ClInclude Include="Fases\FasePrimeira.h" />
+    <ClInclude Include="Fases\FaseSegunda.h" />
     <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciadores\Gerenciador_Eventos.h" />
     <ClInclude Include="Gerenciadores\Gerenciador_Grafico.h" />

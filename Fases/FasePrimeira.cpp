@@ -1,11 +1,11 @@
 #include "FasePrimeira.h"
-#include "Esqueleto.h"
-#include "Teia.h"
-#include "Plataforma.h"
-#include "Gerenciadores/Gerenciador_Grafico.h"
-#include "Gerenciadores/Gerenciador_Eventos.h"
+#include "../Esqueleto.h"
+#include "../Teia.h"
+#include "../Plataforma.h"
+#include "../Gerenciadores/Gerenciador_Grafico.h"
+#include "../Gerenciadores/Gerenciador_Eventos.h"
 #include <iostream>
-#include "Jogo.h"
+#include "../Jogo.h"
 #include <fstream>
 
 

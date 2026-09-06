@@ -1,8 +1,8 @@
 #include "Fase.h"
-#include "Morcego.h"
-#include "Gerenciadores/Gerenciador_Eventos.h"
-#include "Plataforma.h"
-#include "Jogo.h"
+#include "../Morcego.h"
+#include "../Gerenciadores/Gerenciador_Eventos.h"
+#include "../Plataforma.h"
+#include "../Jogo.h"
 #include <fstream>
 
 NightFall::Fases::Fase::Fase() :

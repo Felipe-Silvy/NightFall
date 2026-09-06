@@ -1,13 +1,13 @@
 #include "FaseSegunda.h"
-#include "Vampiro.h"
-#include "Plataforma.h"
-#include "Gerenciadores/Gerenciador_Grafico.h"
-#include "Gerenciadores/Gerenciador_Eventos.h"
+#include "../Vampiro.h"
+#include "../Plataforma.h"
+#include "../Gerenciadores/Gerenciador_Grafico.h"
+#include "../Gerenciadores/Gerenciador_Eventos.h"
 #include <iostream>
-#include "Jogo.h"
-#include "Inimigo.h"
-#include "Cristal.h"
-#include "Faca.h"
+#include "../Jogo.h"
+#include "../Inimigo.h"
+#include "../Cristal.h"
+#include "../Faca.h"
 
 #include <fstream>
 
